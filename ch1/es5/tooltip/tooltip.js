@@ -1,6 +1,5 @@
 var Overlay = ng.Class({
   constructor: function (text) {
-    // bad idea to directly use global
     var el = document.createElement('div');
     el.className = 'tooltip';
     el.innerHTML = text;
@@ -34,7 +33,6 @@ var OverlayManager = ng.Injectable()
     }
     var overlay = new Overlay(text);
     overlay.close();
-    // bad idea to directly use global
     overlay.attach(document.body);
     return overlay;
   },
