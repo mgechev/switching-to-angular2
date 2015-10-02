@@ -1,0 +1,9 @@
+<h1>Hello {{name}}!</h1>
+<p>
+  Here's list of the things you need to do:
+</p>
+<ul>
+  <template ng-for var-todo [ng-for-of]="todos">
+    <li>{{todo}}</li>
+  </template>
+</ul>
