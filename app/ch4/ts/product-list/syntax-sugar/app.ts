@@ -4,10 +4,9 @@ import {Component, View, bootstrap, CORE_DIRECTIVES} from 'angular2/angular2';
   selector: 'app'
 })
 @View({
-  templateUrl: './ch4/ts/product-list/syntax-sugar/app.html',
+  templateUrl: '<%= currentPath %>app.html',
   directives: [CORE_DIRECTIVES]
 })
-
 class App {
   products:string[];
   name:string;

@@ -26,50 +26,46 @@ function notifyLiveReload(e) {
     }
   });
 }
-module.exports.notifyLiveReload = notifyLiveReload;
 
 function livereload() {
   minilr.listen(CONFIG.LIVE_RELOAD_PORT);
 }
-module.exports.livereload = livereload;
 
 function transformPath(plugins, env) {
-  var v = '?v=' + getVersion();
   return function (filepath) {
-    var filename = filepath.replace('/' + PATH.dest[env].all, '') + v;
+    var filename = filepath.replace('/' + PATH.dest[env].all, '');
     arguments[0] = join(CONFIG.APP_BASE, filename);
     return plugins.inject.transform.apply(plugins.inject.transform, arguments);
   };
 }
-module.exports.transformPath = transformPath;
 
 function injectableDevAssetsRef() {
   var src = PATH.src.lib.map(function (path) {
     return join(PATH.dest.dev.lib, slash(path).split('/').pop());
   });
+  src.push(join(PATH.dest.all, '/init.js'));
   return src;
 }
-module.exports.injectableDevAssetsRef = injectableDevAssetsRef;
 
-function getVersion() {
-  var pkg = JSON.parse(fs.readFileSync('package.json'));
-  return pkg.version;
+function relativePath(fileLocation) {
+  fileLocation = path.dirname(fileLocation);
+  var parentDir = __dirname.replace(join('tools'), '');
+  var result = join('/', fileLocation.replace(join(parentDir, 'app'), ''), '/');
+  return result;
 }
 
 function templateLocals() {
   return {
-    VERSION: getVersion(),
-    APP_BASE: CONFIG.APP_BASE
+    APP_BASE: CONFIG.APP_BASE,
+    EXAMPLES_LIST: 'buildExamplesList'
   };
 }
-module.exports.templateLocals = templateLocals;
 
 function tsProject(plugins) {
   return plugins.typescript.createProject('tsconfig.json', {
     typescript: require('typescript')
   });
 }
-module.exports.tsProject = tsProject;
 
 function serveSPA(env) {
   var app = express();
@@ -80,11 +76,19 @@ function serveSPA(env) {
   );
 
   app.all(CONFIG.APP_BASE + '*', function (req, res) {
-    res.sendFile(resolve(process.cwd(), PATH.dest[env].all, 'index.html'));
+    res.sendFile(resolve(process.cwd(), PATH.dest[env].all, '404.html'));
   });
 
   app.listen(CONFIG.PORT, function () {
     openResource('http://localhost:' + CONFIG.PORT + CONFIG.APP_BASE);
   });
 }
+
 module.exports.serveSPA = serveSPA;
+module.exports.relativePath = relativePath;
+module.exports.tsProject = tsProject;
+module.exports.templateLocals = templateLocals;
+module.exports.injectableDevAssetsRef = injectableDevAssetsRef;
+module.exports.notifyLiveReload = notifyLiveReload;
+module.exports.transformPath = transformPath;
+module.exports.livereload = livereload;

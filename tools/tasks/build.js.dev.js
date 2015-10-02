@@ -4,6 +4,8 @@ var path = require('path');
 var join = path.join;
 var CONFIG = require('../workflow.config');
 var utils = require('../utils');
+var data = require('gulp-data');
+var merge = require('merge');
 
 module.exports = function (gulp, plugins) {
   return function () {
@@ -16,12 +18,14 @@ module.exports = function (gulp, plugins) {
       ])
 
       .pipe(plugins.plumber())
-      .pipe(plugins.inlineNg2Template({base: 'app'}))
       .pipe(plugins.sourcemaps.init())
       .pipe(plugins.typescript(tsProject));
 
     return result.js
       .pipe(plugins.sourcemaps.write())
+      .pipe(data(function (file) {
+        return merge({ currentPath: utils.relativePath(file.path) }, utils.templateLocals());
+      }))
       .pipe(plugins.template(utils.templateLocals()))
       .pipe(gulp.dest(CONFIG.PATH.dest.dev.all));
   };

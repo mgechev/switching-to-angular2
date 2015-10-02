@@ -74,7 +74,7 @@ export class Tooltip {
   selector: 'app'
 })
 @View({
-  templateUrl: './ch4/ts/tooltip/app.html',
+  templateUrl: '<%= currentPath %>app.html',
   directives: [Tooltip]
 })
 class App {}

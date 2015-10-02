@@ -1,4 +1,5 @@
 System.config({
-  defaultJSExtensions: true
+  defaultJSExtensions: true,
+  baseURL: '.'
 });
 
