@@ -16,8 +16,12 @@
 
   <!-- inject:js -->
   <!-- endinject -->
-
-  <script src="<%= APP_BASE %>init.js?v=<%= VERSION %>"></script>
+  <script>
+  System.import('./ch4/ts/hello-world/app')
+    .catch(function (e) {
+      console.error(e);
+    });
+  </script>
 
 </body>
 </html>

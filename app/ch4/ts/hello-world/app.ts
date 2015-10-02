@@ -3,7 +3,7 @@ import {Component, View, bootstrap} from 'angular2/angular2';
   selector: 'app'
 })
 @View({
-  templateUrl: './app.html'
+  templateUrl: './ch4/ts/hello-world/app.html'
 })
 
 class App {
