@@ -8,7 +8,7 @@ import {Component, View, bootstrap, CORE_DIRECTIVES} from 'angular2/angular2';
   directives: [CORE_DIRECTIVES]
 })
 class App {
-  products:string[];
+  todos:string[];
   name:string;
   constructor() {
     this.name = "John";
