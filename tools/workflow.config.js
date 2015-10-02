@@ -10,6 +10,7 @@ var APP_BASE         = argv['base']        || '/';
 
 var APP_SRC = 'app';
 var APP_DEST = 'dist';
+var CHAPTERS = 'chapters';
 var ANGULAR_BUNDLES = './node_modules/angular2/bundles';
 
 var PATH = {
@@ -49,6 +50,7 @@ var CONFIG = {
   APP_SRC: APP_SRC,
   APP_DEST: APP_DEST,
   ANGULAR_BUNDLES: ANGULAR_BUNDLES,
-  PATH: PATH
+  PATH: PATH,
+  CHAPTERS: CHAPTERS
 };
 module.exports = CONFIG;

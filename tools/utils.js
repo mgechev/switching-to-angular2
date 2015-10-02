@@ -28,10 +28,7 @@ function notifyLiveReload(e) {
     }
   });
 }
-// {
-//   "title": "Simple tooltip",
-//   "description": "Tooltip directive"
-// }
+
 function listMetadataStrategy(meta, path, appRoot) {
   return '<li><a href="' + path.replace(new RegExp('^' + appRoot), '') + '">' + meta.title + '</a></li>'
 }
