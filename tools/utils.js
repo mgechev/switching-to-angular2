@@ -15,6 +15,8 @@ var openResource = require('open');
 var express = require('express');
 var minilr = require('mini-lr')();
 
+var jsonfile = require('jsonfile');
+
 // --------------
 // Utils.
 
@@ -25,6 +27,30 @@ function notifyLiveReload(e) {
       files: [fileName]
     }
   });
+}
+// {
+//   "title": "Simple tooltip",
+//   "description": "Tooltip directive"
+// }
+function listMetadataStrategy(meta, path, appRoot) {
+  return '<li><a href="' + path.replace(new RegExp('^' + appRoot), '') + '">' + meta.title + '</a></li>'
+}
+
+function readMetadata(current, formatStrategy, appRoot) {
+  var result = [];
+  fs.readdirSync(current).forEach(function (file) {
+    if (file === 'meta.json') {
+      file = join('./', current, file);
+      file = result.push(formatStrategy(jsonfile.readFileSync(file), current, appRoot));
+    } else if (fs.lstatSync(join(current, file)).isDirectory()) {
+      result = result.concat(readMetadata(join(current, file), formatStrategy, appRoot));
+    }
+  });
+  return result;
+}
+
+function getMetadata(appRoot) {
+  return '<ol>' + readMetadata(appRoot, listMetadataStrategy, appRoot).join('\n') + '</ol>';
 }
 
 function livereload() {
@@ -57,7 +83,7 @@ function relativePath(fileLocation) {
 function templateLocals() {
   return {
     APP_BASE: CONFIG.APP_BASE,
-    EXAMPLES_LIST: 'buildExamplesList'
+    EXAMPLES_LIST: getMetadata(join(CONFIG.APP_SRC))
   };
 }
 
