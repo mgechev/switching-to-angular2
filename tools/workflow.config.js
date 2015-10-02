@@ -8,10 +8,8 @@ var PORT             = argv['port']        || 5555;
 var LIVE_RELOAD_PORT = argv['reload-port'] || 4002;
 var APP_BASE         = argv['base']        || '/';
 
-var APP_COMMON = 'base';
 var APP_SRC = 'app';
 var APP_DEST = 'dist';
-var CHAPTERS = 'chapters';
 var ANGULAR_BUNDLES = './node_modules/angular2/bundles';
 
 var PATH = {
@@ -51,8 +49,6 @@ var CONFIG = {
   APP_SRC: APP_SRC,
   APP_DEST: APP_DEST,
   ANGULAR_BUNDLES: ANGULAR_BUNDLES,
-  PATH: PATH,
-  CHAPTERS: CHAPTERS,
-  APP_COMMON: APP_COMMON
+  PATH: PATH
 };
 module.exports = CONFIG;

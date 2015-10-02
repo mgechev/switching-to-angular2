@@ -3,9 +3,21 @@
 ```bash
 git clone https://github.com/mgechev/angular2-seed.git
 cd angular2-seed
-# If you don't have gulp and/or tsd already installed
-npm install -g gulp tsd
 npm install
 # dev
-gulp serve.dev
+npm run serve.dev
 ```
+
+Based on `angular2-seed`.
+
+Changes:
+
+- New dependencies:
+  - `gulp-data`
+  - `jsonfile`
+  - `merge`
+- Changed tasks:
+  - `build.index.dev`
+  - `build.js.dev`
+- Other changed files
+  - `index.html`

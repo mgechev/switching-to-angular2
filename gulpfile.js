@@ -30,13 +30,12 @@ gulp.task('clean.tsd_typings', tasks('clean', 'tsd_typings'));
 
 // --------------
 // Build dev.
-gulp.task('build.bootstrap', tasks('build.bootstrap'));
 gulp.task('build.lib.dev', tasks('build.lib.dev'));
 gulp.task('build.js.dev', tasks('build.js.dev'));
 gulp.task('build.assets.dev', ['build.js.dev'], tasks('build.assets.dev'));
 gulp.task('build.index.dev', tasks('build.index.dev'));
 gulp.task('build.app.dev', function (done) {
-  runSequence('clean.app.dev', 'build.bootstrap', 'build.assets.dev', 'build.index.dev', done);
+  runSequence('clean.app.dev', 'build.assets.dev', 'build.index.dev', done);
 });
 gulp.task('build.dev', function (done) {
   runSequence('clean.dev', 'build.lib.dev', 'build.app.dev', done);
@@ -67,7 +66,7 @@ gulp.task('install.typings', ['clean.tsd_typings'], shell.task([
 ]));
 
 gulp.task('postinstall', function (done) {
-  runSequence('install.typings', done);
+  runSequence(['clean', 'clean.test'], 'install.typings', done);
 });
 
 

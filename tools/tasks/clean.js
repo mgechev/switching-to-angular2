@@ -3,8 +3,7 @@
 var del = require('del');
 var path = require('path');
 var join = path.join;
-var CONFIG = require('../workflow.config');
-var PATH = CONFIG.PATH;
+var PATH = require('../workflow.config').PATH;
 
 module.exports = function (gulp, plugins, config) {
   return function (done) {
@@ -14,7 +13,6 @@ module.exports = function (gulp, plugins, config) {
 
     if (config == 'clean.app.dev') {
       del([
-          CONFIG.APP_SRC,
           join(PATH.dest.dev.all, '**/*'),
           '!' + PATH.dest.dev.lib,
           '!' + join(PATH.dest.dev.lib, '*')

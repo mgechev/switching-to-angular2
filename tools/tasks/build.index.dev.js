@@ -5,7 +5,6 @@ var join = path.join;
 var PATH = require('../workflow.config').PATH;
 var utils = require('../utils');
 var data = require('gulp-data');
-var tap = require('gulp-tap');
 var merge = require('merge');
 
 function getInit(path, file) {
@@ -25,3 +24,4 @@ module.exports = function (gulp, plugins) {
       .pipe(gulp.dest(PATH.dest.dev.all));
   };
 };
+
