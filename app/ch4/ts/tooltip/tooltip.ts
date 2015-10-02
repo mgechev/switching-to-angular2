@@ -1,7 +1,7 @@
 import {Injectable, ElementRef, Attribute, Inject, Directive, Component, View, bootstrap} from 'angular2/angular2';
 
 class Overlay {
-  private el:Element;
+  private el:HTMLElement;
   constructor(text) {
     var el = document.createElement('div');
     el.className = 'tooltip';
@@ -74,7 +74,7 @@ export class Tooltip {
   selector: 'app'
 })
 @View({
-  templateUrl: './app.html',
+  templateUrl: './ch4/ts/tooltip/app.html',
   directives: [Tooltip]
 })
 class App {}

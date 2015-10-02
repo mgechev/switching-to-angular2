@@ -4,7 +4,7 @@ import {Component, View, bootstrap, CORE_DIRECTIVES} from 'angular2/angular2';
   selector: 'app'
 })
 @View({
-  templateUrl: './app.html',
+  templateUrl: './ch4/ts/product-list/detailed-syntax/app.html',
   directives: [CORE_DIRECTIVES]
 })
 
