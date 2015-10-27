@@ -1,14 +1,7 @@
-var name = 'foo';
-var age = 42;
-var job = 'Developer';
-var person = {
-  name,
-  age,
-  job,
-  talk() {
-    return 'I am ' + this.name + ', age of ' + this.age + ' and I work as ' + this.job + '.';
-  }
+var selector = 'hello-world';
+var templateUrl = 'hello-world.html';
+var Component = {
+  selector,
+  templateUrl
 };
 
-// ‘I am foo, age of 42 and I work as Developer.’
-console.log(person.talk());
