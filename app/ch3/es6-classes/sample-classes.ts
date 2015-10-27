@@ -1,5 +1,6 @@
 class Human {
   static totalPeople = 0;
+  _name; // not required for ES2015 class definition
   constructor(name) {
     this._name = name;
     Human.totalPeople += 1;
@@ -11,11 +12,12 @@ class Human {
     this._name = val;
   }
   talk() {
-    return 'Hi, I’m ${this.name}!';
+    return `Hi, I'm ${this.name}!`;
   }
 }
 
 class Developer extends Human {
+  _languages; // not required for ES2015 class definition
   constructor(name, languages) {
     super(name);
     this._languages = languages;
@@ -24,6 +26,6 @@ class Developer extends Human {
     return this._languages;
   }
   talk() {
-    return '${super.talk()} And I know ${this.languages.join(‘, ’)}.';
+    return `${super.talk()} And I know ${this.languages.join(', ')}.`;
   }
 }
