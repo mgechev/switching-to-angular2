@@ -1,4 +1,4 @@
-function Demo() {
+function MyComponent() {
   this.age = 42;
   setTimeout(() => {
     this.age += 1;
@@ -6,4 +6,4 @@ function Demo() {
   }, 100);
 }
 
-new Demo(); // 43 in 100ms.
+new MyComponent(); // 43 in 100ms.
