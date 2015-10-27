@@ -1,4 +1,4 @@
-// math.js
+// math.ts
 export function square(x) {
   return Math.pow(x, 2);
 };
