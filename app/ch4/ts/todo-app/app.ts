@@ -13,6 +13,9 @@ interface Todo {
   styles: [
     `ul li {
       list-style: none;
+    }
+    .completed {
+      text-decoration: line-through;
     }`
   ],
   directives: [CORE_DIRECTIVES]

@@ -9,7 +9,7 @@
 <p>Here's the list of pending todo items:</p>
 
 <ul>
-  <li *ng-for="#todo of todos; #index = index">
+  <li *ng-for="#todo of todos; #index = index" [class.completed]="todo.completed">
     <input type="checkbox" [checked]="todo.completed"
       (change)="toggleCompletion(index)">
     {{todo.label}}
