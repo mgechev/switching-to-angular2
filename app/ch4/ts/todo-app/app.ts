@@ -20,7 +20,7 @@ interface Todo {
   ],
   directives: [CORE_DIRECTIVES]
 })
-class TodoApp {
+class TodoCtrl {
   todos: Todo[];
   name: string;
   temp: string;
