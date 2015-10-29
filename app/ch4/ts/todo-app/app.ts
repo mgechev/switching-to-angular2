@@ -50,4 +50,4 @@ class TodoCtrl {
   }
 }
 
-bootstrap(TodoApp);
+bootstrap(TodoCtrl);
