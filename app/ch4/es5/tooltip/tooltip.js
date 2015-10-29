@@ -1,16 +1,16 @@
 var Overlay = ng.Class({
-  constructor: function (text) {
+  constructor: function () {
     var el = document.createElement('div');
     el.className = 'tooltip';
-    el.innerHTML = text;
     this.el = el;
   },
   close: function () {
     this.el.hidden = true;
   },
-  open: function (el) {
+  open: function (el, text) {
+    this.el.innerHTML = text;
     this.el.hidden = false;
-    var rect = el.getBoundingClientRect();
+    var rect = el.nativeElement.getBoundingClientRect();
     this.el.style.left = rect.left + 'px';
     this.el.style.top = rect.top + 'px';
   },
@@ -53,12 +53,12 @@ var Tooltip = ng.Directive({
   }
 })
 .Class({
-  constructor: [ng.Attribute('tooltip'), ng.Inject(ng.ElementRef), ng.Inject(OverlayManager), function (tooltip, el, manager) {
+  constructor: [ng.Inject(ng.ElementRef), ng.Inject(OverlayManager), function (tooltip, el, manager) {
     this.el = el;
-    this.overlay = manager.get(tooltip);
+    this.overlay = manager.get();
   }],
   onMouseEnter() {
-    this.overlay.open(this.el.nativeElement);
+    this.overlay.open(this.el, this.tooltip);
   },
   onMouseLeave() {
     this.overlay.close();

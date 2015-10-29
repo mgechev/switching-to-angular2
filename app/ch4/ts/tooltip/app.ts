@@ -2,18 +2,18 @@ import {Injectable, ElementRef, Attribute, Inject, Directive, Component, View, b
 
 class Overlay {
   private el:HTMLElement;
-  constructor(text) {
+  constructor() {
     var el = document.createElement('div');
     el.className = 'tooltip';
-    el.innerHTML = text;
     this.el = el;
   }
   close() {
     this.el.hidden = true;
   }
-  open(el) {
+  open(el, text) {
+    this.el.innerHTML = text;
     this.el.hidden = false;
-    var rect = el.getBoundingClientRect();
+    var rect = el.nativeElement.getBoundingClientRect();
     this.el.style.left = rect.left + 'px';
     this.el.style.top = rect.top + 'px';
   }
@@ -58,12 +58,12 @@ class OverlayManager {
 })
 export class Tooltip {
   private overlay:Overlay;
-  constructor(@Attribute('tooltip') tooltip, private el:ElementRef, manager: OverlayManager) {
+  constructor(private el:ElementRef, manager: OverlayManager) {
     this.el = el;
-    this.overlay = manager.get(tooltip);
+    this.overlay = manager.get();
   }
   onMouseEnter() {
-    this.overlay.open(this.el.nativeElement);
+    this.overlay.open(this.el, this.tooltip);
   }
   onMouseLeave() {
     this.overlay.close();
