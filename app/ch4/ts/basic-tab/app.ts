@@ -1,8 +1,23 @@
-import {Directive, Component, View, Host, Attribute, CORE_DIRECTIVES, bootstrap} from 'angular2/angular2';
+import {Directive, Inject, EventEmitter, Output, Component, forwardRef, View, Host, Attribute, CORE_DIRECTIVES, bootstrap} from 'angular2/angular2';
+
+@Component({
+  selector: `tab`,
+  template: `
+    <div [hidden]="!isActive">
+      <ng-content></ng-content>
+    </div>
+  `
+})
+class Tab {
+  isActive: boolean;
+  constructor(@Inject(forwardRef(() => Tabs)) @Host() private tabs: Tabs, @Attribute('title') private title: string) {
+    this.tabs.addTab(this);
+  }
+}
 
 @Component({
   selector: 'tabs',
-  directives: [CORE_DIRECTIVES]
+  directives: [CORE_DIRECTIVES],
   styles: [
     `
       .tab {
@@ -45,6 +60,8 @@ import {Directive, Component, View, Host, Attribute, CORE_DIRECTIVES, bootstrap}
   `
 })
 class Tabs {
+  @Output('changed')
+  tabChanged: EventEmitter = new EventEmitter();
   tabs: Tab[];
   active: number;
   constructor() {
@@ -61,28 +78,14 @@ class Tabs {
     this.active = index;
     this.tabs.forEach(t => t.isActive = false);
     this.tabs[index].isActive = true;
-  }
-}
-
-@Component({
-  selector: `tab`,
-  template: `
-    <div [hidden]="!isActive">
-      <ng-content></ng-content>
-    </div>
-  `
-})
-class Tab {
-  isActive: boolean;
-  constructor(@Host(Tabs) private tabs: Tabs, @Attribute('title') private title: string) {
-    this.tabs.addTab(this);
+    this.tabChanged.next(this.tabs[index]);
   }
 }
 
 @Component({
   selector: 'app',
   template: `
-    <tabs>
+    <tabs (changed)="tabChanged($event)">
       <tab title="Tab 1">
         Content 1
       </tab>
@@ -93,7 +96,11 @@ class Tab {
   `,
   directives: [Tab, Tabs, CORE_DIRECTIVES]
 })
-class App {}
+class App {
+  tabChanged(tab) {
+    console.log(tab);
+  }
+}
 
 bootstrap(App);
 
