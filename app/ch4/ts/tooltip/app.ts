@@ -50,7 +50,7 @@ class OverlayManager {
 
 @Directive({
   selector: '[tooltip]',
-  properties: ['tooltip'],
+  inputs: ['tooltip'],
   host: {
     '(mouseenter)': 'onMouseEnter()',
     '(mouseleave)': 'onMouseLeave()'
