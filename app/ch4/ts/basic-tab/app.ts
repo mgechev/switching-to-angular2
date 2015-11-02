@@ -48,8 +48,7 @@ class Tab {
     <div class="tab">
       <ul class="tab-header">
         <li *ng-for="#tab of tabs; #index = index"
-          [class.is-active]="active == index"
-          (click)="select(index)">
+          [class.is-active]="active == index" (click)="select(index)">
           {{tab.title}}
         </li>
       </ul>
@@ -75,8 +74,8 @@ class Tabs {
     this.tabs.push(tab);
   }
   select(index) {
+    this.tabs[this.active].isActive = false;
     this.active = index;
-    this.tabs.forEach(t => t.isActive = false);
     this.tabs[index].isActive = true;
     this.tabChanged.next(this.tabs[index]);
   }
