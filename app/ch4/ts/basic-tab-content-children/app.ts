@@ -1,18 +1,17 @@
-import {Directive, Inject, EventEmitter, Output, Component, forwardRef, View, Host, Attribute, CORE_DIRECTIVES, bootstrap} from 'angular2/angular2';
+import {QueryList, ContentChildren, Directive, Inject, EventEmitter, Output, Component, forwardRef, View, Host, Attribute, CORE_DIRECTIVES, bootstrap} from 'angular2/angular2';
 
 @Component({
-  selector: `tab`,
+  selector: 'tab',
   template: `
     <div [hidden]="!isActive">
-      <ng-content></ng-content>
+      <ng-content/>
     </div>
   `
+  inputs: ['title']
 })
 class Tab {
-  isActive: boolean;
-  constructor(@Inject(forwardRef(() => Tabs)) @Host() private tabs: Tabs, @Attribute('title') private title: string) {
-    this.tabs.addTab(this);
-  }
+  title: string;
+  isActive: boolean = false;
 }
 
 @Component({
@@ -61,17 +60,24 @@ class Tab {
 class Tabs {
   @Output('changed')
   tabChanged: EventEmitter = new EventEmitter();
-  tabs: Tab[];
+
+  @ContentChildren(Tab)
+  tabs: QueryList<Tab>;
+
   active: number;
   constructor() {
-    this.tabs = [];
     this.active = 0;
   }
   select(index) {
-    this.tabs[this.active].isActive = false;
+    let tabs: Tab[] = this.tabs.toArray();
+    tabs[this.active].isActive = false;
     this.active = index;
-    this.tabs[index].isActive = true;
-    this.tabChanged.next(this.tabs[index]);
+    tabs[index].isActive = true;
+    this.tabChanged.next(tabs[index]);
+  }
+  afterViewInit() {
+    let tabs: Tab[] = this.tabs.toArray();
+    this.select(0);
   }
 }
 
