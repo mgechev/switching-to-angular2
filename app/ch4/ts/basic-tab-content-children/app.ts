@@ -1,16 +1,45 @@
 import {QueryList, ContentChildren, Directive, Inject, EventEmitter, Output, Component, forwardRef, View, Host, Attribute, CORE_DIRECTIVES, bootstrap} from 'angular2/angular2';
 
 @Component({
-  selector: 'tab',
+  selector: 'tab-title',
+  styles: [`
+    .tab-title {
+      display: inline-block;
+      cursor: pointer;
+      padding: 5px;
+      border: 1px solid #ccc;
+    }
+  `],
   template: `
-    <div [hidden]="!isActive">
+    <div class="tab-title" (click)="handleClick()">
       <ng-content/>
     </div>
   `
-  inputs: ['title']
 })
-class Tab {
-  title: string;
+class TabTitle {
+  @Output('selected')
+  tabClicked: EventEmitter = new EventEmitter();
+  handleClick() {
+    this.tabClicked.next();
+  }
+}
+
+@Component({
+  selector: 'tab-content',
+  styles: [`
+    .tab-content {
+      border: 1px solid #ccc;
+      border-top: none;
+      padding: 5px;
+    }
+  `],
+  template: `
+    <div class="tab-content" [hidden]="!isActive">
+      <ng-content/>
+    </div>
+  `
+})
+class TabContent {
   isActive: boolean = false;
 }
 
@@ -22,38 +51,19 @@ class Tab {
       .tab {
         display: inline-block;
       }
-      .tab-header {
+      .tab-nav {
         list-style: none;
         padding: 0;
         margin: 0;
-      }
-      .tab-header .is-active {
-        background-color: #eee;
-      }
-      .tab-header li {
-        display: inline-block;
-        cursor: pointer;
-        padding: 5px;
-        border: 1px solid #ccc;
-      }
-      .tab-content {
-        border: 1px solid #ccc;
-        border-top: none;
-        padding: 5px;
       }
     `
   ],
   template: `
     <div class="tab">
-      <ul class="tab-header">
-        <li *ng-for="#tab of tabs; #index = index"
-          [class.is-active]="active == index" (click)="select(index)">
-          {{tab.title}}
-        </li>
-      </ul>
-      <div class="tab-content">
-        <ng-content></ng-content>
+      <div class="tab-nav">
+        <ng-content select="tab-title"/>
       </div>
+      <ng-content select="tab-content"/>
     </div>
   `
 })
@@ -61,22 +71,28 @@ class Tabs {
   @Output('changed')
   tabChanged: EventEmitter = new EventEmitter();
 
-  @ContentChildren(Tab)
-  tabs: QueryList<Tab>;
+  @ContentChildren(TabTitle)
+  tabTitles: QueryList<TabTitle>;
+
+  @ContentChildren(TabContent)
+  tabContents: QueryList<TabContent>;
 
   active: number;
-  constructor() {
-    this.active = 0;
-  }
+
   select(index) {
-    let tabs: Tab[] = this.tabs.toArray();
-    tabs[this.active].isActive = false;
+    let contents: TabContent[] = this.tabContents.toArray();
+    contents[this.active].isActive = false;
     this.active = index;
-    tabs[index].isActive = true;
-    this.tabChanged.next(tabs[index]);
+    contents[this.active].isActive = true;
+    this.tabChanged.next(index);
   }
-  afterContentInit() {
-    let tabs: Tab[] = this.tabs.toArray();
+  afterViewInit() {
+    this.tabTitles.map(t => t.tabClicked.toRx()).forEach((t, i) => {
+      t.subscribe(_ => {
+        this.select(i)
+      });
+    });
+    this.active = 0;
     this.select(0);
   }
 }
@@ -85,15 +101,13 @@ class Tabs {
   selector: 'app',
   template: `
     <tabs (changed)="tabChanged($event)">
-      <tab title="Tab 1">
-        Content 1
-      </tab>
-      <tab title="Tab 2">
-        Content 2
-      </tab>
+      <tab-title>Tab 1</tab-title>
+      <tab-content>Content 1</tab-content>
+      <tab-title>Tab 2</tab-title>
+      <tab-content>Content 2</tab-content>
     </tabs>
   `,
-  directives: [Tab, Tabs, CORE_DIRECTIVES]
+  directives: [Tabs, TabContent, TabTitle, CORE_DIRECTIVES]
 })
 class App {
   tabChanged(tab) {
