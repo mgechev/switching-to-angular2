@@ -86,7 +86,7 @@ class Tabs {
     contents[this.active].isActive = true;
     this.tabChanged.next(index);
   }
-  afterViewInit() {
+  afterContentInit() {
     this.tabTitles.map(t => t.tabClicked.toRx()).forEach((t, i) => {
       t.subscribe(_ => {
         this.select(i)

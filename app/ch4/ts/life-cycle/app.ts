@@ -102,37 +102,33 @@ class Tabs {
 }
 
 @Component({
-  selector: 'sample',
-  template: `<div>
-    H1
-    <h1><ng-content/></h1>
-  </div>`
+  selector: 'pane',
+  template: '<ng-content/>'
 })
-class Sample {
+class Pane {
   onInit() {
     console.log('Initialized');
   }
   onChanges() {
-    console.log('On changes...');
+    console.log('On changes');
   }
   doCheck() {
-    console.log('Do check...');
-    debugger;
+    console.log('Do check');
   }
   onDestroy() {
-    console.log('destroy...');
+    console.log('Destroy');
   }
   afterContentInit() {
-    console.log('after content init...');
+    console.log('After content init');
   }
   afterContentChecked() {
-    console.log('after content checked...');
+    console.log('After content checked');
   }
   afterViewInit() {
-    console.log('after view init...');
+    console.log('After view init');
   }
   afterViewChecked() {
-    console.log('after view checked...');
+    console.log('After view checked');
   }
 }
 
@@ -141,10 +137,10 @@ class Sample {
   template: `
     <button (click)="toggle()">Toggle</button>
     <div *ng-if="counter % 2 == 0">
-      <sample>Bar</sample>
+      <pane>Hello world!</pane>
     </div>
   `,
-  directives: [Tab, Tabs, CORE_DIRECTIVES, Sample]
+  directives: [Pane, CORE_DIRECTIVES]
 })
 class App {
   counter: number = 0;
