@@ -2,14 +2,15 @@ import {QueryList, ContentChildren, Directive, Inject, EventEmitter, Output, Com
 
 @Component({
   selector: 'pane',
+  inputs: ['title'],
   template: '<ng-content/>'
 })
 class Pane {
-  onInit() {
-    console.log('Initialized');
-  }
   onChanges() {
     console.log('On changes');
+  }
+  onInit() {
+    console.log('Initialized');
   }
   doCheck() {
     console.log('Do check');
@@ -36,7 +37,7 @@ class Pane {
   template: `
     <button (click)="toggle()">Toggle</button>
     <div *ng-if="counter % 2 == 0">
-      <pane>Hello world!</pane>
+      <pane title="Sample">Hello world!</pane>
     </div>
   `,
   directives: [Pane, CORE_DIRECTIVES]
