@@ -75,7 +75,7 @@ class Tabs {
     tabs[index].isActive = true;
     this.tabChanged.next(tabs[index]);
   }
-  afterViewInit() {
+  afterContentInit() {
     let tabs: Tab[] = this.tabs.toArray();
     this.select(0);
   }
