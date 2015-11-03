@@ -1,4 +1,4 @@
-import {QueryList, ContentChildren, Directive, Inject, EventEmitter, Output, Component, forwardRef, View, Host, Attribute, CORE_DIRECTIVES, bootstrap} from 'angular2/angular2';
+import {Component, CORE_DIRECTIVES, bootstrap} from 'angular2/angular2';
 
 @Component({
   selector: 'pane',
