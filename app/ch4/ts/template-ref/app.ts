@@ -62,10 +62,6 @@ class TodoCtrl {
     </todo-app>
   `
 })
-class App {
-  alert(c) {
-    alert(c);
-  }
-}
+class App {}
 
 bootstrap(App);
