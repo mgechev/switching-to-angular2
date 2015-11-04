@@ -20,8 +20,7 @@ interface Todo {
 
   <p>Here's the list of pending todo items:</p>
 
-  <template ng-for [ng-for-of]="todos" [ng-for-template]="itemsTemplate">
-  </template>
+  <template ng-for [ng-for-of]="todos" [ng-for-template]="itemsTemplate"/>
   `,
   directives: [CORE_DIRECTIVES]
 })
@@ -40,9 +39,6 @@ class TodoCtrl {
         label: "Save the world",
         completed: false
       }];
-  }
-  afterViewInit() {
-    console.log(this.template);
   }
   addTodo(input:HTMLInputElement) {
     this.todos.push({
