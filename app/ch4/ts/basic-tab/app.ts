@@ -60,12 +60,18 @@ class Tab {
 })
 class Tabs {
   @Output('changed')
-  tabChanged: EventEmitter = new EventEmitter();
-  tabs: Tab[];
-  active: number;
+  private tabChanged: EventEmitter = new EventEmitter();
+  private tabs: Tab[];
+  private active: number;
   constructor() {
     this.tabs = [];
     this.active = 0;
+  }
+  addTab(tab: Tab) {
+    if (this.tabs.length === this.active) {
+      tab.isActive = true;
+    }
+    this.tabs.push(tab);
   }
   select(index) {
     this.tabs[this.active].isActive = false;
