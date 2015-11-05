@@ -1,4 +1,4 @@
-import {Injectable, ElementRef, Attribute, Inject, Directive, Component, View, bootstrap} from 'angular2/angular2';
+import {Injectable, ElementRef, Inject, Directive, Component, View, bootstrap} from 'angular2/angular2';
 
 class Overlay {
   private el:HTMLElement;

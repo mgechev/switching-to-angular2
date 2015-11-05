@@ -23,7 +23,7 @@ interface Todo {
 class TodoCtrl {
   todos: Todo[];
   name: string;
-  temp: string;
+  private temp: string;
   constructor() {
     this.name = "John";
     this.todos = [{
