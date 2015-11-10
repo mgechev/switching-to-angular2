@@ -1,18 +1,23 @@
-/// <reference path="../../../../node_modules/reflect-metadata/reflect-metadata.d.ts" />
-
 import 'reflect-metadata';
-import {Injector, Injectable, provide} from 'angular2/angular2';
+import {Injector, Inject, Injectable, forwardRef, provide} from 'angular2/angular2';
 
-@Injectable()
-class Demo {
-  constructor(private foo: Number) {
+const BUFFER_SIZE = 3;
 
+class Buffer {
+  constructor(@Inject(BUFFER_SIZE) private size:Number) {
+    console.log(this.size);
   }
 }
 
+@Injectable()
+class Socket {
+  constructor(private buffer: Buffer) {}
+}
+
 let injector = Injector.resolveAndCreate([
-  provide(Number, { useValue: 42 }),
-  Demo
+  provide(BUFFER_SIZE, { useValue: 42 }),
+  Buffer,
+  Socket
 ]);
 
-console.log(injector.get(Demo));
+injector.get(Socket);
