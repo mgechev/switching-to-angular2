@@ -1,7 +1,10 @@
 import 'reflect-metadata';
-import {Injector, Inject, Injectable, forwardRef, provide} from 'angular2/angular2';
+import {
+  Injector, Inject, Injectable,
+  OpaqueToken, forwardRef, provide
+} from 'angular2/angular2';
 
-const BUFFER_SIZE = 3;
+const BUFFER_SIZE = new OpaqueToken('buffer-size');
 
 class Buffer {
   constructor(@Inject(BUFFER_SIZE) private size:Number) {
