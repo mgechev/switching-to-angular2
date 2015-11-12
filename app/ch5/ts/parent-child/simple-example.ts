@@ -10,13 +10,13 @@ class UserService {
   constructor(public http: Http) {}
 }
 
-let injector = Injector.resolveAndCreate([
+let parentInjector = Injector.resolveAndCreate([
   Http
 ]);
 
-let childInjector = injector.resolveAndCreateChild([
+let childInjector = parentInjector.resolveAndCreateChild([
   UserService
 ]);
 
 console.log(childInjector.get(UserService));
-console.log(childInjector.get(Http) === injector.get(Http));
+console.log(childInjector.get(Http) === parentInjector.get(Http));
