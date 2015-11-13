@@ -1,9 +1,8 @@
-if (true) {
-  let answer = 42;
-  if (answer === 42) {
-    console.log('You got the answer: ' + answer);
-  }
+var fns = [];
+for (let i = 0; i < 5; i += 1) {
+  fns.push(function() {
+    console.log(i);
+  })
 }
-if (true) {
-  // the answer variable will not be visible here
-}
+fns.forEach(fn => fn());
+

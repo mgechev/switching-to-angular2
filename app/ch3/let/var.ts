@@ -1,9 +1,8 @@
-if (true) {
-  var answer = 42;
-  if (answer === 42) {
-    console.log('You got the answer: ' + answer);
-  }
+var fns = [];
+for (var i = 0; i < 5; i += 1) {
+  fns.push(function() {
+    console.log(i);
+  })
 }
-if (true) {
-  console.log(answer);
-}
+fns.forEach(fn => fn());
+
