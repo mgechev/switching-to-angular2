@@ -55,4 +55,3 @@ class App {
 }
 
 bootstrap(App);
-

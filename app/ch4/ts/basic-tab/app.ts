@@ -102,4 +102,3 @@ class App {
 }
 
 bootstrap(App);
-

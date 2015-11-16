@@ -57,6 +57,7 @@
   "dependencies": {
     "angular2": "2.0.0-alpha.45",
     "es6-module-loader": "^0.15.0",
+    "markdown": "^0.5.0",
     "reflect-metadata": "^0.1.2",
     "systemjs": "^0.18.17"
   }
