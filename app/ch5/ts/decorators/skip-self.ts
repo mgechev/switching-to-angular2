@@ -1,6 +1,6 @@
 import 'reflect-metadata';
 import {
-  Injector, Inject, Injectable, provide, Self
+  Injector, Inject, Injectable, provide, SkipSelf
 } from 'angular2/angular2';
 
 abstract class Channel {}
@@ -11,7 +11,7 @@ class WebSocket extends Channel {}
 
 @Injectable()
 class UserService {
-  constructor(@Self() public channel: Channel) {}
+  constructor(@SkipSelf() public channel: Channel) {}
 }
 
 let parentInjector = Injector.resolveAndCreate([
@@ -22,4 +22,4 @@ let childInjector = parentInjector.resolveAndCreateChild([
   UserService
 ]);
 
-console.log(childInjector.get(UserService).channel instanceof WebSocket);
+console.log(childInjector.get(UserService).channel instanceof Http);
