@@ -33,10 +33,11 @@ var MarkdownPane = ng.Component({
     '</div>'
 })
 .Class({
-  constructor: [ng.Inject(Markdown), ng.Inject(ng.ElementRef), function (md, el) {
-    this.md = md;
-    this.el = el;
-  }],
+  constructor: [[ng.Optional(), ng.Self(), ng.Inject(Markdown)],
+    ng.Inject(ng.ElementRef), function (md, el) {
+      this.md = md;
+      this.el = el;
+    }],
   afterContentInit: function () {
     var el = this.el.nativeElement;
     var title = el.querySelector('pane-title');
