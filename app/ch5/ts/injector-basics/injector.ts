@@ -7,7 +7,7 @@ import {
 const BUFFER_SIZE = new OpaqueToken('buffer-size');
 
 class Buffer {
-  constructor(@Inject(BUFFER_SIZE) private size:Number) {
+  constructor(@Inject(BUFFER_SIZE) private size: Number) {
     console.log(this.size);
   }
 }

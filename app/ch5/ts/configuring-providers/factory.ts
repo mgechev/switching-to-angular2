@@ -57,7 +57,7 @@ class TLSConnection {
 
 let injector = Injector.resolveAndCreate([
   provide(TLSConnection, {
-    useFactory: (builder:TLSConnectionBuilder, socket: Socket, certificate: Certificate, crypto: Crypto) =>  {
+    useFactory: (builder: TLSConnectionBuilder, socket: Socket, certificate: Certificate, crypto: Crypto) =>  {
       builder.setCertificate(new Certificate());
       socket.open();
       builder.setSocket(socket);
