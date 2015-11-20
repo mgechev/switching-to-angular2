@@ -8,33 +8,33 @@ import {Component, CORE_DIRECTIVES, bootstrap} from 'angular2/angular2';
 class FancyButton { /* Extra behavior */ }
 
 @Component({
-  selector: 'pane',
+  selector: 'panel',
   styles: [
-    `.pane {
+    `.panel {
       width: auto;
       display: inline-block;
       border: 1px solid black;
     }
-    .pane-title {
+    .panel-title {
       border-bottom: 1px solid black;
       background-color: #eee;
     }
-    .pane-content,
-    .pane-title {
+    .panel-content,
+    .panel-title {
       padding: 5px;
     }`
   ],
   template: `
-    <div class="pane">
-      <div class="pane-title">
-        <ng-content select="pane-title"></ng-content>
+    <div class="panel">
+      <div class="panel-title">
+        <ng-content select="panel-title"></ng-content>
       </div>
-      <div class="pane-content">
-        <ng-content select="pane-content"></ng-content>
+      <div class="panel-content">
+        <ng-content select="panel-content"></ng-content>
       </div>
     </div>`
 })
-class Pane { }
+class Panel { }
 
 @Component({
   selector: 'app',
@@ -43,12 +43,12 @@ class Pane { }
       <span>I will <i>be</i> projected</span>
     </fancy-button>
     <br>
-    <pane>
-      <pane-title>Sample title</pane-title>
-      <pane-content>Content</pane-content>
-    </pane>
+    <panel>
+      <panel-title>Sample title</panel-title>
+      <panel-content>Content</panel-content>
+    </panel>
   `,
-  directives: [CORE_DIRECTIVES, FancyButton, Pane]
+  directives: [CORE_DIRECTIVES, FancyButton, Panel]
 })
 class App {
   constructor() {}

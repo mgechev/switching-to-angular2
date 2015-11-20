@@ -1,11 +1,11 @@
 import {Component, CORE_DIRECTIVES, bootstrap} from 'angular2/angular2';
 
 @Component({
-  selector: 'pane',
+  selector: 'panel',
   inputs: ['title', 'caption'],
   template: '<ng-content/>'
 })
-class Pane {
+class Panel {
   onChanges(changes) {
     console.log('On changes', changes);
   }
@@ -37,10 +37,10 @@ class Pane {
   template: `
     <button (click)="toggle()">Toggle</button>
     <div *ng-if="counter % 2 == 0">
-      <pane caption="Sample caption" title="Sample">Hello world!</pane>
+      <panel caption="Sample caption" title="Sample">Hello world!</panel>
     </div>
   `,
-  directives: [Pane, CORE_DIRECTIVES]
+  directives: [Panel, CORE_DIRECTIVES]
 })
 class App {
   counter: number = 0;

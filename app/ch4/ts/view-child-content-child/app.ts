@@ -13,11 +13,11 @@ class UserBadge {}
 class UserRating {}
 
 @Component({
-  selector: 'user-pane',
+  selector: 'user-panel',
   template: '<user-badge/>',
   directives: [UserBadge]
 })
-class UserPane {
+class UserPanel {
   @ViewChildren(UserBadge)
   viewChildren: QueryList;
 
@@ -36,8 +36,8 @@ class UserPane {
 
 @Component({
   selector: 'app',
-  template: '<user-pane><user-rating></user-pane>',
-  directives: [CORE_DIRECTIVES, UserPane, UserRating]
+  template: '<user-panel><user-rating></user-panel>',
+  directives: [CORE_DIRECTIVES, UserPanel, UserRating]
 })
 class App {
   constructor() {}
