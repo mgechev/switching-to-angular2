@@ -1,1 +1,3 @@
-declare markdown: any;
+declare module '/lib/markdown' {
+  var markdown;
+}
