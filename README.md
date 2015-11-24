@@ -1,8 +1,8 @@
 # How to start
 
 ```bash
-git clone https://github.com/mgechev/angular2-seed.git
-cd angular2-seed
+git clone https://github.com/mgechev/switching-to-angular2
+cd switching-to-angular2
 npm install
 # dev
 npm run serve.dev
