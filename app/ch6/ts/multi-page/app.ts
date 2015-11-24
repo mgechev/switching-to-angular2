@@ -1,10 +1,11 @@
 import {Injectable, Component, bootstrap, CORE_DIRECTIVES, FORM_DIRECTIVES, FORM_PROVIDERS, provide} from 'angular2/angular2';
 import {Http, HTTP_PROVIDERS, Response} from 'angular2/http';
-import {ROUTER_DIRECTIVES, ROUTER_PROVIDERS, APP_BASE_HREF, RouteConfig} from 'angular2/router';
+import {ROUTER_DIRECTIVES, ROUTER_PROVIDERS, APP_BASE_HREF, RouteConfig, LocationStrategy, HashLocationStrategy} from 'angular2/router';
 
 class Developer {
   public id: number;
   public username: string;
+  public avatarUrl: string;
   public realName: string;
   public location: string;
   public email: string;
@@ -22,6 +23,7 @@ class DeveloperCollection {
       location: 'San Francisco',
       email: 'angular-dev@angular.io',
       website: null,
+      avatarUrl: null,
       popular: true
     }];
   }
@@ -49,7 +51,7 @@ class GitHubGateway {
 
 @Component({
   selector: 'home',
-  directives: [CORE_DIRECTIVES],
+  directives: [CORE_DIRECTIVES, ROUTER_DIRECTIVES],
   template: `
     <table>
       <thead>
@@ -59,12 +61,16 @@ class GitHubGateway {
         <th>Website</th>
         <th>Popularity</th>
       </thead>
-      <tr *ng-for="#user of getUsers()">
-        <td>{{user.username}}</td>
-        <td>{{user.email}}</td>
-        <td>{{user.realName}}</td>
-        <td>{{user.website}}</td>
-        <td [ng-switch]="user.popular">
+      <tr *ng-for="#dev of getDevelopers()">
+        <td>
+          <a [router-link]="['/DeveloperDetails', { 'username': dev.username }, 'DeveloperBasicInfo']">
+            {{dev.username}}
+          </a>
+        </td>
+        <td>{{dev.email}}</td>
+        <td>{{dev.realName}}</td>
+        <td>{{dev.website}}</td>
+        <td [ng-switch]="dev.popular">
           <span *ng-switch-when="true">⭐</span>
           <span *ng-switch-when="false">✨</span>
         </td>
@@ -74,13 +80,13 @@ class GitHubGateway {
 })
 class Home {
   constructor(private developers: DeveloperCollection) {}
-  getUsers() {
+  getDevelopers() {
     return this.developers.getAll();
   }
 }
 
 @Component({
-  selector: 'add-developer',
+  selector: 'dev-add',
   template: `
     <span>{{errorMessage}}</span>
     <span>{{successMessage}}</span>
@@ -140,23 +146,54 @@ class AddDeveloper {
 }
 
 @Component({
+  selector: 'dev-details-basic',
+  template: '<h1>Basic</h1>'
+})
+class DeveloperBasicInfo {}
+
+@Component({
+  selector: 'dev-details-advanced',
+  template: '<h1>Advanced</h1>'
+})
+class DeveloperAdvancedInfo {}
+
+@Component({
+  selector: 'dev-details',
+  directives: [CORE_DIRECTIVES, ROUTER_DIRECTIVES],
+  template: `
+    <a [router-link]="['./DeveloperBasicInfo']">Basic details</a>
+    <a [router-link]="['./DeveloperAdvancedInfo']">Advanced details</a>
+    <router-outlet/>
+  `,
+})
+@RouteConfig([
+  { component: DeveloperBasicInfo, as: 'DeveloperBasicInfo', path: '/' },
+  { component: DeveloperAdvancedInfo, as: 'DeveloperAdvancedInfo', path: '/dev-details-advanced' }
+])
+class DeveloperDetails {
+
+}
+
+@Component({
   selector: 'app',
   template: `
-    <a [router-link]="['./Home']">Home</a>
-    <a [router-link]="['./AddDeveloper']">Add developer</a>
+    <a [router-link]="['/Home']">Home</a>
+    <a [router-link]="['/AddDeveloper']">Add developer</a>
     <router-outlet/>
   `,
   providers: [DeveloperCollection],
   directives: [CORE_DIRECTIVES, ROUTER_DIRECTIVES]
 })
 @RouteConfig([
-  { component: Home, as: 'Home', path: '/home' },
-  { component: AddDeveloper, as: 'AddDeveloper', path: '/add-dev' }
+  { component: Home, as: 'Home', path: '/' },
+  { component: AddDeveloper, as: 'AddDeveloper', path: '/dev-add' },
+  { component: DeveloperDetails, as: 'DeveloperDetails', path: '/dev-details/:username/...' }
 ])
 class App {}
 
 bootstrap(App, [
   ROUTER_PROVIDERS,
+  provide(LocationStrategy, { useClass: HashLocationStrategy }),
   provide(APP_BASE_HREF, {
     useValue: '/ch6/ts/multi-page/'
   }
