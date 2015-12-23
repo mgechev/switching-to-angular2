@@ -4,8 +4,8 @@ import {Response, HTTP_PROVIDERS} from 'angular2/http';
 import {GitHubGateway} from './github_gateway';
 import {Developer} from './developer';
 import {DeveloperCollection} from './developer_collection';
-import {_catch} from 'rxjs/operator/catch';
-import {mapTo} from 'rxjs/operator/mapTo';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
 
 function validateEmail(emailControl) {
   if (!emailControl.value || /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(emailControl.value)) {
@@ -81,8 +81,12 @@ export class AddDeveloper {
       }
       this.submitted = true;
       this.githubAPI.getUser(model.githubHandle)
-        .subscribe((r: Response) => {
-          let res = r.json();
+        .catch((error, source, caught) => {
+          console.log(error)
+          return error;
+        })
+        .map((r: Response) => r.json())
+        .subscribe((res: any) => {
           let dev = new Developer();
           dev.githubHandle = res.login;
           dev.email = res.email;

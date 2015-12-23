@@ -1,6 +1,6 @@
 <span *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</span>
 <span *ngIf="successMessage" class="alert alert-success">{{successMessage}}</span>
-<form #f="ngForm" (submit)="addDeveloper(f)" class="form col-md-4" [hidden]="submitted">
+<form #f="ngForm" (ngSubmit)="addDeveloper(f)" class="form col-md-4" [hidden]="submitted">
   <div class="form-group">
     <label class="control-label" for="realNameInput">Real name</label>
     <div>

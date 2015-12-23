@@ -1,5 +1,6 @@
 import {Pipe, PipeTransform} from 'angular2/core';
 import {Http, Response} from 'angular2/http';
+import 'rxjs/add/operator/toPromise';
 
 @Pipe({
   name: 'fetchJson',
