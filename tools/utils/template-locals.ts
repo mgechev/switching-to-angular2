@@ -3,25 +3,56 @@ import * as fs from 'fs';
 import {join, dirname, sep} from 'path';
 import * as jsonfile from 'jsonfile';
 
-function listMetadataStrategy(meta, path, appRoot) {
-  return '<li><a href="' + path.replace(APP_SRC + sep, '') + '">' + meta.title + '</a></li>'
+const CHAPTERS_MAP = {
+  ch3: 'Chapter 3',
+  ch4: 'Chapter 4',
+  ch5: 'Chapter 5',
+  ch6: 'Chapter 6',
+  ch7: 'Chapter 7',
+  ch8: 'Chapter 8'
+};
+
+function listMetadataStrategy(data) {
+  return '<li><a href="' + data.file.replace(APP_SRC + sep, '') + '">' + data.chapter + ', ' + data.meta.title + '</a></li>'
 }
 
-function readMetadata(current, formatStrategy, appRoot) {
+function readMetadata(current, appRoot) {
   var result = [];
   fs.readdirSync(current).forEach(function (file) {
     if (file === 'meta.json') {
       file = join('.', sep, current, file);
-      result.push(formatStrategy(jsonfile.readFileSync(file), current, appRoot));
+      let currentChapterAbr = file.match(/(ch\d+)/)[0];
+      let chapter = CHAPTERS_MAP[currentChapterAbr];
+      result.push({
+        chapter,
+        file: current,
+        meta: jsonfile.readFileSync(file)
+      });
     } else if (fs.lstatSync(join(current, file)).isDirectory()) {
-      result = result.concat(readMetadata(join(current, file), formatStrategy, appRoot));
+      result = result.concat(readMetadata(join(current, file), appRoot));
     }
   });
   return result;
 }
 
 function getMetadata(appRoot) {
-  return '<ol>' + readMetadata(appRoot, listMetadataStrategy, appRoot).join('\n') + '</ol>';
+  let metadata = readMetadata(appRoot, appRoot);
+  metadata = metadata.sort((a, b) => {
+    let chapterA = parseInt(a.chapter.match(/\d+/)[0]);
+    let chapterB = parseInt(b.chapter.match(/\d+/)[0]);
+    if (chapterA < chapterB) {
+      return -1;
+    } else if (chapterA > chapterB) {
+      return 1;
+    }
+    if (a.meta.id < b.meta.id) {
+      return -1;
+    } else {
+      return 1;
+    }
+  });
+  let items = metadata.map(listMetadataStrategy);
+  return '<ol>' + items.join('\n') + '</ol>';
 }
 
 function transformPath(plugins, env) {

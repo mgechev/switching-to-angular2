@@ -1,4 +1,5 @@
 {
   "title": "List of items",
-  "description": "List of items using syntax sugar *ng-for"
+  "description": "List of items using syntax sugar *ng-for",
+  "id": 4
 }

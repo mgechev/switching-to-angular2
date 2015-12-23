@@ -1,4 +1,5 @@
 {
   "title": "Lifecycle hooks",
-  "description": "Demo of the lifecycle hooks of Angular 2 component"
+  "description": "Demo of the lifecycle hooks of Angular 2 component",
+  "id": 10
 }
