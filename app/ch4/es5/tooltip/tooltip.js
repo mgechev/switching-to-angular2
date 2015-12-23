@@ -1,4 +1,4 @@
-var Overlay = ng.Class({
+var Overlay = ng.core.Class({
   constructor: function () {
     var el = document.createElement('div');
     el.className = 'tooltip';
@@ -22,40 +22,20 @@ var Overlay = ng.Class({
   }
 });
 
-var OverlayManager = ng.Injectable()
-.Class({
-  constructor: function () {
-    this.pool = {};
-  },
-  get: function (text) {
-    if (this.pool[text]) {
-      return this.pool[text].pop();
-    }
-    var overlay = new Overlay(text);
-    overlay.close();
-    overlay.attach(document.body);
-    return overlay;
-  },
-  free: function (overlay) {
-    var text = overlay.text;
-    this.pool[text] = this.pool[text] || [];
-    this.pool[text].push(overlay);
-    overlay.detach();
-  }
-});
-
-var Tooltip = ng.Directive({
+var Tooltip = ng.core.Directive({
   selector: '[tooltip]',
   properties: ['tooltip'],
+  providers: [Overlay],
   host: {
     '(mouseenter)': 'onMouseEnter()',
     '(mouseleave)': 'onMouseLeave()'
   }
 })
 .Class({
-  constructor: [ng.Inject(ng.ElementRef), ng.Inject(OverlayManager), function (tooltip, el, manager) {
+  constructor: [ng.core.Inject(ng.core.ElementRef), ng.core.Inject(Overlay), function (el, overlay) {
     this.el = el;
-    this.overlay = manager.get();
+    this.overlay = overlay;
+    overlay.attach(this.el.nativeElement);
   }],
   onMouseEnter() {
     this.overlay.open(this.el, this.tooltip);
@@ -65,10 +45,8 @@ var Tooltip = ng.Directive({
   }
 });
 
-var App = ng.Component({
-  selector: 'app'
-})
-.View({
+var App = ng.core.Component({
+  selector: 'app',
   templateUrl: './app.html',
   directives: [Tooltip]
 })
@@ -76,4 +54,4 @@ var App = ng.Component({
   constructor: function () {}
 });
 
-ng.bootstrap(App, [OverlayManager]);
+ng.platform.browser.bootstrap(App);

@@ -1,11 +1,38 @@
 var Tabs = ng.core.Component({
   selector: 'tabs',
+  styles: [`
+      .tab {
+        display: inline-block;
+      }
+      .tab-header {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      .tab-header .is-active {
+        background-color: #eee;
+      }
+      .tab-header li {
+        display: inline-block;
+        cursor: pointer;
+        padding: 5px;
+        border: 1px solid #ccc;
+      }
+      .tab-content {
+        border: 1px solid #ccc;
+        border-top: none;
+        padding: 5px;
+      }
+    `
+  ],
   template: `
-    <div>
-      <ul>
+    <div class="tab">
+      <ul class="tab-header">
         <li *ngFor="#tab of tabs; #index=index" (click)="selectTab(index)">{{tab.tabTitle}}</li>
       </ul>
-      <ng-content></ng-content>
+      <div class="tab-content">
+        <ng-content></ng-content>
+      </div>
     </div>
     `
 })
@@ -28,7 +55,7 @@ var Tabs = ng.core.Component({
 
 var Tab = ng.core.Component({
   selector: 'tab',
-  properties: ['tabTitle'],
+  inputs: ['tabTitle'],
   template: `<div [hidden]="!isActive()">
       <ng-content></ng-content>
     </div>`
