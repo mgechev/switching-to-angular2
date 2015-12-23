@@ -15,7 +15,7 @@ class UserRating {}
 
 @Component({
   selector: 'user-panel',
-  template: '<user-badge/>',
+  template: '<user-badge></user-badge>',
   directives: [UserBadge]
 })
 class UserPanel {
@@ -25,11 +25,11 @@ class UserPanel {
   @ContentChildren(UserRating)
   contentChildren: QueryList<UserRating>;
 
-  afterViewInit() {
+  ngAfterViewInit() {
     // view children are initialized
   }
 
-  afterContentInit() {
+  ngAfterContentInit() {
     // content children are initialized
   }
 }
@@ -37,7 +37,7 @@ class UserPanel {
 
 @Component({
   selector: 'app',
-  template: '<user-panel><user-rating></user-panel>',
+  template: '<user-panel><user-rating></user-rating></user-panel>',
   directives: [UserPanel, UserRating]
 })
 class App {

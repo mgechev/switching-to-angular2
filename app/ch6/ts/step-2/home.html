@@ -13,9 +13,9 @@
     <td>{{dev.email}}</td>
     <td>{{dev.realName}}</td>
     <td>{{dev.technology}}</td>
-    <td [ng-switch]="dev.popular">
-      <span *ng-switch-when="true">Yes</span>
-      <span *ng-switch-when="false">Not yet</span>
+    <td [ngSwitch]="!!dev.popular">
+      <span *ngSwitchWhen="true">Yes</span>
+      <span *ngSwitchWhen="false">Not yet</span>
     </td>
   </tr>
 </table>

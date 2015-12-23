@@ -1,11 +1,11 @@
-var Markdown = ng.Class({
+var Markdown = ng.core.Class({
   constructor: function () {},
   toHTML: function (md) {
     return markdown.toHTML(md);
   }
 });
 
-var MarkdownPanel = ng.Component({
+var MarkdownPanel = ng.core.Component({
   selector: 'markdown-panel',
   viewProviders: [Markdown],
   styles: [
@@ -33,12 +33,12 @@ var MarkdownPanel = ng.Component({
     '</div>'
 })
 .Class({
-  constructor: [[ng.Optional(), ng.Self(), ng.Inject(Markdown)],
-    ng.Inject(ng.ElementRef), function (md, el) {
+  constructor: [[ng.core.Optional(), ng.core.Self(), ng.core.Inject(Markdown)],
+    ng.core.Inject(ng.core.ElementRef), function (md, el) {
       this.md = md;
       this.el = el;
     }],
-  afterContentInit: function () {
+  ngAfterContentInit: function () {
     var el = this.el.nativeElement;
     var title = el.querySelector('panel-title');
     var content = el.querySelector('panel-content');
@@ -47,7 +47,7 @@ var MarkdownPanel = ng.Component({
   }
 });
 
-var App = ng.Component({
+var App = ng.core.Component({
   selector: 'app',
   template: `
     <markdown-panel>
@@ -59,10 +59,10 @@ var App = ng.Component({
       </panel-content>
     </markdown-panel>
   `,
-  directives: [ng.CORE_DIRECTIVES, MarkdownPanel]
+  directives: [MarkdownPanel]
 })
 .Class({
   constructor: function () {}
 })
 
-ng.bootstrap(App);
+ng.platform.browser.bootstrap(App);

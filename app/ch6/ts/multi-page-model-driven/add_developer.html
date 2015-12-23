@@ -1,61 +1,65 @@
 <span *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</span>
 <span *ngIf="successMessage" class="alert alert-success">{{successMessage}}</span>
 
-<form class="form col-md-4" [ngFormModel]="importDevForm" [hidden]="submitted" >
+<form class="form col-md-4" [ngFormModel]="importDevForm" [hidden]="submitted">
   <div class="form-group">
     <label class="control-label" for="githubHandleInput">GitHub handle</label>
     <div>
-      <input id="githubHandleInput" class="form-control" type="text" [disabled]="!fetchFromGitHub" ngIontrol="githubHandle">
+      <input id="githubHandleInput" class="form-control" type="text" [disabled]="!fetchFromGitHub" ngControl="githubHandle">
       <control-errors control="githubHandle"
         [errors]="{
           'required': 'The GitHub handle is required'
-        }"/>
+        }"></control-errors>
     </div>
   </div>
   <div class="form-group">
     <label class="control-label" for="fetchFromGitHubCheckbox">Fetch from GitHub</label>
-    <input class="checkbox-inline" id="fetchFromGitHubCheckbox" type="checkbox" ng-control="fetchFromGitHub" [(ng-model)]="fetchFromGitHub">
+    <input class="checkbox-inline" id="fetchFromGitHubCheckbox" type="checkbox" ngControl="fetchFromGitHub" [(ngModel)]="fetchFromGitHub">
   </div>
 </form>
 
-<form class="form col-md-4" [ngFormModel]="addDevForm" [hidden]="submitted" >
+<form class="form col-md-4" [ngFormModel]="addDevForm" [hidden]="submitted">
   <div class="form-group">
     <label class="control-label" for="realNameInput">Real name</label>
     <div>
-      <input id="realNameInput" class="form-control" type="text" [disabled]="fetchFromGitHub" ng-control="realName">
+      <input id="realNameInput" class="form-control" type="text" [disabled]="fetchFromGitHub" ngControl="realName">
       <control-errors control="realName"
         [errors]="{
           'required': 'Real name is required',
           'maxlength': 'The maximum length of the real name is 50 characters'
-        }"/>
+        }"></control-errors>
     </div>
   </div>
   <div class="form-group">
     <label class="control-label" for="emailInput">Email</label>
     <div>
-      <input id="emailInput" class="form-control" type="text" [disabled]="fetchFromGitHub" ng-control="email"/>
+      <input id="emailInput" class="form-control" type="text" [disabled]="fetchFromGitHub" ngControl="email">
       <control-errors control="email"
         [errors]="{
           'invalidEmail': 'The provided email is invalid'
-        }"/>
+        }"></control-errors>
     </div>
   </div>
   <div class="form-group">
     <label class="control-label" for="technologyInput">Technology</label>
     <div>
-      <select class="form-control" ng-control="technology" [disabled]="fetchFromGitHub">
+      <select class="form-control" ngControl="technology" [disabled]="fetchFromGitHub">
           <option *ngFor="#t of technologies" [value]="t">{{t}}</option>
       </select>
       <control-errors control="technology"
         [errors]="{
           'required': 'Preferred technology is required'
-        }"/>
+        }"></control-errors>
+    </div>
   </div>
   <div class="form-group">
     <label class="control-label" for="pupularCheckbox">Popular</label>
-    <input class="checkbox-inline" id="pupularCheckbox" type="checkbox" [disabled]="fetchFromGitHub" ng-control="popular">
+    <input class="checkbox-inline" id="pupularCheckbox" type="checkbox" [disabled]="fetchFromGitHub" ngControl="popular">
   </div>
 </form>
 
-<button class="btn btn-default" (click)="addDeveloper()"
-  [disabled]="(fetchFromGitHub && !importDevForm.valid) || (!fetchFromGitHub && !addDevForm.valid)">Add</button>
+<br>
+<div class="container" [hidden]="submitted">
+  <button class="btn btn-default" (click)="addDeveloper()"
+    [disabled]="(fetchFromGitHub && !importDevForm.valid) || (!fetchFromGitHub && !addDevForm.valid)">Add</button>
+</div>

@@ -37,9 +37,10 @@ class Overlay {
 export class Tooltip {
   private overlay: Overlay;
   private tooltip: string;
-  constructor(private el:ElementRef, overlay: Overlay) {
+  constructor(private el: ElementRef, overlay: Overlay) {
     this.el = el;
     this.overlay = overlay;
+    overlay.attach(el.nativeElement);
   }
   onMouseEnter() {
     this.overlay.open(this.el, this.tooltip);
@@ -56,4 +57,4 @@ export class Tooltip {
 })
 class App {}
 
-bootstrap(App);
+bootstrap(App, [Overlay]);

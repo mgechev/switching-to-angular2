@@ -14,7 +14,7 @@ import {DeveloperAdvancedInfo} from './developer_advanced_info';
         <li><a [routerLink]="['./DeveloperBasicInfo']">Basic profile</a></li>
         <li><a [routerLink]="['./DeveloperAdvancedInfo']">Advanced details</a></li>
       </ul>
-      <router-outlet/>
+      <router-outlet></router-outlet>
     </section>
   `,
 })

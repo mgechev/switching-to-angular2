@@ -4,8 +4,7 @@ import {Developer} from './developer';
 
 @Component({
   selector: 'dev-details-advanced',
-  styles: [
-    `
+  styles: [`
       .row span {
         display: inline-block;
         margin-left: 5px;
@@ -25,7 +24,7 @@ import {Developer} from './developer';
         <i class="fa fa-envelope"></i><span>{{dev.email || 'none'}}</span>
       </div>
       <div class="row">
-        <i class="fa fa-star"></i><span>{{dev.popular ? 'Yes' : 'Not  yet' }}</span<
+        <i class="fa fa-star"></i><span>{{dev.popular ? 'Yes' : 'Not  yet' }}</span>
       </div>
     </div>
   `

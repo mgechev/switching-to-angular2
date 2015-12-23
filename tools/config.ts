@@ -68,6 +68,8 @@ const SYSTEM_CONFIG_DEV = {
   defaultJSExtensions: true,
   paths: {
     'bootstrap': `${APP_ROOT}bootstrap`,
+    'markdown': '/node_modules/markdown/lib/markdown',
+    'rxjs': '/node_modules/rxjs/bundles/Rx.umd.js',
     '*': `${APP_BASE}node_modules/*`
   }
 };

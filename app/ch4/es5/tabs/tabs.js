@@ -1,7 +1,5 @@
-var Tabs = ng.Component({
-  selector: 'tabs'
-})
-.View({
+var Tabs = ng.core.Component({
+  selector: 'tabs',
   template: `
     <div>
       <ul>
@@ -9,8 +7,7 @@ var Tabs = ng.Component({
       </ul>
       <ng-content></ng-content>
     </div>
-    `,
-  directives: [ng.CORE_DIRECTIVES]
+    `
 })
 .Class({
   constructor: function () {
@@ -29,17 +26,15 @@ var Tabs = ng.Component({
   }
 });
 
-var Tab = ng.Component({
+var Tab = ng.core.Component({
   selector: 'tab',
-  properties: ['tabTitle']
-})
-.View({
+  properties: ['tabTitle'],
   template: `<div [hidden]="!isActive()">
       <ng-content></ng-content>
     </div>`
 })
 .Class({
-  constructor: [[ng.Inject(Tabs), ng.Host()], function (tabs) {
+  constructor: [[ng.core.Inject(Tabs), ng.core.Host()], function (tabs) {
     this.active = !tabs.addTab(this);
   }],
   setActive: function (isActive) {
@@ -50,7 +45,7 @@ var Tab = ng.Component({
   }
 });
 
-var App = ng.Component({
+var App = ng.core.Component({
   selector: 'app'
 })
 .View({
@@ -61,4 +56,4 @@ var App = ng.Component({
   constructor: function () {}
 });
 
-ng.bootstrap(App, []);
+ng.platform.browser.bootstrap(App, []);

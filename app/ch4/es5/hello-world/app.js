@@ -1,7 +1,5 @@
-var App = ng.Component({
-  selector: 'app'
-})
-.View({
+var App = ng.core.Component({
+  selector: 'app',
   template: '<h1>Hello {{target}}!</h1>'
 })
 .Class({
@@ -10,4 +8,4 @@ var App = ng.Component({
   }
 });
 
-ng.bootstrap(App);
+ng.platform.browser.bootstrap(App);

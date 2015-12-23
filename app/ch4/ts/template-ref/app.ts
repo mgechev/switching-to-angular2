@@ -19,7 +19,8 @@ interface Todo {
 
   <p>Here's the list of pending todo items:</p>
 
-  <template ngFor [ngForOf]="todos" [ngForTemplate]="itemsTemplate"/>
+  <template *ngFor="var todo of todos; template: itemsTemplate">
+  </template>
   `
 })
 class TodoCtrl {
@@ -38,7 +39,7 @@ class TodoCtrl {
         completed: false
       }];
   }
-  addTodo(input:HTMLInputElement) {
+  addTodo(input: HTMLInputElement) {
     this.todos.push({
       label: input.value,
       completed: false
@@ -52,7 +53,7 @@ class TodoCtrl {
   directives: [TodoCtrl],
   template: `
     <todo-app>
-      <template var-todo var-index>
+      <template var-todo>
         <input type="checkbox" [checked]="todo.completed"
           (change)="todo.completed = !todo.completed">
         {{todo.label}}<br>

@@ -99,7 +99,7 @@ class Tabs {
     contents[this.active].isActive = true;
     this.tabChanged.next(index);
   }
-  afterContentInit() {
+  ngAfterContentInit() {
     this.tabTitles
       .map(t => t.tabClicked)
       .forEach((t, i) => {

@@ -3,15 +3,7 @@ import {Developer} from './developer';
 export class DeveloperCollection {
   private developers: Developer[];
   constructor() {
-    this.developers = [{
-      id: 1,
-      realName: 'foobar',
-      email: 'aasd',
-      githubHandle: 'mgechev',
-      technology: 'C',
-      popular: true,
-      avatarUrl: 'asd'
-    }];
+    this.developers = [];
   }
   getUserByGitHubHandle(username: string) {
     return this.developers.filter(u => u.githubHandle === username).pop();

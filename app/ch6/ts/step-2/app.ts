@@ -15,7 +15,7 @@ import {AddDeveloper} from './add_developer';
         <li><a [routerLink]="['/AddDeveloper']">Add developer</a></li>
       </ul>
     </nav>
-    <router-outlet/>
+    <router-outlet></router-outlet>
   `,
   providers: [DeveloperCollection],
   directives: [ROUTER_DIRECTIVES]

@@ -38,7 +38,7 @@ class Markdown {
 })
 class MarkdownPanel {
   constructor(private el: ElementRef, private md: Markdown) {}
-  afterContentInit() {
+  ngAfterContentInit() {
     let el = this.el.nativeElement;
     let title = el.querySelector('panel-title');
     let content = el.querySelector('panel-content');

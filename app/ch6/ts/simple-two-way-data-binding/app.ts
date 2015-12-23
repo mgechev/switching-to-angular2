@@ -6,7 +6,7 @@ import {NgModel} from 'angular2/common';
   selector: 'app',
   directives: [NgModel],
   template: `
-    <input type="text" [(ng-model)]="name"/>
+    <input type="text" [(ngModel)]="name"/>
     <div>{{name}}</div>
   `,
 })
