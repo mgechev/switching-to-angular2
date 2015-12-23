@@ -1,0 +1,61 @@
+<span *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</span>
+<span *ngIf="successMessage" class="alert alert-success">{{successMessage}}</span>
+
+<form class="form col-md-4" [ngFormModel]="importDevForm" [hidden]="submitted" >
+  <div class="form-group">
+    <label class="control-label" for="githubHandleInput">GitHub handle</label>
+    <div>
+      <input id="githubHandleInput" class="form-control" type="text" [disabled]="!fetchFromGitHub" ngIontrol="githubHandle">
+      <control-errors control="githubHandle"
+        [errors]="{
+          'required': 'The GitHub handle is required'
+        }"/>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label" for="fetchFromGitHubCheckbox">Fetch from GitHub</label>
+    <input class="checkbox-inline" id="fetchFromGitHubCheckbox" type="checkbox" ng-control="fetchFromGitHub" [(ng-model)]="fetchFromGitHub">
+  </div>
+</form>
+
+<form class="form col-md-4" [ngFormModel]="addDevForm" [hidden]="submitted" >
+  <div class="form-group">
+    <label class="control-label" for="realNameInput">Real name</label>
+    <div>
+      <input id="realNameInput" class="form-control" type="text" [disabled]="fetchFromGitHub" ng-control="realName">
+      <control-errors control="realName"
+        [errors]="{
+          'required': 'Real name is required',
+          'maxlength': 'The maximum length of the real name is 50 characters'
+        }"/>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label" for="emailInput">Email</label>
+    <div>
+      <input id="emailInput" class="form-control" type="text" [disabled]="fetchFromGitHub" ng-control="email"/>
+      <control-errors control="email"
+        [errors]="{
+          'invalidEmail': 'The provided email is invalid'
+        }"/>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label" for="technologyInput">Technology</label>
+    <div>
+      <select class="form-control" ng-control="technology" [disabled]="fetchFromGitHub">
+          <option *ngFor="#t of technologies" [value]="t">{{t}}</option>
+      </select>
+      <control-errors control="technology"
+        [errors]="{
+          'required': 'Preferred technology is required'
+        }"/>
+  </div>
+  <div class="form-group">
+    <label class="control-label" for="pupularCheckbox">Popular</label>
+    <input class="checkbox-inline" id="pupularCheckbox" type="checkbox" [disabled]="fetchFromGitHub" ng-control="popular">
+  </div>
+</form>
+
+<button class="btn btn-default" (click)="addDeveloper()"
+  [disabled]="(fetchFromGitHub && !importDevForm.valid) || (!fetchFromGitHub && !addDevForm.valid)">Add</button>

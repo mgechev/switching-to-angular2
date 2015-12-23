@@ -1,0 +1,17 @@
+<h1>Hello {{name}}!</h1>
+
+<p>
+  Add a new todo:
+  <input #newtodo type="text">
+  <button (click)="addTodo(newtodo)">Add</button>
+</p>
+
+<p>Here's the list of pending todo items:</p>
+
+<ul>
+  <li *ngFor="#todo of todos; #index = index" [class.completed]="todo.completed">
+    <input type="checkbox" [checked]="todo.completed"
+      (change)="toggleCompletion(index)">
+    {{todo.label}}
+  </li>
+</ul>

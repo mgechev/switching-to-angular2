@@ -1,0 +1,21 @@
+<table class="table" *ngIf="getDevelopers().length > 0">
+  <thead>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Real name</th>
+    <th>Technology</th>
+    <th>Popular</th>
+  </thead>
+  <tr *ngFor="#dev of getDevelopers()">
+    <td>
+      <a [routerLink]="['/DeveloperDetails', { 'id': dev.id }, 'DeveloperBasicInfo']">
+        {{dev.realName}}
+      </a>
+    </td>
+    <td>{{dev.email}}</td>
+    <td>{{dev.realName}}</td>
+    <td>{{dev.technology}}</td>
+    <td>{{dev.popular | boolean: 'Yes': 'No'}}</td>
+  </tr>
+</table>
+<div *ngIf="getDevelopers().length == 0">There are no any developers yet</div>
