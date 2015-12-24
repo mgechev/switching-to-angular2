@@ -19,19 +19,15 @@ interface Todo {
   ]
 })
 class TodoCtrl {
-  todos: Todo[];
-  name: string;
+  todos: Todo[] = [{
+    label: 'Buy milk',
+    completed: false
+  }, {
+    label: "Save the world",
+    completed: false
+  }];
+  name: string = 'John';
   private temp: string;
-  constructor() {
-    this.name = "John";
-    this.todos = [{
-        label: 'Buy milk',
-        completed: false
-      }, {
-        label: "Save the world",
-        completed: false
-      }];
-  }
   addTodo(label) {
     this.todos.push({
       label,

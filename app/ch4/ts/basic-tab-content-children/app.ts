@@ -32,9 +32,9 @@ import {bootstrap} from 'angular2/platform/browser';
 })
 class TabTitle {
   @Output('selected')
-  tabClicked: EventEmitter<TabTitle> = new EventEmitter<TabTitle>();
+  tabSelected: EventEmitter<TabTitle> = new EventEmitter<TabTitle>();
   handleClick() {
-    this.tabClicked.next(this);
+    this.tabSelected.next(this);
   }
 }
 
@@ -101,7 +101,7 @@ class Tabs {
   }
   ngAfterContentInit() {
     this.tabTitles
-      .map(t => t.tabClicked)
+      .map(t => t.tabSelected)
       .forEach((t, i) => {
         t.subscribe(_ => {
           this.select(i)
