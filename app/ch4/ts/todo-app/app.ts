@@ -32,12 +32,11 @@ class TodoCtrl {
         completed: false
       }];
   }
-  addTodo(input:HTMLInputElement) {
+  addTodo(label) {
     this.todos.push({
-      label: input.value,
+      label: label,
       completed: false
     })
-    input.value = '';
   }
   removeTodo(idx) {
     this.todos.splice(idx, 1);

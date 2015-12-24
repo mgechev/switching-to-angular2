@@ -27,21 +27,19 @@ class Overlay {
 }
 
 @Directive({
-  selector: '[sa-tooltip]'
+  selector: '[saTooltip]'
 })
 export class Tooltip {
-  @Input('sa-tooltip')
-  saTtooltip:string;
-  private overlay: Overlay;
+  @Input()
+  saTooltip:string;
 
-  constructor(private el: ElementRef, overlay: Overlay) {
+  constructor(private el: ElementRef, private overlay: Overlay) {
     this.el = el;
-    this.overlay = overlay;
-    overlay.attach(el.nativeElement);
+    this.overlay.attach(el.nativeElement);
   }
   @HostListener('mouseenter')
   onMouseEnter() {
-    this.overlay.open(this.el, this.saTtooltip);
+    this.overlay.open(this.el, this.saTooltip);
   }
   @HostListener('mouseleave')
   onMouseLeave() {

@@ -3,7 +3,7 @@
 <p>
   Add a new todo:
   <input #newtodo type="text">
-  <button (click)="addTodo(newtodo)">Add</button>
+  <button (click)="addTodo(newtodo.value); newtodo.value = ''">Add</button>
 </p>
 
 <p>Here's the list of pending todo items:</p>
