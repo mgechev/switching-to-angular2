@@ -34,7 +34,7 @@ class TodoCtrl {
   }
   addTodo(label) {
     this.todos.push({
-      label: label,
+      label,
       completed: false
     })
   }

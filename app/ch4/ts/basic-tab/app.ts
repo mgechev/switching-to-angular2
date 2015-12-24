@@ -3,11 +3,11 @@ import {
   Inject,
   EventEmitter,
   Output,
+  Input,
   Component,
   forwardRef,
   View,
-  Host,
-  Attribute
+  Host
 } from 'angular2/core';
 
 import {bootstrap} from 'angular2/platform/browser';
@@ -22,7 +22,9 @@ import {bootstrap} from 'angular2/platform/browser';
 })
 class Tab {
   isActive: boolean;
-  constructor(@Inject(forwardRef(() => Tabs)) @Host() private tabs: Tabs, @Attribute('title') private title: string) {
+  @Input()
+  public title: string;
+  constructor(@Inject(forwardRef(() => Tabs)) @Host() private tabs: Tabs) {
     this.tabs.addTab(this);
   }
 }
