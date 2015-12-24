@@ -1,4 +1,4 @@
-import {Injectable, ElementRef, Inject, Directive, Component} from 'angular2/core';
+import {HostListener, Input, Injectable, ElementRef, Inject, Directive, Component} from 'angular2/core';
 import {bootstrap} from 'angular2/platform/browser';
 
 class Overlay {
@@ -27,24 +27,23 @@ class Overlay {
 }
 
 @Directive({
-  selector: '[tooltip]',
-  inputs: ['tooltip'],
-  host: {
-    '(mouseenter)': 'onMouseEnter()',
-    '(mouseleave)': 'onMouseLeave()'
-  }
+  selector: '[sa-tooltip]'
 })
 export class Tooltip {
+  @Input('sa-tooltip')
+  saTtooltip:string;
   private overlay: Overlay;
-  private tooltip: string;
+
   constructor(private el: ElementRef, overlay: Overlay) {
     this.el = el;
     this.overlay = overlay;
     overlay.attach(el.nativeElement);
   }
+  @HostListener('mouseenter')
   onMouseEnter() {
-    this.overlay.open(this.el, this.tooltip);
+    this.overlay.open(this.el, this.saTtooltip);
   }
+  @HostListener('mouseleave')
   onMouseLeave() {
     this.overlay.close();
   }
@@ -52,7 +51,7 @@ export class Tooltip {
 
 @Component({
   selector: 'app',
-  templateUrl: '<%= currentPath %>app.html',
+  templateUrl: './app.html',
   directives: [Tooltip]
 })
 class App {}

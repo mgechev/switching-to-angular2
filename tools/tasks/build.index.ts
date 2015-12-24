@@ -9,6 +9,7 @@ export = function buildIndexDev(gulp, plugins) {
       .pipe(inject())
       .pipe(plugins.template(
         require('merge')(templateLocals(), {
+          TITLE: 'Switching to Angular 2',
           INIT: `
 <script>
   System.config(${JSON.stringify(SYSTEM_CONFIG)});
