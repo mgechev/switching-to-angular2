@@ -61,7 +61,9 @@ class TodoList {
 
     <p>
       Add a new todo:
-      <text-input inputPlaceholder="New todo..." buttonLabel="Add" (addText)="addTodo($event)">
+      <text-input inputPlaceholder="New todo..."
+        buttonLabel="Add"
+        (addText)="addTodo($event)">
       </text-input>
     </p>
 
