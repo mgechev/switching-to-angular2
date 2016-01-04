@@ -7,10 +7,10 @@ interface Todo {
 }
 
 @Component({
-  selector: 'text-input',
+  selector: 'input-box',
   template: `
     <input #todoInput [placeholder]="inputPlaceholder">
-    <button (click)="emitTodo(todoInput.value); todoInput.value = '';">
+    <button (click)="emitText(todoInput.value); todoInput.value = '';">
       {{buttonLabel}}
     </button>
   `
@@ -18,9 +18,9 @@ interface Todo {
 class InputBox {
   @Input() inputPlaceholder: string;
   @Input() buttonLabel: string;
-  @Output() addText = new EventEmitter<string>();
-  emitTodo(text: string) {
-    this.addText.emit(text);
+  @Output() inputText = new EventEmitter<string>();
+  emitText(text: string) {
+    this.inputText.emit(text);
   }
 }
 
@@ -61,14 +61,16 @@ class TodoList {
 
     <p>
       Add a new todo:
-      <text-input inputPlaceholder="New todo..."
+      <input-box inputPlaceholder="New todo..."
         buttonLabel="Add"
-        (addText)="addTodo($event)">
-      </text-input>
+        (inputText)="addTodo($event)">
+      </input-box>
     </p>
 
     <p>Here's the list of pending todo items:</p>
-    <todo-list [todos]="todos" (toggle)="toggleCompletion($event)"></todo-list>
+    <todo-list [todos]="todos"
+      (toggle)="toggleCompletion($event)">
+    </todo-list>
   `
 })
 class TodoApp {
