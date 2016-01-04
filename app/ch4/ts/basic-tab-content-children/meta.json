@@ -1,5 +1,6 @@
 {
   "title": "Basic tab component with ViewChildren",
   "description": "Basic tab component with ViewChildren",
-  "id": 9
+  "id": 9,
+  "presented": true
 }

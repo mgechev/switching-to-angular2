@@ -1,5 +1,6 @@
 {
   "title": "Content projection with ng-content",
   "description": "Various demos of ng-content",
-  "id": 7
+  "id": 7,
+  "presented": true
 }

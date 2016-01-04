@@ -1,5 +1,6 @@
 {
   "title": "Page with multiple views and model-driven form",
   "description": "Page with multiple views and model-driven form",
-  "id": 3
+  "id": 3,
+  "presented": true
 }

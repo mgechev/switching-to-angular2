@@ -1,5 +1,6 @@
 {
   "title": "Basic tab component",
   "description": "Basic tab component",
-  "id": 8
+  "id": 8,
+  "presented": false
 }

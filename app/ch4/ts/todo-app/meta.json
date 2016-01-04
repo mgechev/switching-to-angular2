@@ -1,5 +1,6 @@
 {
   "title": "Basic todo application",
   "description": "Todo application which demonstrates basic user input",
-  "id": 6
+  "id": 6,
+  "presented": true
 }

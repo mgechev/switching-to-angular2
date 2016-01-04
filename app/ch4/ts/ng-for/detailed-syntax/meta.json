@@ -1,5 +1,6 @@
 {
   "title": "List of items (detailed syntax)",
   "description": "List of items using explicit template for ng-for",
-  "id": 3
+  "id": 3,
+  "presented": true
 }

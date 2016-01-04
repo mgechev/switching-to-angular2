@@ -1,5 +1,6 @@
 {
   "title": "Hello world application in TypeScript",
   "description": "Hello world application in TypeScript",
-  "id": 2
+  "id": 2,
+  "presented": true
 }

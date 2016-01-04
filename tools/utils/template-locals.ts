@@ -13,7 +13,10 @@ const CHAPTERS_MAP = {
 };
 
 function listMetadataStrategy(data) {
-  return '<li><a href="' + data.file.replace(APP_SRC + sep, '') + '">' + data.chapter + ', ' + data.meta.title + '</a></li>'
+  return `<li><a href="${data.file.replace(APP_SRC + sep, '')}">
+    ${data.chapter}, ${data.meta.title}</a>
+    ${!data.meta.presented ? '<i style="color: #ccc;">(Not presented in the content)</i>' : ''}
+  </li>`;
 }
 
 function readMetadata(current, appRoot) {

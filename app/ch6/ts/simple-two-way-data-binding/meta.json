@@ -1,5 +1,6 @@
 {
   "title": "Simple two-way data-binding",
   "description": "Simple two-way data-binding",
-  "id": 2
+  "id": 2,
+  "presented": true
 }
