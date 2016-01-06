@@ -90,7 +90,7 @@ class Tabs {
     this.tabs[this.active].isActive = false;
     this.active = index;
     this.tabs[index].isActive = true;
-    this.tabChanged.next(this.tabs[index]);
+    this.tabChanged.emit(this.tabs[index]);
   }
 }
 

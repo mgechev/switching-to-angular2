@@ -8,6 +8,9 @@ import {bootstrap} from 'angular2/platform/browser';
 class App {
   todos:string[];
   name:string;
+  handle() {
+    alert(42);
+  }
   constructor() {
     this.name = "John";
     this.todos = ['Buy milk', "Save the world"];
