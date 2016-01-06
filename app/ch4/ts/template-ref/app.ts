@@ -37,10 +37,6 @@ class TodoList {
   @Input() todos: Todo[];
   @Input() itemsTemplate: TemplateRef;
   @Output() toggle = new EventEmitter<Todo>();
-  toggleCompletion(index: number) {
-    let todo = this.todos[index];
-    this.toggle.emit(todo);
-  }
 }
 
 @Component({
@@ -80,9 +76,6 @@ class TodoApp {
       label,
       completed: false
     });
-  }
-  toggleCompletion(todo: Todo) {
-    todo.completed = !todo.completed;
   }
 }
 
