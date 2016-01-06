@@ -1,5 +1,8 @@
+/// <reference path="../../../../node_modules/immutable/dist/immutable.d.ts"/>
+
 import {Component, Input, Output, EventEmitter, ChangeDetectionStrategy} from 'angular2/core';
 import {bootstrap} from 'angular2/platform/browser';
+import {List as ImmutableList} from 'immutable';
 
 interface Todo {
   completed: boolean;
@@ -26,7 +29,7 @@ class InputBox {
 
 @Component({
   selector: 'todo-list',
-  changeDetection: ChangeDetectionStrategy.Detached,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <ul>
       <li *ngFor="#todo of todos; #index = index" [class.completed]="todo.completed">
@@ -46,13 +49,10 @@ class InputBox {
   ]
 })
 class TodoList {
-  @Input() todos: Todo[];
+  @Input() todos: ImmutableList<any>;
   @Output() toggle = new EventEmitter<Todo>();
-  constructor() {
-    console.log('foobar');
-  }
   toggleCompletion(index: number) {
-    let todo = this.todos[index];
+    let todo = this.todos.get(index);
     this.toggle.emit(todo);
   }
 }
@@ -78,29 +78,29 @@ class TodoList {
   `
 })
 class TodoApp {
-  todos: Todo[] = [{
+  todos: ImmutableList<Todo> = ImmutableList.of({
     label: 'Buy milk',
     completed: false
   }, {
     label: 'Save the world',
     completed: false
-  }];
+  });
   name: string = 'John';
-  // NOTE
-  // This is not optimized. Must be replaced with Immutable list.
-  commit() {
-    this.todos = JSON.parse(JSON.stringify(this.todos));
-  }
   addTodo(label: string) {
-    this.todos.push({
+    this.todos = this.todos.push({
       label,
       completed: false
     });
-    this.commit();
   }
   toggleCompletion(todo: Todo) {
-    todo.completed = !todo.completed;
-    this.commit();
+    let old = this.todos;
+    this.todos = this.todos.update(this.todos.indexOf(todo), todo => {
+      let newTodo = {
+        label: todo.label,
+        completed: !todo.completed
+      };
+      return newTodo;
+    });
   }
 }
 

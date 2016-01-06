@@ -1,4 +1,4 @@
-import {Component, Input, Output, EventEmitter, ChangeDetectionStrategy} from 'angular2/core';
+import {Component, ChangeDetectionStrategy, Input, Output, EventEmitter} from 'angular2/core';
 import {bootstrap} from 'angular2/platform/browser';
 
 interface Todo {
@@ -26,7 +26,6 @@ class InputBox {
 
 @Component({
   selector: 'todo-list',
-  changeDetection: ChangeDetectionStrategy.Detached,
   template: `
     <ul>
       <li *ngFor="#todo of todos; #index = index" [class.completed]="todo.completed">
@@ -43,14 +42,12 @@ class InputBox {
     .completed {
       text-decoration: line-through;
     }`
-  ]
+  ],
+  changeDetection: ChangeDetectionStrategy.Checked
 })
 class TodoList {
   @Input() todos: Todo[];
   @Output() toggle = new EventEmitter<Todo>();
-  constructor() {
-    console.log('foobar');
-  }
   toggleCompletion(index: number) {
     let todo = this.todos[index];
     this.toggle.emit(todo);
@@ -86,11 +83,6 @@ class TodoApp {
     completed: false
   }];
   name: string = 'John';
-  // NOTE
-  // This is not optimized. Must be replaced with Immutable list.
-  commit() {
-    this.todos = JSON.parse(JSON.stringify(this.todos));
-  }
   addTodo(label: string) {
     this.todos.push({
       label,
