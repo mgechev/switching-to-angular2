@@ -1,4 +1,4 @@
-import {Component, ContentChild, TemplateRef, Input, Output, EventEmitter} from 'angular2/core';
+import {Component, ChangeDetectionStrategy, Input, Output, EventEmitter} from 'angular2/core';
 import {bootstrap} from 'angular2/platform/browser';
 
 interface Todo {
@@ -22,24 +22,40 @@ class InputBox {
   emitText(text: string) {
     this.inputText.emit(text);
   }
+  ngDoCheck() {
+    console.log('Change detection run in the InputBox component');
+  }
 }
 
 @Component({
   selector: 'todo-list',
   template: `
     <ul>
-      <template *ngFor="var todo of todos; template: itemsTemplate">
-      </template>
+      <li *ngFor="#todo of todos; #index = index" [class.completed]="todo.completed">
+        <input type="checkbox" [checked]="todo.completed"
+          (change)="toggleCompletion(index)">
+        {{todo.label}}
+      </li>
     </ul>
-  `
+  `,
+  styles: [
+    `ul li {
+      list-style: none;
+    }
+    .completed {
+      text-decoration: line-through;
+    }`
+  ]
 })
 class TodoList {
   @Input() todos: Todo[];
-  @Input() itemsTemplate: TemplateRef;
   @Output() toggle = new EventEmitter<Todo>();
   toggleCompletion(index: number) {
     let todo = this.todos[index];
     this.toggle.emit(todo);
+  }
+  ngDoCheck() {
+    console.log('Change detection run in the TodoList component');
   }
 }
 
@@ -59,8 +75,7 @@ class TodoList {
 
     <p>Here's the list of pending todo items:</p>
     <todo-list [todos]="todos"
-      (toggle)="toggleCompletion($event)"
-      [itemsTemplate]="itemsTemplate">
+      (toggle)="toggleCompletion($event)">
     </todo-list>
   `
 })
@@ -69,12 +84,10 @@ class TodoApp {
     label: 'Buy milk',
     completed: false
   }, {
-    label: "Save the world",
+    label: 'Save the world',
     completed: false
   }];
   name: string = 'John';
-  @ContentChild(TemplateRef)
-  private itemsTemplate: TemplateRef;
   addTodo(label: string) {
     this.todos.push({
       label,
@@ -84,28 +97,9 @@ class TodoApp {
   toggleCompletion(todo: Todo) {
     todo.completed = !todo.completed;
   }
+  ngDoCheck() {
+    console.log('Change detection run in the TodoApp component');
+  }
 }
 
-@Component({
-  selector: 'app',
-  directives: [TodoApp],
-  styles: [`
-    .completed {
-      text-decoration: line-through;
-    }`
-  ],
-  template: `
-    <todo-app>
-      <template var-todo>
-        <input type="checkbox" [checked]="todo.completed"
-          (change)="todo.completed = !todo.completed;">
-        <span [class.completed]="todo.completed">
-          {{todo.label}}
-        </span><br>
-      </template>
-    </todo-app>
-  `
-})
-class App {}
-
-bootstrap(App);
+bootstrap(TodoApp);
