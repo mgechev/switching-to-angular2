@@ -50,10 +50,9 @@ class InputBox {
 })
 class TodoList {
   @Input() todos: ImmutableList<Todo>;
-  @Output() toggle = new EventEmitter<Todo>();
+  @Output() toggle = new EventEmitter<number>();
   toggleCompletion(index: number) {
-    let todo = this.todos.get(index);
-    this.toggle.emit(todo);
+    this.toggle.emit(index);
   }
 }
 
@@ -92,8 +91,8 @@ class TodoApp {
       completed: false
     });
   }
-  toggleCompletion(todo: Todo) {
-    this.todos = this.todos.update(this.todos.indexOf(todo), todo => {
+  toggleCompletion(index: number) {
+    this.todos = this.todos.update(index, todo => {
       let newTodo = {
         label: todo.label,
         completed: !todo.completed
