@@ -32,8 +32,5 @@ class App {}
 
 bootstrap(App, [
   ROUTER_PROVIDERS,
-  provide(LocationStrategy, { useClass: HashLocationStrategy }),
-  provide(APP_BASE_HREF, {
-    useValue: '/ch6/ts/multi-page-model-driven/'
-  }
-)]);
+  provide(LocationStrategy, { useClass: HashLocationStrategy })
+]);
