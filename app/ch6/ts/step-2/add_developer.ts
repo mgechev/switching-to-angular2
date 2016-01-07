@@ -1,5 +1,5 @@
 import {Host, Component, Directive, provide} from 'angular2/core';
-import {NgControl, NgForm, CORE_DIRECTIVES, FORM_DIRECTIVES, FORM_PROVIDERS, NG_VALIDATORS} from 'angular2/common';
+import {NgControl, NgForm, FORM_DIRECTIVES, FORM_PROVIDERS, NG_VALIDATORS} from 'angular2/common';
 import {Developer} from './developer';
 import {DeveloperCollection} from './developer_collection';
 
@@ -41,7 +41,7 @@ class ControlErrors {
       border: 1px solid red;
     }`
   ],
-  directives: [FORM_DIRECTIVES, CORE_DIRECTIVES, ControlErrors],
+  directives: [FORM_DIRECTIVES, ControlErrors],
   providers: [FORM_PROVIDERS]
 })
 export class AddDeveloper {
