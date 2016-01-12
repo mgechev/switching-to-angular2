@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title><%= TITLE %></title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- inject:css -->
+  <!-- endinject -->
+</head>
+<body>
+
+  <todo-app>Loading...</todo-app>
+
+
+  <script src="/node_modules/systemjs/dist/system.src.js"></script>
+  <script src="/node_modules/angular2/bundles/angular2-polyfills.js"></script>
+  <script src="/node_modules/angular2/bundles/web_worker/ui.dev.js"></script>
+
+
+  <script>
+  System.config({
+    baseURL: '/dist/dev/ch8/ts/todo_webworkers/',
+    paths: {
+      bootstrap: '/dist/dev/bootstrap'
+    }
+  });
+  System.import("./bootstrap.js")
+    .catch(function () {
+      console.log("Report this error to https://github.com/mgechev/switching-to-angular2/issues", e);
+    });
+  </script>
+</body>
+</html>
