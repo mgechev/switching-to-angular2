@@ -21,10 +21,15 @@ class UserService {
 // let us:UserService = injector.get(UserService);
 
 // console.log(us.http instanceof DummyService);
+let dummyHttp = {
+  get() {},
+  post() {}
+};
 
 let injector = Injector.resolveAndCreate([
-  provide(DummyService, { useValue: 42 }),
+  provide(DummyService, { useValue: dummyHttp }),
   provide(Http, { useExisting: DummyService }),
   UserService
 ]);
-console.assert(injector.get(UserService).http === 42);
+
+console.assert(injector.get(UserService).http === dummyHttp);

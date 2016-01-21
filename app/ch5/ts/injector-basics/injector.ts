@@ -1,7 +1,10 @@
 import 'reflect-metadata';
 import {
-  Injector, Inject, Injectable,
-  OpaqueToken, provide
+  Injector,
+  Inject,
+  Injectable,
+  OpaqueToken,
+  provide
 } from 'angular2/core';
 
 const BUFFER_SIZE = new OpaqueToken('buffer-size');
