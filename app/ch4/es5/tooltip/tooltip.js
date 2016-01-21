@@ -32,7 +32,7 @@ var Tooltip = ng.core.Directive({
   }
 })
 .Class({
-  constructor: [ng.core.Inject(ng.core.ElementRef), ng.core.Inject(Overlay), function (el, overlay) {
+  constructor: [ng.core.ElementRef, Overlay, function (el, overlay) {
     this.el = el;
     this.overlay = overlay;
     overlay.attach(this.el.nativeElement);
