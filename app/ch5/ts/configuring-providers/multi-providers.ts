@@ -1,46 +1,36 @@
 import 'reflect-metadata';
 import {
-  Injector, Inject, Injectable, provide
+  Injector, Inject, Injectable, provide, OpaqueToken
 } from 'angular2/core';
 
-abstract class SortingAlgorithm {
-  abstract sort(collection: BaseCollection): BaseCollection;
-}
+const VALIDATOR = new OpaqueToken('validator');
 
-class QuickSort extends SortingAlgorithm {
-  sort(collection: BaseCollection): BaseCollection {
-    // do some sorting
-    return collection;
-  }
-}
+interface EmployeeValidator {
+  (person: Employee): boolean;
+};
 
-class MergeSort extends SortingAlgorithm {
-  sort(collection: BaseCollection): BaseCollection {
-    // do some sorting
-    return collection;
-  }
-}
-
-class BaseCollection {
-  getDefaultSort(): SortingAlgorithm {
-    // get some generic sorting algorithm...
-    return null;
-  }
-}
-
-@Injectable()
-class Collection extends BaseCollection {
-  private sort: SortingAlgorithm;
-  constructor(@Inject(SortingAlgorithm) sort: SortingAlgorithm[]) {
-    super();
-    this.sort = sort.pop();
+class Employee {
+  name: string;
+  constructor(@Inject(VALIDATOR) private validators: EmployeeValidator[]) {}
+  validate() {
+    return this.validators
+      .map(v => v(this))
+      .filter(value => !!value);
   }
 }
 
 let injector = Injector.resolveAndCreate([
-  provide(SortingAlgorithm, { useClass: MergeSort, multi: true }),
-  provide(SortingAlgorithm, { useClass: QuickSort, multi: true }),
-  Collection
+  provide(VALIDATOR, { multi: true, useValue: (person: Employee) => {
+    if (!person.name) {
+      return 'The name is required';
+    }
+  }}),
+  provide(VALIDATOR, { multi: true, useValue: (person: Employee) => {
+    if (!person.name || person.name.length < 1) {
+      return 'The name should be more than 1 symbol long';
+    }
+  }}),
+  Employee
 ]);
 
-console.log(injector.get(Collection).sort);
+console.log(injector.get(Employee).validate());

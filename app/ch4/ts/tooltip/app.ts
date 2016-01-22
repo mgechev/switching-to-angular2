@@ -27,7 +27,8 @@ class Overlay {
 }
 
 @Directive({
-  selector: '[saTooltip]'
+  selector: '[saTooltip]',
+  providers: [Overlay]
 })
 export class Tooltip {
   @Input()
@@ -54,4 +55,4 @@ export class Tooltip {
 })
 class App {}
 
-bootstrap(App, [Overlay]);
+bootstrap(App);
