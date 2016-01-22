@@ -33,8 +33,8 @@ var MarkdownPanel = ng.core.Component({
     '</div>'
 })
 .Class({
-  constructor: [[ng.core.Optional(), ng.core.Self(), ng.core.Inject(Markdown)],
-    ng.core.Inject(ng.core.ElementRef), function (md, el) {
+  constructor: [[ng.core.Optional(), ng.core.Self(), Markdown],
+    ng.core.ElementRef, function (md, el) {
       this.md = md;
       this.el = el;
     }],

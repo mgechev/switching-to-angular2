@@ -1,8 +1,8 @@
-import {HostListener, Input, Injectable, ElementRef, Inject, Directive, Component} from 'angular2/core';
+import {HostListener, provide, Input, Injectable, ElementRef, Inject, Directive, Component} from 'angular2/core';
 import {bootstrap} from 'angular2/platform/browser';
 
 class Overlay {
-  private el:HTMLElement;
+  private el: HTMLElement;
   constructor() {
     var el = document.createElement('div');
     el.className = 'tooltip';
@@ -26,9 +26,16 @@ class Overlay {
   }
 }
 
+class OverlayMock {
+  constructor() {}
+  close() {}
+  open(el, text) {}
+  attach(target) {}
+  detach() {}
+}
+
 @Directive({
-  selector: '[saTooltip]',
-  providers: [Overlay]
+  selector: '[saTooltip]'
 })
 export class Tooltip {
   @Input()
@@ -51,6 +58,7 @@ export class Tooltip {
 @Component({
   selector: 'app',
   templateUrl: './app.html',
+  providers: [Overlay],
   directives: [Tooltip]
 })
 class App {}
