@@ -1,5 +1,5 @@
 import {Component, Pipe, PipeTransform} from 'angular2/core';
-import {Observable} from 'rxjs';
+import * as rx from 'rxjs/Observable';
 import {bootstrap} from 'angular2/platform/browser';
 import {HTTP_PROVIDERS, Http} from 'angular2/http';
 
@@ -24,10 +24,10 @@ class Greeting {
 })
 class Timer {
   username: string;
-  timer: Observable<number>;
+  timer: rx.Observable<number>;
   constructor() {
     let counter = 0;
-    this.timer = new Observable<number>(observer => {
+    this.timer = new rx.Observable<number>(observer => {
       setInterval(() => {
         observer.next(new Date().getTime());
       }, 1000);

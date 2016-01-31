@@ -69,9 +69,11 @@ const SYSTEM_CONFIG_DEV = {
   paths: {
     'bootstrap': `${APP_ROOT}bootstrap`,
     'markdown': '/node_modules/markdown/lib/markdown',
-    'immutable': '/node_modules/immutable/dist/immutable.js',
-    'rxjs': '/node_modules/rxjs/bundles/Rx.umd.js',
-    '*': `${APP_BASE}node_modules/*`
+    'immutable': '/node_modules/immutable/dist/immutable.js'
+  },
+  packages: {
+    angular2: { defaultExtension: false },
+    rxjs: { defaultExtension: false }
   }
 };
 
