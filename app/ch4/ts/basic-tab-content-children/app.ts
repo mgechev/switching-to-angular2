@@ -34,7 +34,7 @@ class TabTitle {
   @Output('selected')
   tabSelected: EventEmitter<TabTitle> = new EventEmitter<TabTitle>();
   handleClick() {
-    this.tabSelected.next(this);
+    this.tabSelected.emit(this);
   }
 }
 
@@ -97,7 +97,7 @@ class Tabs {
     contents[this.active].isActive = false;
     this.active = index;
     contents[this.active].isActive = true;
-    this.tabChanged.next(index);
+    this.tabChanged.emit(index);
   }
   ngAfterContentInit() {
     this.tabTitles
