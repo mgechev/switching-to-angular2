@@ -11,6 +11,7 @@
         "sourceMap": true
     },
     "exclude": [
+        "app",
         "node_modules"
     ],
     "compileOnSave": false
