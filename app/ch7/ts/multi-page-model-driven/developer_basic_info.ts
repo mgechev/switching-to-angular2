@@ -10,7 +10,7 @@ import {Developer} from './developer';
     }`
   ],
   template: `
-    <h2>{{dev.realName | uppercase}}</h2>
+    <h2>{{dev.githubHandle | uppercase}}</h2>
     <img *ngIf="dev.avatarUrl == null" class="avatar" src="http://hippycanada.ca/wordpress/wp-content/uploads/2014/12/gravatar-60-grey.jpg" width="150">
     <img *ngIf="dev.avatarUrl != null" class="avatar" [src]="dev.avatarUrl" width="150">
   `

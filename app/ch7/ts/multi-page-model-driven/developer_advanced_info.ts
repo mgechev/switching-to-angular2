@@ -12,7 +12,7 @@ import {Developer} from './developer';
     `
   ],
   template: `
-    <h2>{{dev.realName}}</h2>
+    <h2>{{dev.githubHandle}}</h2>
     <div class="container">
       <div class="row">
         <i class="fa fa-user"></i><span>{{dev.realName}}</span>
