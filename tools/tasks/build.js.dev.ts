@@ -1,5 +1,5 @@
 import {join} from 'path';
-import {APP_SRC, APP_DEST} from '../config';
+import {APP_SRC, APP_DEST, PROJECT_ROOT} from '../config';
 import {templateLocals, tsProjectFn, relativePath} from '../utils';
 
 export = function buildJSDev(gulp, plugins) {
@@ -7,6 +7,7 @@ export = function buildJSDev(gulp, plugins) {
   return function () {
     let src = [
                 join(APP_SRC, '**/*.ts'),
+                join(PROJECT_ROOT, 'typings', 'browser', 'ambient', 'systemjs', 'systemjs.d.ts'),
                 '!' + join(APP_SRC, '**/*_spec.ts')
               ];
 

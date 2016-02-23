@@ -11,6 +11,8 @@
         "sourceMap": true
     },
     "exclude": [
+        "typings/browser.d.ts",
+        "typings/browser",
         "app",
         "node_modules"
     ],

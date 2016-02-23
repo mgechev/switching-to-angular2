@@ -1,4 +1,5 @@
 import {readFileSync} from 'fs';
+import {normalize, join} from 'path';
 import {argv} from 'yargs';
 
 
@@ -7,6 +8,7 @@ import {argv} from 'yargs';
 export const ENV                  = argv['env']         || 'dev';
 export const DEBUG                = argv['debug']       || false;
 export const PORT                 = argv['port']        || 5555;
+export const PROJECT_ROOT         = normalize(join(__dirname, '..'));
 export const LIVE_RELOAD_PORT     = argv['reload-port'] || 4002;
 export const DOCS_PORT            = argv['docs-port']   || 4003;
 export const APP_BASE             = argv['base']        || '/';
