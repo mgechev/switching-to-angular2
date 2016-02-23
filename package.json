@@ -16,13 +16,13 @@
     "karma": "karma",
     "karma.start": "karma start",
     "lint": "gulp tslint",
-    "postinstall": "tsd reinstall --clean && tsd link && tsd rebundle && gulp check.versions && gulp postinstall",
+    "postinstall": "rimraf typings && typings install && gulp check.versions && gulp postinstall",
     "reinstall": "rimraf node_modules && npm cache clean && npm install",
     "start": "gulp serve --env dev",
     "serve.dev": "gulp serve --env dev",
     "tasks.list": "gulp --tasks-simple",
     "test": "gulp test",
-    "tsd": "tsd"
+    "typings": "typings"
   },
   "author": "Minko Gechev <mgechev>",
   "license": "MIT",
@@ -73,10 +73,10 @@
     "tiny-lr": "^0.2.1",
     "traceur": "^0.0.91",
     "ts-node": "^0.5.4",
-    "tsd": "^0.6.4",
     "typedoc": "^0.3.12",
     "typescript": "~1.7.3",
     "typescript-register": "^1.1.0",
+    "typings": "^0.6.8",
     "yargs": "^3.25.0"
   },
   "dependencies": {
