@@ -9,10 +9,9 @@ This repository contains the code samples for my book "[Switching to Angular 2](
 **Note** that this seed project requires node v4.x.x or higher and npm 2.14.7.
 
 ```bash
-git clone https://github.com/mgechev/angular2-seed.git
-cd angular2-seed
-npm install       # or `npm run reinstall` if you get an error
-npm start         # start with --env dev
-npm run docs      # api document for app
+git clone --depth 1 https://github.com/mgechev/switching-to-angular2.git
+cd switching-to-angular2
+npm install
+npm start
 ```
 
