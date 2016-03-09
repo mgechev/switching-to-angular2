@@ -67,6 +67,5 @@ export class AddDeveloper {
     this.developers.addDeveloper(this.developer);
     this.successMessage = `Developer ${this.developer.realName} was successfully added`;
     this.submitted = true;
-    return false;
   }
 }
