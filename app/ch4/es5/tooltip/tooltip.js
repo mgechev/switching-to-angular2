@@ -24,8 +24,7 @@ var Overlay = ng.core.Class({
 
 var Tooltip = ng.core.Directive({
   selector: '[tooltip]',
-  properties: ['tooltip'],
-  providers: [Overlay],
+  inputs: ['tooltip'],
   host: {
     '(mouseenter)': 'onMouseEnter()',
     '(mouseleave)': 'onMouseLeave()'
@@ -48,6 +47,7 @@ var Tooltip = ng.core.Directive({
 var App = ng.core.Component({
   selector: 'app',
   templateUrl: './app.html',
+  providers: [Overlay],
   directives: [Tooltip]
 })
 .Class({
