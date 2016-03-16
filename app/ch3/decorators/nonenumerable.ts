@@ -1,6 +1,6 @@
 class Person {
   @nonenumerable
-  getAnswer() {
+  get kidCount() {
     return 42;
   }
 }
@@ -16,4 +16,4 @@ for (let prop in person) {
   console.log(prop);
 }
 
-console.log(person.getAnswer());
+console.log(person.kidCount);
