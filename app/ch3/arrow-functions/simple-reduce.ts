@@ -1,8 +1,5 @@
-var reducer = function (total, current) {
+// ch3/arrow-functions/simple-reduce.ts
+var result = [1, 2, 3].reduce(function (total, current) {
   return total + current;
-};
+}, 0); // 6
 
-var result: number = [1, 2, 3].reduce(reducer, 0);
-
-// 6
-console.log(result);

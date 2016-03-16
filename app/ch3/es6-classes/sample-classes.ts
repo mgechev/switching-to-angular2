@@ -1,6 +1,6 @@
 class Human {
   static totalPeople = 0;
-  _name; // not required for ES2015 class definition
+  _name; // ES2016 property declaration syntax
   constructor(name) {
     this._name = name;
     Human.totalPeople += 1;
@@ -17,7 +17,7 @@ class Human {
 }
 
 class Developer extends Human {
-  _languages; // not required for ES2015 class definition
+  _languages; // ES2016 property declaration syntax
   constructor(name, languages) {
     super(name);
     this._languages = languages;
