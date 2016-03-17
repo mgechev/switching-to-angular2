@@ -8,7 +8,7 @@ const BUFFER_SIZE = new OpaqueToken('buffer-size');
 
 @Injectable()
 class Socket {
-  constructor(@Inject(forwardRef(() => BUFFER_SIZE)) private buffer: Buffer) {}
+  constructor(@Inject(forwardRef(() => Buffer)) private buffer: Buffer) {}
 }
 
 // undefined
@@ -29,4 +29,4 @@ let injector = Injector.resolveAndCreate([
   Socket
 ]);
 
-injector.get(Socket);
+console.log(injector.get(Socket));
