@@ -42,7 +42,6 @@ export class Tooltip {
   saTooltip:string;
 
   constructor(private el: ElementRef, private overlay: Overlay) {
-    this.el = el;
     this.overlay.attach(el.nativeElement);
   }
   @HostListener('mouseenter')
