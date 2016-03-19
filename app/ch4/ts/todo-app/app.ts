@@ -27,7 +27,6 @@ class TodoCtrl {
     completed: false
   }];
   name: string = 'John';
-  private temp: string;
   addTodo(label) {
     this.todos.push({
       label,
