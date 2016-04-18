@@ -1,0 +1,2 @@
+declare var System: any;
+
