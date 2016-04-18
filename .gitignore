@@ -38,4 +38,5 @@ docs
 lib
 test
 tools/typings/tsd
+typings
 tmp
