@@ -1,5 +1,5 @@
-import {Component, Directive, ViewChildren, ContentChildren, QueryList} from 'angular2/core';
-import {bootstrap} from 'angular2/platform/browser';
+import {Component, Directive, ViewChildren, ContentChildren, QueryList} from '@angular/core';
+import {bootstrap} from '@angular/platform-browser-dynamic';
 
 @Component({
   selector: 'user-badge',

@@ -1,13 +1,13 @@
 import 'reflect-metadata';
 import {
-  Injector, Inject, Injectable, provide, SkipSelf
-} from 'angular2/core';
+  ReflectiveInjector, Inject, Injectable, provide, SkipSelf
+} from '@angular/core';
 
 class Context {
   constructor(@SkipSelf() public parentContext: Context) {}
 }
 
-let parentInjector = Injector.resolveAndCreate([
+let parentInjector = ReflectiveInjector.resolveAndCreate([
   provide(Context, { useValue: new Context(null) })
 ]);
 let childInjector = parentInjector.resolveAndCreateChild([

@@ -1,7 +1,7 @@
 import 'reflect-metadata';
 import {
-  Injector, Inject, Injectable, provide, Self
-} from 'angular2/core';
+  ReflectiveInjector, Inject, Injectable, provide, Self
+} from '@angular/core';
 
 abstract class Channel {}
 
@@ -14,7 +14,7 @@ class UserService {
   constructor(@Self() public channel: Channel) {}
 }
 
-let parentInjector = Injector.resolveAndCreate([
+let parentInjector = ReflectiveInjector.resolveAndCreate([
   provide(Channel, { useClass: Http })
 ]);
 let childInjector = parentInjector.resolveAndCreateChild([

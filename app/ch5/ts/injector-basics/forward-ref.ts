@@ -1,8 +1,8 @@
 import 'reflect-metadata';
 import {
-  Injector, Inject, Injectable,
+  ReflectiveInjector, Inject, Injectable,
   OpaqueToken, forwardRef, provide
-} from 'angular2/core';
+} from '@angular/core';
 
 const BUFFER_SIZE = new OpaqueToken('buffer-size');
 
@@ -23,7 +23,7 @@ class Buffer {
 // [Function: Buffer]
 console.log(Buffer);
 
-let injector = Injector.resolveAndCreate([
+let injector = ReflectiveInjector.resolveAndCreate([
   provide(BUFFER_SIZE, { useValue: 42 }),
   Buffer,
   Socket

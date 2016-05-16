@@ -1,6 +1,6 @@
-import {Component} from 'angular2/core';
-import {bootstrap} from 'angular2/platform/browser';
-import {NgModel} from 'angular2/common';
+import {Component} from '@angular/core';
+import {bootstrap} from '@angular/platform-browser-dynamic';
+import {NgModel} from '@angular/common';
 
 @Component({
   selector: 'app',

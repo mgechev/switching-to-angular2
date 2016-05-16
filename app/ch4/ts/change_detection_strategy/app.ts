@@ -1,7 +1,7 @@
 /// <reference path="../../../../node_modules/immutable/dist/immutable.d.ts"/>
 
-import {Component, Input, Output, EventEmitter, ChangeDetectionStrategy} from 'angular2/core';
-import {bootstrap} from 'angular2/platform/browser';
+import {Component, Input, Output, EventEmitter, ChangeDetectionStrategy} from '@angular/core';
+import {bootstrap} from '@angular/platform-browser-dynamic';
 import {List as ImmutableList} from 'immutable';
 
 interface Todo {
@@ -32,7 +32,7 @@ class InputBox {
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <ul>
-      <li *ngFor="#todo of todos; #index = index" [class.completed]="todo.completed">
+      <li *ngFor="let todo of todos; let index = index" [class.completed]="todo.completed">
         <input type="checkbox" [checked]="todo.completed"
           (change)="toggleCompletion(index)">
         {{todo.label}}

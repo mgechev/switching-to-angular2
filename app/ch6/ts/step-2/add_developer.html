@@ -17,7 +17,7 @@
     <label class="control-label" for="technologyInput">Technology</label>
     <div>
       <select class="form-control" ngControl="technology" [(ngModel)]="developer.technology">
-          <option *ngFor="#t of technologies" [value]="t">{{t}}</option>
+          <option *ngFor="let t of technologies" [value]="t">{{t}}</option>
       </select>
     </div>
   </div>

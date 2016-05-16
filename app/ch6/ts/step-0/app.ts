@@ -1,6 +1,7 @@
-import {Component, provide} from 'angular2/core';
-import {bootstrap} from 'angular2/platform/browser';
-import {Route, Redirect, ROUTER_DIRECTIVES, ROUTER_PROVIDERS, APP_BASE_HREF, RouteConfig, LocationStrategy, HashLocationStrategy} from 'angular2/router';
+import {Component, provide} from '@angular/core';
+import {bootstrap} from '@angular/platform-browser-dynamic';
+import {APP_BASE_HREF, LocationStrategy, HashLocationStrategy} from '@angular/common';
+import {Route, Redirect, ROUTER_DIRECTIVES, ROUTER_PROVIDERS, RouteConfig} from '@angular/router-deprecated';
 // import {Home} from './home';
 import {DeveloperCollection} from './developer_collection';
 import {Developer} from './developer';

@@ -1,6 +1,6 @@
-import {WORKER_APP_PLATFORM, WORKER_APP_APPLICATION} from 'angular2/platform/worker_app';
+import {WORKER_APP_PLATFORM, WORKER_APP_APPLICATION} from '@angular/platform-worker_app';
 
-import {platform, Component, Input, Output, EventEmitter} from 'angular2/core';
+import {platform, Component, Input, Output, EventEmitter} from '@angular/core';
 
 interface Todo {
   completed: boolean;

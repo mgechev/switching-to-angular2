@@ -1,9 +1,9 @@
-import {Component} from 'angular2/core';
-import {ROUTER_DIRECTIVES} from 'angular2/router';
+import {Component} from '@angular/core';
+import {ROUTER_DIRECTIVES} from '@angular/router-deprecated';
 import {DeveloperCollection} from './developer_collection';
 import {BooleanPipe} from './boolean_pipe';
 
-import {HTTP_PROVIDERS} from 'angular2/http';
+import {HTTP_PROVIDERS} from '@angular/http';
 
 @Component({
   selector: 'home',

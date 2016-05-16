@@ -1,5 +1,5 @@
-import {Component} from 'angular2/core';
-import {ROUTER_DIRECTIVES, RouteConfig, RouteParams} from 'angular2/router';
+import {Component} from '@angular/core';
+import {ROUTER_DIRECTIVES, RouteConfig, RouteParams} from '@angular/router-deprecated';
 import {Developer} from './developer';
 import {DeveloperCollection} from './developer_collection';
 import {DeveloperBasicInfo} from './developer_basic_info';

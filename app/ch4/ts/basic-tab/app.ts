@@ -6,11 +6,10 @@ import {
   Input,
   Component,
   forwardRef,
-  View,
   Host
-} from 'angular2/core';
+} from '@angular/core';
 
-import {bootstrap} from 'angular2/platform/browser';
+import {bootstrap} from '@angular/platform-browser-dynamic';
 
 @Component({
   selector: `tab`,
@@ -60,7 +59,7 @@ class Tab {
   template: `
     <div class="tab">
       <ul class="tab-header">
-        <li *ngFor="#tab of tabs; #index = index"
+        <li *ngFor="let tab of tabs; let index = index"
           [class.is-active]="active == index" (click)="select(index)">
           {{tab.title}}
         </li>

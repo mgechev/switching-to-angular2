@@ -1,9 +1,10 @@
-import {Host, Component, Directive, provide} from 'angular2/core';
-import {NgFormModel, FormBuilder, Validators, ControlGroup, FORM_DIRECTIVES, FORM_PROVIDERS, NG_VALIDATORS} from 'angular2/common';
-import {Response, HTTP_PROVIDERS} from 'angular2/http';
+import {Host, Component, Directive, provide} from '@angular/core';
+import {NgFormModel, FormBuilder, Validators, ControlGroup, FORM_DIRECTIVES, FORM_PROVIDERS, NG_VALIDATORS} from '@angular/common';
+import {Response, HTTP_PROVIDERS} from '@angular/http';
 import {GitHubGateway} from './github_gateway';
 import {Developer} from './developer';
 import {DeveloperCollection} from './developer_collection';
+
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
@@ -81,10 +82,10 @@ export class AddDeveloper {
       }
       this.submitted = true;
       this.githubAPI.getUser(model.githubHandle)
-        .catch((error, source, caught) => {
-          console.log(error)
-          return error;
-        })
+//        .catch((error, source) => {
+//          console.log(error)
+//          return error;
+//        })
         .map((r: Response) => r.json())
         .subscribe((res: any) => {
           let dev = new Developer();

@@ -41,13 +41,10 @@ export const NPM_DEPENDENCIES = [
   { src: 'es6-shim/es6-shim.min.js', inject: 'shims', dest: LIB_DEST },
   { src: 'reflect-metadata/Reflect.js', inject: 'shims', dest: LIB_DEST },
   { src: 'systemjs/dist/system.src.js', inject: 'shims', dest: LIB_DEST },
-  { src: 'angular2/bundles/angular2-polyfills.js', inject: 'shims', dest: LIB_DEST },
+  { src: 'zone.js/dist/zone.js', inject: 'shims', dest: LIB_DEST },
 
   // Faster dev page load
   { src: 'rxjs/bundles/Rx.min.js', inject: 'libs', dest: LIB_DEST },
-  { src: 'angular2/bundles/angular2.js', inject: 'libs', dest: LIB_DEST },
-  { src: 'angular2/bundles/router.js', inject: 'libs', dest: LIB_DEST }, // use router.min.js with alpha47
-  { src: 'angular2/bundles/http.min.js', inject: 'libs', dest: LIB_DEST },
 
   { src: 'bootstrap/dist/css/bootstrap.min.css', inject: true, dest: CSS_DEST }
 ];
@@ -73,10 +70,48 @@ const SYSTEM_CONFIG_DEV = {
     'markdown': '/node_modules/markdown/lib/markdown',
     'immutable': '/node_modules/immutable/dist/immutable.js'
   },
+  map: {
+    'rxjs': '/node_modules/rxjs',
+    '@angular': '/node_modules/@angular'
+  },
   packages: {
-    angular2: { defaultExtension: false },
-    rxjs: { defaultExtension: false }
+    '@angular/core': {
+      main: 'index.js',
+      defaultExtension: 'js'
+    },
+    '@angular/compiler': {
+      main: 'index.js',
+      defaultExtension: 'js'
+    },
+    '@angular/common': {
+      main: 'index.js',
+      defaultExtension: 'js'
+    },
+    '@angular/platform-browser': {
+      main: 'index.js',
+      defaultExtension: 'js'
+    },
+    '@angular/platform-browser-dynamic': {
+      main: 'index.js',
+      defaultExtension: 'js'
+    },
+    '@angular/router-deprecated': {
+      main: 'index.js',
+      defaultExtension: 'js'
+    },
+    '@angular/http': {
+      main: 'index.js',
+      defaultExtension: 'js'
+    },
+    // '@angular/router': {
+    //   main: 'index.js',
+    //   defaultExtension: 'js'
+    // },
+    'rxjs': {
+      defaultExtension: 'js'
+    }
   }
+
 };
 
 const SYSTEM_CONFIG_PROD = {
@@ -93,8 +128,44 @@ export const SYSTEM_CONFIG_BUILDER = {
   defaultJSExtensions: true,
   paths: {
     '*': `${TMP_DIR}/*`,
-    'angular2/*': 'node_modules/angular2/*',
     'rxjs/*': 'node_modules/rxjs/*'
+  },
+  map: {
+    'rxjs': '/node_modules/rxjs',
+    '@angular': '/node_modules/@angular'
+  },
+  packages: {
+    '@angular/core': {
+      main: 'index.js',
+      defaultExtension: 'js'
+    },
+    '@angular/compiler': {
+      main: 'index.js',
+      defaultExtension: 'js'
+    },
+    '@angular/common': {
+      main: 'index.js',
+      defaultExtension: 'js'
+    },
+    '@angular/platform-browser': {
+      main: 'index.js',
+      defaultExtension: 'js'
+    },
+    '@angular/platform-browser-dynamic': {
+      main: 'index.js',
+      defaultExtension: 'js'
+    },
+    '@angular/router-deprecated': {
+      main: 'index.js',
+      defaultExtension: 'js'
+    },
+    // '@angular/router': {
+    //   main: 'index.js',
+    //   defaultExtension: 'js'
+    // },
+    'rxjs': {
+      defaultExtension: 'js'
+    }
   }
 };
 

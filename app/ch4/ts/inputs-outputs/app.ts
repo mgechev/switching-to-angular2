@@ -1,5 +1,5 @@
-import {Component, Input, Output, EventEmitter} from 'angular2/core';
-import {bootstrap} from 'angular2/platform/browser';
+import {Component, Input, Output, EventEmitter} from '@angular/core';
+import {bootstrap} from '@angular/platform-browser-dynamic';
 
 interface Todo {
   completed: boolean;
@@ -28,7 +28,7 @@ class InputBox {
   selector: 'todo-list',
   template: `
     <ul>
-      <li *ngFor="#todo of todos; #index = index" [class.completed]="todo.completed">
+      <li *ngFor="let todo of todos; let index = index" [class.completed]="todo.completed">
         <input type="checkbox" [checked]="todo.completed"
           (change)="toggleCompletion(index)">
         {{todo.label}}

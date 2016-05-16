@@ -6,7 +6,7 @@
     <th>Technology</th>
     <th>Popular</th>
   </thead>
-  <tr *ngFor="#dev of getDevelopers()">
+  <tr *ngFor="let dev of getDevelopers()">
     <td>
       {{dev.githubHandle}}
     </td>

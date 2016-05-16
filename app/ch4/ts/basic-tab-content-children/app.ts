@@ -5,14 +5,13 @@ import {
   Output,
   Component,
   forwardRef,
-  View,
   Host,
   Attribute,
   ContentChildren,
   QueryList
-} from 'angular2/core';
+} from '@angular/core';
 
-import {bootstrap} from 'angular2/platform/browser';
+import {bootstrap} from '@angular/platform-browser-dynamic';
 
 @Component({
   selector: 'tab-title',

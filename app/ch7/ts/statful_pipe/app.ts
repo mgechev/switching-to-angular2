@@ -1,8 +1,8 @@
-import {Component, Pipe, PipeTransform} from 'angular2/core';
-import {bootstrap} from 'angular2/platform/browser';
-import {NgModel} from 'angular2/common';
+import {Component, Pipe, PipeTransform} from '@angular/core';
+import {bootstrap} from '@angular/platform-browser-dynamic';
+import {NgModel} from '@angular/common';
 import {FetchJsonPipe} from './fetch_json_pipe';
-import {HTTP_PROVIDERS} from 'angular2/http';
+import {HTTP_PROVIDERS} from '@angular/http';
 
 @Pipe({
   name: 'objectGet'

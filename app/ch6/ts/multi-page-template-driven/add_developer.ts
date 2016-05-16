@@ -1,5 +1,5 @@
-import {Host, Component, Directive, provide} from 'angular2/core';
-import {NgControl, NgForm, CORE_DIRECTIVES, FORM_DIRECTIVES, FORM_PROVIDERS, NG_VALIDATORS} from 'angular2/common';
+import {Host, Component, Directive, provide} from '@angular/core';
+import {NgControl, NgForm, CORE_DIRECTIVES, FORM_DIRECTIVES, FORM_PROVIDERS, NG_VALIDATORS} from '@angular/common';
 import {Developer} from './developer';
 import {DeveloperCollection} from './developer_collection';
 

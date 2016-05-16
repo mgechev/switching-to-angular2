@@ -1,7 +1,7 @@
 import 'reflect-metadata';
 import {
-  Injector, Inject, Injectable, provide
-} from 'angular2/core';
+  ReflectiveInjector, Inject, Injectable, provide
+} from '@angular/core';
 
 class Http {}
 
@@ -10,7 +10,7 @@ class UserService {
   constructor(public http: Http) {}
 }
 
-let parentInjector = Injector.resolveAndCreate([
+let parentInjector = ReflectiveInjector.resolveAndCreate([
   Http
 ]);
 

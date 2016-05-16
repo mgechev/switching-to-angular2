@@ -1,4 +1,4 @@
-import {platform, Provider} from 'angular2/core';
+import {platform, Provider} from '@angular/core';
 import {
   WORKER_RENDER_APPLICATION,
   WORKER_RENDER_PLATFORM,

@@ -1,7 +1,7 @@
-import {Component, Pipe, PipeTransform} from 'angular2/core';
-import * as rx from 'rxjs/Observable';
-import {bootstrap} from 'angular2/platform/browser';
-import {HTTP_PROVIDERS, Http} from 'angular2/http';
+import {Component, Pipe, PipeTransform} from '@angular/core';
+import {Observable} from 'rxjs/Observable';
+import {bootstrap} from '@angular/platform-browser-dynamic';
+import {HTTP_PROVIDERS, Http} from '@angular/http';
 
 @Component({
   selector: 'greeting',
@@ -24,10 +24,10 @@ class Greeting {
 })
 class Timer {
   username: string;
-  timer: rx.Observable<number>;
+  timer: Observable<number>;
   constructor() {
     let counter = 0;
-    this.timer = new rx.Observable<number>(observer => {
+    this.timer = Observable.create(observer => {
       setInterval(() => {
         observer.next(new Date().getTime());
       }, 1000);

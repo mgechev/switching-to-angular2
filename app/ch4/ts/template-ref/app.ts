@@ -1,5 +1,5 @@
-import {Component, ContentChild, TemplateRef, Input, Output, EventEmitter} from 'angular2/core';
-import {bootstrap} from 'angular2/platform/browser';
+import {Component, ContentChild, TemplateRef, Input, Output, EventEmitter} from '@angular/core';
+import {bootstrap} from '@angular/platform-browser-dynamic';
 
 interface Todo {
   completed: boolean;
@@ -28,14 +28,14 @@ class InputBox {
   selector: 'todo-list',
   template: `
     <ul>
-      <template *ngFor="var todo of todos; template: itemsTemplate">
+      <template *ngFor="let todo of todos; template: itemsTemplate">
       </template>
     </ul>
   `
 })
 class TodoList {
   @Input() todos: Todo[];
-  @Input() itemsTemplate: TemplateRef;
+  @Input() itemsTemplate: TemplateRef<any>;
   @Output() toggle = new EventEmitter<Todo>();
 }
 
@@ -70,7 +70,7 @@ class TodoApp {
   }];
   name: string = 'John';
   @ContentChild(TemplateRef)
-  private itemsTemplate: TemplateRef;
+  private itemsTemplate: TemplateRef<any>;
   addTodo(label: string) {
     this.todos.push({
       label,
@@ -89,7 +89,7 @@ class TodoApp {
   ],
   template: `
     <todo-app>
-      <template var-todo>
+      <template let-todo>
         <input type="checkbox" [checked]="todo.completed"
           (change)="todo.completed = !todo.completed;">
         <span [class.completed]="todo.completed">

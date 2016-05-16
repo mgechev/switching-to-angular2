@@ -1,4 +1,4 @@
-import {Component, Inject, forwardRef, Host} from 'angular2/core';
+import {Component, Inject, forwardRef, Host} from '@angular/core';
 import {DeveloperDetails} from './developer_details';
 import {Developer} from './developer';
 

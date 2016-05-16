@@ -28,7 +28,7 @@ var Tabs = ng.core.Component({
   template: `
     <div class="tab">
       <ul class="tab-header">
-        <li *ngFor="#tab of tabs; #index=index" (click)="selectTab(index)">{{tab.tabTitle}}</li>
+        <li *ngFor="let tab of tabs; let index=index" (click)="selectTab(index)">{{tab.tabTitle}}</li>
       </ul>
       <div class="tab-content">
         <ng-content></ng-content>
@@ -83,4 +83,5 @@ var App = ng.core.Component({
   constructor: function () {}
 });
 
-ng.platform.browser.bootstrap(App, []);
+ng.platformBrowserDynamic.bootstrap(App);
+

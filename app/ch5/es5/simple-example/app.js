@@ -65,4 +65,5 @@ var App = ng.core.Component({
   constructor: function () {}
 })
 
-ng.platform.browser.bootstrap(App);
+ng.platformBrowserDynamic.bootstrap(App);
+

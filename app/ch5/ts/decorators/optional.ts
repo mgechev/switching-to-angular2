@@ -1,7 +1,7 @@
 import 'reflect-metadata';
 import {
-  Injector, Inject, Injectable, provide, Optional
-} from 'angular2/core';
+  ReflectiveInjector, Inject, Injectable, provide, Optional
+} from '@angular/core';
 
 abstract class SortingAlgorithm {
   abstract sort(collection: BaseCollection): Collection;
@@ -23,7 +23,7 @@ class Collection extends BaseCollection {
   }
 }
 
-let injector = Injector.resolveAndCreate([
+let injector = ReflectiveInjector.resolveAndCreate([
   Collection
 ]);
 

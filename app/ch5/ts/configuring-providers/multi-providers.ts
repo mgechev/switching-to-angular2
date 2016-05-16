@@ -1,7 +1,7 @@
 import 'reflect-metadata';
 import {
-  Injector, Inject, Injectable, provide, OpaqueToken
-} from 'angular2/core';
+  ReflectiveInjector, Inject, Injectable, provide, OpaqueToken
+} from '@angular/core';
 
 const VALIDATOR = new OpaqueToken('validator');
 
@@ -19,7 +19,7 @@ class Employee {
   }
 }
 
-let injector = Injector.resolveAndCreate([
+let injector = ReflectiveInjector.resolveAndCreate([
   provide(VALIDATOR, { multi: true, useValue: (person: Employee) => {
     if (!person.name) {
       return 'The name is required';
