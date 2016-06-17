@@ -1,9 +1,5 @@
-import {platform, Provider} from '@angular/core';
-import {
-  WORKER_RENDER_APPLICATION,
-  WORKER_RENDER_PLATFORM,
-  WORKER_SCRIPT
-} from 'angular2/platform/worker_render';
+//main entry point
+import {bootstrapWorkerUi} from '@angular/platform-browser-dynamic';
 
-platform([WORKER_RENDER_PLATFORM])
-    .application([WORKER_RENDER_APPLICATION, new Provider(WORKER_SCRIPT, {useValue: 'loader.js'})]);
+bootstrapWorkerUi('loader.js');
+

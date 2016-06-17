@@ -19,8 +19,8 @@ import {DeveloperAdvancedInfo} from './developer_advanced_info';
   `,
 })
 @RouteConfig([
-  { component: DeveloperBasicInfo, as: 'DeveloperBasicInfo', path: '/' },
-  { component: DeveloperAdvancedInfo, as: 'DeveloperAdvancedInfo', path: '/dev-details-advanced' }
+  { component: DeveloperBasicInfo, name: 'DeveloperBasicInfo', path: '/' },
+  { component: DeveloperAdvancedInfo, name: 'DeveloperAdvancedInfo', path: '/dev-details-advanced' }
 ])
 export class DeveloperDetails {
   public dev: Developer;

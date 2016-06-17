@@ -1,6 +1,5 @@
-import {WORKER_APP_PLATFORM, WORKER_APP_APPLICATION} from '@angular/platform-worker_app';
-
-import {platform, Component, Input, Output, EventEmitter} from '@angular/core';
+import {Component, Input, Output, EventEmitter} from '@angular/core';
+import {bootstrapWorkerApp} from '@angular/platform-browser-dynamic';
 
 interface Todo {
   completed: boolean;
@@ -31,7 +30,7 @@ class InputBox {
   selector: 'todo-list',
   template: `
     <ul>
-      <li *ngFor="#todo of todos; #index = index" [class.completed]="todo.completed">
+      <li *ngFor="let todo of todos; let index = index" [class.completed]="todo.completed">
         <input type="checkbox" [checked]="todo.completed"
           (change)="toggleCompletion(index)">
         {{todo.label}}
@@ -96,4 +95,5 @@ export class TodoApp {
   }
 }
 
-platform([WORKER_APP_PLATFORM]).application([WORKER_APP_APPLICATION]).bootstrap(TodoApp)
+bootstrapWorkerApp(TodoApp, []).catch(err => console.error(err));
+

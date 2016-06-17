@@ -14,15 +14,10 @@
   <todo-app>Loading...</todo-app>
 
   <script src="/node_modules/systemjs/dist/system.src.js"></script>
-  <script src="/node_modules/angular2/bundles/angular2-polyfills.js"></script>
-  <script src="/node_modules/angular2/bundles/web_worker/ui.dev.js"></script>
+  <script src="/node_modules/reflect-metadata/Reflect.js"></script>
+  <script src="/node_modules/zone.js/dist/zone.js"></script>
+  <script src="./config.js"></script>
   <script>
-  System.config({
-    baseURL: '/dist/dev/ch8/ts/todo_webworkers/',
-    paths: {
-      bootstrap: '/dist/dev/bootstrap'
-    }
-  });
   System.import("./bootstrap.js")
     .catch(function () {
       console.log("Report this error to https://github.com/mgechev/switching-to-angular2/issues", e);
