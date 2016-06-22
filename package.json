@@ -89,7 +89,7 @@
     "@angular/router-deprecated": "^2.0.0-rc.2",
     "bootstrap": "^3.3.5",
     "es6-module-loader": "^0.17.8",
-    "es6-shim": "^0.33.3",
+    "es6-shim": "^0.35.0",
     "immutable": "^3.7.6",
     "markdown": "^0.5.0",
     "reflect-metadata": "0.1.2",
