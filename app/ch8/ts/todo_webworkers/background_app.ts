@@ -95,5 +95,6 @@ export class TodoApp {
   }
 }
 
-bootstrapWorkerApp(TodoApp, []).catch(err => console.error(err));
+bootstrapWorkerApp(TodoApp)
+  .catch(err => console.error(err));
 
