@@ -8,7 +8,7 @@ interface Todo {
 
 @Component({
   selector: 'app',
-  templateUrl: '<%= currentPath %>app.html',
+  templateUrl: './app.html',
   styles: [
     `ul li {
       list-style: none;

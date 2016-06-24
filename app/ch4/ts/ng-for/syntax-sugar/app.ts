@@ -3,7 +3,7 @@ import {bootstrap} from '@angular/platform-browser-dynamic';
 
 @Component({
   selector: 'app',
-  templateUrl: '<%= currentPath %>app.html'
+  templateUrl: './app.html'
 })
 class App {
   todos:string[];
