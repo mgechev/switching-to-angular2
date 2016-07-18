@@ -1,7 +1,7 @@
 import 'reflect-metadata';
 import {
   ReflectiveInjector, Inject, Injectable,
-  OpaqueToken, forwardRef, provide
+  OpaqueToken, forwardRef
 } from '@angular/core';
 
 class Http {}
@@ -17,7 +17,7 @@ class UserService {
 
 let injector = ReflectiveInjector.resolveAndCreate([
   UserService,
-  provide(Http, { useClass: DummyHttp })
+  { provide: Http, useClass: DummyHttp }
 ]);
 
 

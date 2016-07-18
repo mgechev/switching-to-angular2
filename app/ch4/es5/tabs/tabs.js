@@ -73,9 +73,7 @@ var Tab = ng.core.Component({
 });
 
 var App = ng.core.Component({
-  selector: 'app'
-})
-.View({
+  selector: 'app',
   templateUrl: './app.html',
   directives: [Tab, Tabs]
 })

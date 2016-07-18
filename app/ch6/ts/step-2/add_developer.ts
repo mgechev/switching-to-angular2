@@ -1,4 +1,4 @@
-import {Host, Component, Directive, provide} from '@angular/core';
+import {Host, Component, Directive} from '@angular/core';
 import {NgControl, NgForm, FORM_DIRECTIVES, FORM_PROVIDERS, NG_VALIDATORS} from '@angular/common';
 import {Developer} from './developer';
 import {DeveloperCollection} from './developer_collection';

@@ -8,7 +8,5 @@ var App = ng.core.Component({
   }
 });
 
-// In RC.3 this line should be
-// ng.platformBrowserDynamic.bootstrap(App);
-ng.platform.browser.bootstrap(App);
+ng.platformBrowserDynamic.bootstrap(App);
 

@@ -1,6 +1,6 @@
 import 'reflect-metadata';
 import {
-  ReflectiveInjector, Inject, Injectable, OpaqueToken, provide
+  ReflectiveInjector, Inject, Injectable, OpaqueToken
 } from '@angular/core';
 
 const BUFFER_SIZE = new OpaqueToken('buffer-size');
@@ -27,7 +27,7 @@ class TLSConnection {
 }
 
 let injector = ReflectiveInjector.resolveAndCreate([
-  provide(TLSConnection, {
+  { provide: TLSConnection,
     useFactory: (socket: Socket, certificate: Certificate, crypto: Crypto) =>  {
       let connection = new TLSConnection();
       connection.certificate = certificate;
@@ -37,8 +37,8 @@ let injector = ReflectiveInjector.resolveAndCreate([
       return connection;
     },
     deps: [Socket, Certificate, Crypto]
-  }),
-  provide(BUFFER_SIZE, { useValue: 42 }),
+  },
+  { provide: BUFFER_SIZE, useValue: 42 },
   Buffer,
   Socket,
   Certificate,

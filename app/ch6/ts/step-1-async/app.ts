@@ -1,4 +1,4 @@
-import {Component, provide} from '@angular/core';
+import {Component} from '@angular/core';
 import {bootstrap} from '@angular/platform-browser-dynamic';
 import {APP_BASE_HREF, LocationStrategy, HashLocationStrategy} from '@angular/common';
 import {AsyncRoute, Redirect, ROUTER_DIRECTIVES, ROUTER_PROVIDERS, RouteConfig} from '@angular/router-deprecated';
@@ -41,5 +41,5 @@ class App {}
 
 bootstrap(App, [
   ROUTER_PROVIDERS,
-  provide(LocationStrategy, { useClass: HashLocationStrategy })
+  { provide: LocationStrategy, useClass: HashLocationStrategy }
 ]);

@@ -10,8 +10,8 @@
     <td>{{dev.realName}}</td>
     <td>{{dev.technology}}</td>
     <td [ngSwitch]="!!dev.popular">
-      <span *ngSwitchWhen="true">Yes</span>
-      <span *ngSwitchWhen="false">Not yet</span>
+      <span *ngSwitchCase="true">Yes</span>
+      <span *ngSwitchCase="false">Not yet</span>
     </td>
   </tr>
 </table>

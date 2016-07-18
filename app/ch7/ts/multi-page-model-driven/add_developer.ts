@@ -1,4 +1,4 @@
-import {Host, Component, Directive, provide} from '@angular/core';
+import {Host, Component, Directive} from '@angular/core';
 import {NgFormModel, FormBuilder, Validators, ControlGroup, FORM_DIRECTIVES, FORM_PROVIDERS, NG_VALIDATORS} from '@angular/common';
 import {Response, HTTP_PROVIDERS} from '@angular/http';
 import {GitHubGateway} from './github_gateway';

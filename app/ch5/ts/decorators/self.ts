@@ -1,6 +1,6 @@
 import 'reflect-metadata';
 import {
-  ReflectiveInjector, Inject, Injectable, provide, Self
+  ReflectiveInjector, Inject, Injectable, Self
 } from '@angular/core';
 
 abstract class Channel {}
@@ -15,10 +15,10 @@ class UserService {
 }
 
 let parentInjector = ReflectiveInjector.resolveAndCreate([
-  provide(Channel, { useClass: Http })
+  { provide: Channel, useClass: Http }
 ]);
 let childInjector = parentInjector.resolveAndCreateChild([
-  provide(Channel, { useClass: WebSocket }),
+  { provide: Channel, useClass: WebSocket },
   UserService
 ]);
 

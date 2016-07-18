@@ -1,4 +1,4 @@
-import {Host, Component, Directive, provide} from '@angular/core';
+import {Host, Component, Directive} from '@angular/core';
 import {NgControl, NgForm, CORE_DIRECTIVES, FORM_DIRECTIVES, FORM_PROVIDERS, NG_VALIDATORS} from '@angular/common';
 import {Developer} from './developer';
 import {DeveloperCollection} from './developer_collection';
@@ -13,7 +13,7 @@ function validateEmail(emailControl) {
 
 @Directive({
   selector: '[email-input]',
-  providers: [provide(NG_VALIDATORS, { useValue: validateEmail, multi: true })]
+  providers: [{ provide: NG_VALIDATORS, useValue: validateEmail, multi: true }]
 })
 class EmailValidator {}
 

@@ -1,6 +1,6 @@
 import 'reflect-metadata';
 import {
-  ReflectiveInjector, Inject, Injectable, provide, Optional
+  ReflectiveInjector, Inject, Injectable, Optional
 } from '@angular/core';
 
 abstract class SortingAlgorithm {

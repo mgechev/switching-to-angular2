@@ -43,7 +43,7 @@ class InputBox {
       text-decoration: line-through;
     }`
   ],
-  changeDetection: ChangeDetectionStrategy.Checked
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 class TodoList {
   @Input() todos: Todo[];

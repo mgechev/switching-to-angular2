@@ -1,4 +1,4 @@
-import {HostListener, provide, Input, Injectable, ElementRef, Inject, Directive, Component} from '@angular/core';
+import {HostListener, Input, Injectable, ElementRef, Inject, Directive, Component} from '@angular/core';
 import {bootstrap} from '@angular/platform-browser-dynamic';
 
 class Overlay {

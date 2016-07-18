@@ -3,8 +3,7 @@ import {
   ReflectiveInjector,
   Inject,
   Injectable,
-  OpaqueToken,
-  provide
+  OpaqueToken
 } from '@angular/core';
 
 const BUFFER_SIZE = new OpaqueToken('buffer-size');
@@ -21,7 +20,7 @@ class Socket {
 }
 
 let injector = ReflectiveInjector.resolveAndCreate([
-  provide(BUFFER_SIZE, { useValue: 42 }),
+  { provide: BUFFER_SIZE, useValue: 42 },
   Buffer,
   Socket
 ]);
