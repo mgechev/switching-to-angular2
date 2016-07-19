@@ -27,7 +27,8 @@ class TLSConnection {
 }
 
 let injector = ReflectiveInjector.resolveAndCreate([
-  { provide: TLSConnection,
+  {
+    provide: TLSConnection,
     useFactory: (socket: Socket, certificate: Certificate, crypto: Crypto) =>  {
       let connection = new TLSConnection();
       connection.certificate = certificate;
