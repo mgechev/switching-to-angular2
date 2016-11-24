@@ -14,7 +14,7 @@ export = function buildIndexDev(gulp, plugins) {
 <script>
   System.config(${JSON.stringify(SYSTEM_CONFIG)});
   System.import("./app")
-    .catch(function () {
+    .catch(function (e) {
       console.log("Report this error to https://github.com/mgechev/switching-to-angular2/issues", e);
     });
 </script>`

@@ -7,6 +7,7 @@ import {DeveloperCollection} from './developer_collection';
 })
 export class Home {
   constructor(private developers: DeveloperCollection) {}
+  
   getDevelopers() {
     return this.developers.getAll();
   }

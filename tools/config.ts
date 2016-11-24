@@ -87,9 +87,7 @@ const SYSTEM_CONFIG_DEV = {
     '@angular/platform-browser-dynamic/testing':
       '/node_modules/@angular/platform-browser-dynamic/bundles/platform-browser-dynamic-testing.umd.js',
     '@angular/router/testing': '/node_modules/@angular/router/bundles/router-testing.umd.js',
-  },
-  map: {
-    'rxjs': '/node_modules/rxjs'
+    '*': '/node_modules/*'
   }
 };
 

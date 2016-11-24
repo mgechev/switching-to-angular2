@@ -4,26 +4,26 @@
   <div class="form-group">
     <label class="control-label" for="realNameInput">Real name</label>
     <div>
-      <input id="realNameInput" class="form-control" type="text" ngControl="realName" [(ngModel)]="developer.realName">
+      <input id="realNameInput" class="form-control" type="text" ngControl="realName" name="realName" [(ngModel)]="developer.realName">
     </div>
   </div>
   <div class="form-group">
     <label class="control-label" for="emailInput">Email</label>
     <div>
-      <input id="emailInput" class="form-control" type="text" ngControl="email" [(ngModel)]="developer.email">
+      <input id="emailInput" class="form-control" type="text" ngControl="email" name="realName" [(ngModel)]="developer.email">
     </div>
   </div>
   <div class="form-group">
     <label class="control-label" for="technologyInput">Technology</label>
     <div>
-      <select class="form-control" ngControl="technology" [(ngModel)]="developer.technology">
+      <select class="form-control" ngControl="technology" name="realName" [(ngModel)]="developer.technology">
           <option *ngFor="let t of technologies" [value]="t">{{t}}</option>
       </select>
     </div>
   </div>
   <div class="form-group">
     <label class="control-label" for="pupularCheckbox">Popular</label>
-    <input class="checkbox-inline" id="pupularCheckbox" type="checkbox" ngControl="popular" [(ngModel)]="developer.popular">
+    <input class="checkbox-inline" id="pupularCheckbox" type="checkbox" ngControl="popular" name="realName" [(ngModel)]="developer.popular">
   </div>
 </form>
 <button class="btn btn-default" type="submit" [disabled]="!f.form.valid">Add</button>
