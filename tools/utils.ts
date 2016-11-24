@@ -13,7 +13,8 @@ export function relativePath(fileLocation) {
 }
 
 export function tsProjectFn(plugins) {
-  return plugins.typescript.createProject('tsconfig.json', {
+  const tsconfig = __dirname + '/../app/tsconfig.json';
+  return plugins.typescript.createProject(tsconfig, {
     typescript: require('typescript')
   });
 }

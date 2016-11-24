@@ -8,5 +8,14 @@ var App = ng.core.Component({
   }
 });
 
-ng.platformBrowserDynamic.bootstrap(App);
+var AppModule = ng.core.NgModule({
+  imports: [ng.platformBrowser.BrowserModule],
+  declarations: [App],
+  bootstrap: [App]
+})
+.Class({
+  constructor: function () {}
+});
+
+ng.platformBrowserDynamic.platformBrowserDynamic().bootstrapModule(AppModule);
 
