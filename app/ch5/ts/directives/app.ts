@@ -1,5 +1,6 @@
-import {Component, ElementRef} from '@angular/core';
-import {bootstrap} from '@angular/platform-browser-dynamic';
+import {Component, ElementRef, NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
 import * as markdown from 'markdown';
 
 class Markdown {
@@ -17,22 +18,22 @@ class Markdown {
       display: inline-block;
       border: 1px solid black;
     }
-    .panel-title {
+    .panel-title-wrapper {
       border-bottom: 1px solid black;
       background-color: #eee;
     }
-    .panel-content,
-    .panel-title {
+    .panel-content-wrapper,
+    .panel-title-wrapper {
       padding: 5px;
     }`
   ],
   template: `
     <div class="panel">
-      <div class="panel-title">
-        <ng-content select="panel-title"></ng-content>
+      <div class="panel-title-wrapper">
+        <ng-content select=".panel-title"></ng-content>
       </div>
-      <div class="panel-content">
-        <ng-content select="panel-content"></ng-content>
+      <div class="panel-content-wrapper">
+        <ng-content select=".panel-content"></ng-content>
       </div>
     </div>`
 })
@@ -40,8 +41,8 @@ class MarkdownPanel {
   constructor(private el: ElementRef, private md: Markdown) {}
   ngAfterContentInit() {
     let el = this.el.nativeElement;
-    let title = el.querySelector('panel-title');
-    let content = el.querySelector('panel-content');
+    let title = el.querySelector('.panel-title');
+    let content = el.querySelector('.panel-content');
     title.innerHTML = this.md.toHTML(title.innerHTML);
     content.innerHTML = this.md.toHTML(content.innerHTML);
   }
@@ -51,18 +52,25 @@ class MarkdownPanel {
   selector: 'app',
   template: `
     <markdown-panel>
-      <panel-title>### Small title</panel-title>
-      <panel-content>
+      <section class="panel-title">### Small title</section>
+      <section class="panel-content">
 ## Sample title
 * First point
 * Second point
-      </panel-content>
+      </section>
     </markdown-panel>
-  `,
-  directives: [MarkdownPanel]
+  `
 })
 class App {
   constructor() {}
 }
 
-bootstrap(App);
+@NgModule({
+  declarations: [App, MarkdownPanel],
+  imports: [BrowserModule],
+  bootstrap: [App],
+})
+class AppModule {}
+
+platformBrowserDynamic().bootstrapModule(AppModule);
+

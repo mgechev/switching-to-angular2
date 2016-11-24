@@ -14,21 +14,21 @@ var MarkdownPanel = ng.core.Component({
       'display: inline-block;' +
       'border: 1px solid black;' +
     '}' +
-    '.panel-title {' +
+    '.panel-title-wrapper {' +
       'border-bottom: 1px solid black;' +
       'background-color: #eee;' +
     '}' +
-    '.panel-content,' +
-    '.panel-title {' +
+    '.panel-content-wrapper,' +
+    '.panel-title-wrapper {' +
     '  padding: 5px;' +
     '}'
   ],
   template: '<div class="panel">' +
-      '<div class="panel-title">' +
-        '<ng-content select="panel-title"></ng-content>' +
+      '<div class="panel-title-wrapper">' +
+        '<ng-content select=".panel-title"></ng-content>' +
       '</div>' +
-      '<div class="panel-content">' +
-        '<ng-content select="panel-content"></ng-content>' +
+      '<div class="panel-content-wrapper">' +
+        '<ng-content select=".panel-content"></ng-content>' +
       '</div>' +
     '</div>'
 })
@@ -40,8 +40,8 @@ var MarkdownPanel = ng.core.Component({
     }],
   ngAfterContentInit: function () {
     var el = this.el.nativeElement;
-    var title = el.querySelector('panel-title');
-    var content = el.querySelector('panel-content');
+    var title = el.querySelector('.panel-title');
+    var content = el.querySelector('.panel-content');
     title.innerHTML = this.md.toHTML(title.innerHTML);
     content.innerHTML = this.md.toHTML(content.innerHTML);
   }
@@ -51,19 +51,27 @@ var App = ng.core.Component({
   selector: 'app',
   template: `
     <markdown-panel>
-      <panel-title>### Small title</panel-title>
-      <panel-content>
+      <section class="panel-title">### Small title</section>
+      <section class="panel-content">
 ## Sample title
 * First point
 * Second point
-      </panel-content>
+      </section>
     </markdown-panel>
-  `,
-  directives: [MarkdownPanel]
+  `
 })
 .Class({
   constructor: function () {}
-})
+});
 
-ng.platformBrowserDynamic.bootstrap(App);
+var AppModule = ng.core.NgModule({
+  imports: [ng.platformBrowser.BrowserModule],
+  declarations: [MarkdownPanel, App],
+  bootstrap: [App]
+})
+.Class({
+  constructor: function () {}
+});
+
+ng.platformBrowserDynamic.platformBrowserDynamic().bootstrapModule(AppModule);
 

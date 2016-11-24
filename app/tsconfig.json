@@ -16,9 +16,7 @@
     ],
     "types": [
       "express",
-      "jasmine",
       "node",
-      "protractor",
       "systemjs"
     ]
   },
