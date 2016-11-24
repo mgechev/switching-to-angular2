@@ -8,10 +8,23 @@
     "noLib": false,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "sourceMap": true
+    "sourceMap": true,
+    "lib": ["es6", "es2015", "dom"],
+    "typeRoots": [
+      "../../node_modules/@types",
+      "../../node_modules"
+    ],
+    "types": [
+      "express",
+      "jasmine",
+      "node",
+      "protractor",
+      "systemjs"
+    ]
   },
   "exclude": [
     "../tools"
   ],
   "compileOnSave": false
 }
+
