@@ -1,5 +1,6 @@
-import {Component} from '@angular/core';
-import {bootstrap} from '@angular/platform-browser-dynamic';
+import {Component, NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
 
 interface Todo {
   completed: boolean;
@@ -42,4 +43,13 @@ class TodoCtrl {
   }
 }
 
-bootstrap(TodoCtrl);
+
+@NgModule({
+  declarations: [TodoCtrl],
+  imports: [BrowserModule],
+  bootstrap: [TodoCtrl],
+})
+class AppModule {}
+
+platformBrowserDynamic().bootstrapModule(AppModule);
+

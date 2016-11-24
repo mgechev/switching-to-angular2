@@ -74,12 +74,21 @@ var Tab = ng.core.Component({
 
 var App = ng.core.Component({
   selector: 'app',
-  templateUrl: './app.html',
-  directives: [Tab, Tabs]
+  templateUrl: './app.html'
 })
 .Class({
   constructor: function () {}
 });
 
-ng.platformBrowserDynamic.bootstrap(App);
+
+var AppModule = ng.core.NgModule({
+  imports: [ng.platformBrowser.BrowserModule],
+  declarations: [App, Tab, Tabs],
+  bootstrap: [App]
+})
+.Class({
+  constructor: function () {}
+});
+
+ng.platformBrowserDynamic.platformBrowserDynamic().bootstrapModule(AppModule);
 

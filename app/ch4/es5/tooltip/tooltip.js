@@ -47,12 +47,20 @@ var Tooltip = ng.core.Directive({
 var App = ng.core.Component({
   selector: 'app',
   templateUrl: './app.html',
-  providers: [Overlay],
-  directives: [Tooltip]
 })
 .Class({
   constructor: function () {}
 });
 
-ng.platformBrowserDynamic.bootstrap(App);
+var AppModule = ng.core.NgModule({
+  imports: [ng.platformBrowser.BrowserModule],
+  declarations: [App, Tooltip],
+  providers: [Overlay],
+  bootstrap: [App]
+})
+.Class({
+  constructor: function () {}
+});
+
+ng.platformBrowserDynamic.platformBrowserDynamic().bootstrapModule(AppModule);
 

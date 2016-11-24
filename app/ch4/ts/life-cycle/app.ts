@@ -1,5 +1,6 @@
-import {Component} from '@angular/core';
-import {bootstrap} from '@angular/platform-browser-dynamic';
+import {Component, NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
 
 @Component({
   selector: 'panel',
@@ -40,8 +41,7 @@ class Panel {
     <div *ngIf="counter % 2 == 0">
       <panel caption="Sample caption" title="Sample">Hello world!</panel>
     </div>
-  `,
-  directives: [Panel]
+  `
 })
 class App {
   counter: number = 0;
@@ -50,4 +50,12 @@ class App {
   }
 }
 
-bootstrap(App);
+@NgModule({
+  declarations: [Panel, App],
+  imports: [BrowserModule],
+  bootstrap: [App],
+})
+class AppModule {}
+
+platformBrowserDynamic().bootstrapModule(AppModule);
+

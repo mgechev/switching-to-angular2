@@ -1,7 +1,9 @@
 /// <reference path="../../../../node_modules/immutable/dist/immutable.d.ts"/>
 
-import {Component, Input, Output, EventEmitter, ChangeDetectionStrategy} from '@angular/core';
-import {bootstrap} from '@angular/platform-browser-dynamic';
+import {NgModule, Component, Input, Output, EventEmitter, ChangeDetectionStrategy} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
+
 import {List as ImmutableList} from 'immutable';
 
 interface Todo {
@@ -58,7 +60,6 @@ class TodoList {
 
 @Component({
   selector: 'todo-app',
-  directives: [TodoList, InputBox],
   template: `
     <h1>Hello {{name}}!</h1>
 
@@ -102,4 +103,12 @@ class TodoApp {
   }
 }
 
-bootstrap(TodoApp);
+@NgModule({
+  declarations: [TodoList, InputBox, TodoApp],
+  imports: [BrowserModule],
+  bootstrap: [TodoApp],
+})
+class TodoAppModule {}
+
+platformBrowserDynamic().bootstrapModule(TodoAppModule);
+

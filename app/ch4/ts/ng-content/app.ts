@@ -1,5 +1,6 @@
-import {Component} from '@angular/core';
-import {bootstrap} from '@angular/platform-browser-dynamic';
+import {Component, NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
 
 @Component({
   selector: 'fancy-button',
@@ -27,10 +28,10 @@ class FancyButton { /* Extra behavior */ }
   template: `
     <div class="panel">
       <div class="panel-title">
-        <ng-content select="panel-title"></ng-content>
+        <ng-content select=".panel-title"></ng-content>
       </div>
       <div class="panel-content">
-        <ng-content select="panel-content"></ng-content>
+        <ng-content select=".panel-content"></ng-content>
       </div>
     </div>`
 })
@@ -44,14 +45,21 @@ class Panel { }
     </fancy-button>
     <br>
     <panel>
-      <panel-title>Sample title</panel-title>
-      <panel-content>Content</panel-content>
+      <section class="panel-title">Sample title</section>
+      <section class="panel-content">Content</section>
     </panel>
-  `,
-  directives: [FancyButton, Panel]
+  `
 })
 class App {
   constructor() {}
 }
 
-bootstrap(App);
+@NgModule({
+  declarations: [Panel, FancyButton, App],
+  imports: [BrowserModule],
+  bootstrap: [App],
+})
+class AppModule {}
+
+platformBrowserDynamic().bootstrapModule(AppModule);
+
