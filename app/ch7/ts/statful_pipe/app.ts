@@ -1,8 +1,9 @@
-import {Component, Pipe, PipeTransform} from '@angular/core';
-import {bootstrap} from '@angular/platform-browser-dynamic';
-import {NgModel} from '@angular/common';
+import {NgModule, Component, Pipe, PipeTransform} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
+import {NgModel} from '@angular/forms';
 import {FetchJsonPipe} from './fetch_json_pipe';
-import {HTTP_PROVIDERS} from '@angular/http';
+import {HttpModule} from '@angular/http';
 
 @Pipe({
   name: 'objectGet'
@@ -17,8 +18,6 @@ class ObjectGetPipe {
 
 @Component({
   selector: 'app',
-  providers: [HTTP_PROVIDERS],
-  pipes: [FetchJsonPipe, ObjectGetPipe],
   template: `
     <input type="text" #input>
     <button (click)="setUsername(input.value)">Get Avatar</button>
@@ -33,4 +32,11 @@ class App {
   }
 }
 
-bootstrap(App, []);
+@NgModule({
+  imports: [HttpModule, BrowserModule],
+  declarations: [App, FetchJsonPipe, ObjectGetPipe],
+  bootstrap: [App]
+})
+class AppModule {}
+
+platformBrowserDynamic().bootstrapModule(AppModule);

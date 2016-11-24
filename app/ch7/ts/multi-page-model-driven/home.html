@@ -8,7 +8,7 @@
   </thead>
   <tr *ngFor="let dev of getDevelopers()">
     <td>
-      <a [routerLink]="['/DeveloperDetails', { 'id': dev.id }, 'DeveloperBasicInfo']">
+      <a [routerLink]="['/dev-details', dev.id, 'dev-basic-info']">
         {{dev.githubHandle}}
       </a>
     </td>
