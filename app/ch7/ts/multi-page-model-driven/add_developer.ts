@@ -1,10 +1,11 @@
-import {Host, Component, OnInit, Directive} from '@angular/core';
+import {Host, Component, OnInit, OnDestroy, Directive} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators, NG_VALIDATORS} from '@angular/forms';
 import {Response} from '@angular/http';
 import {GitHubGateway} from './github_gateway';
 import {Developer} from './developer';
 import {DeveloperCollection} from './developer_collection';
 
+import {Subscription} from 'rxjs/Subscription';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
@@ -26,7 +27,7 @@ function validateEmail(emailControl) {
   ],
   providers: [GitHubGateway]
 })
-export class AddDeveloper implements OnInit {
+export class AddDeveloper implements OnInit, OnDestroy {
   submitted = false;
   importDevForm: FormGroup;
   addDevForm: FormGroup;
@@ -38,6 +39,8 @@ export class AddDeveloper implements OnInit {
     'C#',
     'Clojure'
   ];
+
+  private subscription: Subscription;
 
   constructor(private githubAPI: GitHubGateway, private developers: DeveloperCollection, fb: FormBuilder) {
     this.importDevForm = fb.group({
@@ -54,8 +57,12 @@ export class AddDeveloper implements OnInit {
 
   ngOnInit() {
     this.toggleControls(this.importDevForm.controls['fetchFromGitHub'].value);
-    this.importDevForm.controls['fetchFromGitHub']
+    this.subscription = this.importDevForm.controls['fetchFromGitHub']
       .valueChanges.subscribe(this.toggleControls.bind(this));
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
   get isFormValid() {
