@@ -2,7 +2,7 @@
 
 This repository contains the code samples for my book "[Switching to Angular 2](https://www.packtpub.com/web-development/switching-angular-2)".
 
-[![](https://www.packtpub.com/sites/default/files/IMG6201.jpg)](https://www.packtpub.com/web-development/switching-angular-2)
+[![](https://raw.githubusercontent.com/mgechev/switching-to-angular2/master/img/book-ed1.jpg)](https://www.packtpub.com/web-development/switching-angular-2)
 
 ## Versions
 
