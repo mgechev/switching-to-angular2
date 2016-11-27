@@ -1,5 +1,5 @@
-var App = ng.core.Component({
-  selector: 'app',
+var AppComponent = ng.core.Component({
+  selector: 'my-app',
   template: '<h1>Hello {{target}}!</h1>'
 })
 .Class({
@@ -10,8 +10,8 @@ var App = ng.core.Component({
 
 var AppModule = ng.core.NgModule({
   imports: [ng.platformBrowser.BrowserModule],
-  declarations: [App],
-  bootstrap: [App]
+  declarations: [AppComponent],
+  bootstrap: [AppComponent]
 })
 .Class({
   constructor: function () {}

@@ -10,8 +10,8 @@ class App {
   todos: string[];
   name: string;
   constructor() {
-    this.name = "John";
-    this.todos = ['Buy milk', "Save the world"];
+    this.name = 'John';
+    this.todos = ['Buy milk', 'Save the world'];
   }
 }
 

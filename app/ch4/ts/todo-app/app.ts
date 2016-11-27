@@ -27,16 +27,20 @@ class TodoCtrl {
     label: "Save the world",
     completed: false
   }];
+
   name: string = 'John';
+
   addTodo(label) {
     this.todos.push({
       label,
       completed: false
     })
   }
+
   removeTodo(idx) {
     this.todos.splice(idx, 1);
   }
+
   toggleCompletion(idx) {
     let todo = this.todos[idx];
     todo.completed = !todo.completed;

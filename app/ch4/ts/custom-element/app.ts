@@ -1,22 +1,23 @@
-import {Component, NgModule} from '@angular/core';
+import {Component, NgModule, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
 
 @Component({
   selector: 'my-app',
-  templateUrl: './app.html'
+  template: `
+    <h1>Hello {{name}}</h1>
+    The current time is <simple-timer></simple-timer>
+  `
 })
 class App {
-  target: string;
-  constructor() {
-    this.target = 'world';
-  }
+  name: string = 'John Doe';
 }
 
 @NgModule({
-  declarations: [App],
   imports: [BrowserModule],
-  bootstrap: [App],
+  declarations: [App],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  bootstrap: [App]
 })
 class AppModule {}
 
