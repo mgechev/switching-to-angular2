@@ -123,8 +123,7 @@ class Tabs {
       <tab-title>Tab 2</tab-title>
       <tab-content>Content 2</tab-content>
     </tabs>
-  `,
-  directives: [Tabs, TabContent, TabTitle]
+  `
 })
 class App {
   tabChanged(tab) {

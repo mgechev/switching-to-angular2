@@ -20,6 +20,7 @@ class InputBox {
   @Input() inputPlaceholder: string;
   @Input() buttonLabel: string;
   @Output() inputText = new EventEmitter<string>();
+
   emitText(text: string) {
     this.inputText.emit(text);
   }
@@ -49,6 +50,7 @@ class InputBox {
 class TodoList {
   @Input() todos: Todo[];
   @Output() toggle = new EventEmitter<Todo>();
+
   toggleCompletion(index: number) {
     let todo = this.todos[index];
     this.toggle.emit(todo);
@@ -57,7 +59,6 @@ class TodoList {
 
 @Component({
   selector: 'todo-app',
-  directives: [TodoList, InputBox],
   template: `
     <h1>Hello {{name}}!</h1>
 
@@ -84,12 +85,14 @@ class TodoApp {
     completed: false
   }];
   name: string = 'John';
+
   addTodo(label: string) {
     this.todos.push({
       label,
       completed: false
     });
   }
+
   toggleCompletion(todo: Todo) {
     todo.completed = !todo.completed;
   }

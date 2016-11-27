@@ -62,7 +62,6 @@ class TodoList {
 
 @Component({
   selector: 'todo-app',
-  directives: [TodoList, InputBox],
   template: `
     <h1>Hello {{name}}!</h1>
 
