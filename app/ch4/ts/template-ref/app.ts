@@ -65,12 +65,12 @@ class TodoApp {
     label: 'Buy milk',
     completed: false
   }, {
-    label: "Save the world",
+    label: 'Save the world',
     completed: false
   }];
   name: string = 'John';
-  @ContentChild(TemplateRef)
-  private itemsTemplate: TemplateRef<any>;
+  @ContentChild(TemplateRef) itemsTemplate: TemplateRef<any>;
+
   addTodo(label: string) {
     this.todos.push({
       label,
