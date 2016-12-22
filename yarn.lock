@@ -12,9 +12,9 @@
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/@angular/core/-/core-2.2.0.tgz#7a3a8592b6731a65e5a9746ce45419d86d15fe56"
 
-"@angular/forms@^2.2.0":
-  version "2.3.1"
-  resolved "https://registry.yarnpkg.com/@angular/forms/-/forms-2.3.1.tgz#2177e0513c5177fc6e4d140473e7b9f0b9dfd069"
+"@angular/forms@2.2.0":
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/@angular/forms/-/forms-2.2.0.tgz#1e11781c740445ab5d08fd54f3b0d6f25d4ba34d"
 
 "@angular/http@2.2.0":
   version "2.2.0"
@@ -28,21 +28,21 @@
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/@angular/platform-browser/-/platform-browser-2.2.0.tgz#6c39651ee861be9ca86ef6b7a21a160415b2ce8e"
 
-"@angular/platform-webworker-dynamic@^2.2.0":
-  version "2.3.1"
-  resolved "https://registry.yarnpkg.com/@angular/platform-webworker-dynamic/-/platform-webworker-dynamic-2.3.1.tgz#ba9fb285faccaacdc7450357777af837a09e4229"
+"@angular/platform-webworker-dynamic@2.2.0":
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/@angular/platform-webworker-dynamic/-/platform-webworker-dynamic-2.2.0.tgz#2b9dd7d30e335bcf7964f5ace2d48c8e73c93d24"
 
-"@angular/platform-webworker@^2.2.0":
-  version "2.3.1"
-  resolved "https://registry.yarnpkg.com/@angular/platform-webworker/-/platform-webworker-2.3.1.tgz#8531b0a1ec12f79a5c2da42cd60f4fc6ce155a18"
+"@angular/platform-webworker@2.2.0":
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/@angular/platform-webworker/-/platform-webworker-2.2.0.tgz#3ce2b6c58082771961725e64f1ffc55722925e13"
 
 "@angular/router@3.2.0":
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/@angular/router/-/router-3.2.0.tgz#522585357ff9216e3ffae47e9045b3c150d00c7f"
 
-"@angular/upgrade@^2.2.0":
-  version "2.3.1"
-  resolved "https://registry.yarnpkg.com/@angular/upgrade/-/upgrade-2.3.1.tgz#1f65a8211d57323e923f3c10fe2dc6f44a70e677"
+"@angular/upgrade@2.2.0":
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/@angular/upgrade/-/upgrade-2.2.0.tgz#29a5a71463eb036d96d23e2be30920f65b1cc19a"
 
 "@types/async@^2.0.34":
   version "2.0.34"

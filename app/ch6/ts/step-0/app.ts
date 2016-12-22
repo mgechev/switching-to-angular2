@@ -1,11 +1,10 @@
 import {NgModule, Component} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
-import {APP_BASE_HREF, LocationStrategy, HashLocationStrategy} from '@angular/common';
+import {LocationStrategy, HashLocationStrategy} from '@angular/common';
 import {RouterModule} from '@angular/router';
 // import {HomeModule} from './home';
 import {DeveloperCollection} from './developer_collection';
-import {Developer} from './developer';
 // import {AddDeveloper} from './add_developer';
 
 @Component({
@@ -15,12 +14,7 @@ import {Developer} from './developer';
 })
 class App {}
 
-const routeModule = RouterModule.forRoot([
-  {
-    path: 'add-dev',
-    redirectTo: 'dev-add'
-  }
-]);
+const routeModule = RouterModule.forRoot([]);
 
 @NgModule({
   declarations: [App],

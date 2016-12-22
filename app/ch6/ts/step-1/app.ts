@@ -36,6 +36,10 @@ const routingModule = RouterModule.forRoot([
   {
     path: 'dev-add',
     component: AddDeveloper
+  },
+  {
+    path: 'add-dev',
+    redirectTo: 'dev-add'
   }
 ]);
 
