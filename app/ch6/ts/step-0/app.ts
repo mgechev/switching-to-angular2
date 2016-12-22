@@ -6,7 +6,7 @@ import {RouterModule} from '@angular/router';
 // import {HomeModule} from './home';
 import {DeveloperCollection} from './developer_collection';
 import {Developer} from './developer';
-// import {AddDeveloperModule} from './add_developer';
+// import {AddDeveloper} from './add_developer';
 
 @Component({
   selector: 'app',
@@ -25,7 +25,7 @@ const routeModule = RouterModule.forRoot([
 @NgModule({
   declarations: [App],
   bootstrap: [App],
-  imports: [BrowserModule],
+  imports: [BrowserModule, routeModule],
   providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }]
 })
 class AppModule {}

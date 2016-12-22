@@ -1,5 +1,4 @@
 import {Host, Component, Directive} from '@angular/core';
-import {NgControl, NgForm, NG_VALIDATORS} from '@angular/forms';
 import {Developer} from './developer';
 import {DeveloperCollection} from './developer_collection';
 
