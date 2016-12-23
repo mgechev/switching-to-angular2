@@ -1,7 +1,7 @@
 import {NgModule, Component} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
-import {APP_BASE_HREF, LocationStrategy, HashLocationStrategy} from '@angular/common';
+import {LocationStrategy, HashLocationStrategy} from '@angular/common';
 import {RouterModule} from '@angular/router';
 import {DeveloperCollection} from './developer_collection';
 
@@ -38,7 +38,7 @@ const routingModule = RouterModule.forRoot([
 @NgModule({
   imports: [BrowserModule, routingModule],
   providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }, DeveloperCollection],
-  declarations: [App],  
+  declarations: [App],
   bootstrap: [App]
 })
 class AppModule {}

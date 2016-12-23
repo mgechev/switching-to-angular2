@@ -44,14 +44,14 @@ export class AddDeveloper implements OnInit, OnDestroy {
 
   constructor(private githubAPI: GitHubGateway, private developers: DeveloperCollection, fb: FormBuilder) {
     this.importDevForm = fb.group({
-      'githubHandle': ['', Validators.required],
-      'fetchFromGitHub': [false]
+      githubHandle: ['', Validators.required],
+      fetchFromGitHub: [false]
     });
     this.addDevForm = fb.group({
-      'realName': ['', Validators.required],
-      'email': ['', validateEmail],
-      'technology': ['', Validators.required],
-      'popular': [false]
+      realName: ['', Validators.required],
+      email: ['', validateEmail],
+      technology: ['', Validators.required],
+      popular: [false]
     });
   }
 

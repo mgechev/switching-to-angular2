@@ -4,7 +4,7 @@ import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
 import {LocationStrategy, HashLocationStrategy} from '@angular/common';
 import {RouterModule} from '@angular/router';
 import {FormsModule} from '@angular/forms';
-import {Home} from './home';
+// import {Home} from './home';
 import {DeveloperCollection} from './developer_collection';
 import {AddDeveloper} from './add_developer';
 import {ControlErrors} from './control_errors';
@@ -31,23 +31,23 @@ const routingModule = RouterModule.forRoot([
     pathMatch: 'full',
     redirectTo: 'home'
   },
+  // {
+  //   component: Home,
+  //   path: 'home'
+  // },
   {
-    component: Home,
-    path: 'home'
-  },
-  {
-    component: AddDeveloper, 
+    component: AddDeveloper,
     path: 'dev-add'
   },
   {
     path: 'add-dev',
-    redirectTo: 'dev-add',
+    redirectTo: 'dev-add'
   }
 ]);
 
 @NgModule({
   imports: [BrowserModule, FormsModule, routingModule],
-  declarations: [App, Home, AddDeveloper, ControlErrors, EmailValidator],
+  declarations: [App, /*Home*/, AddDeveloper, ControlErrors, EmailValidator],
   providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }],
   bootstrap: [App]
 })
