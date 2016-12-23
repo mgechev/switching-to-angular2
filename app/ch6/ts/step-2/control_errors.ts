@@ -1,17 +1,16 @@
-import {Component, Host} from '@angular/core';
+import {Component, Input, Host} from '@angular/core';
 import {NgForm} from '@angular/forms';
 
 @Component({
   template: `<div>{{currentError}}</div>`,
-  selector: 'control-errors',
-  inputs: ['control', 'errors']
+  selector: 'control-errors'
 })
 export class ControlErrors {
-  errors: Object;
-  control: string;
-  
+  @Input() errors: Object;
+  @Input() control: string;
+
   constructor(@Host() private formDir: NgForm) {}
-  
+
   get currentError() {
     let control = this.formDir.controls[this.control];
     let errorMessages = [];

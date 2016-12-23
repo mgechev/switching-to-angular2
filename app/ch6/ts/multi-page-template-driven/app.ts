@@ -1,12 +1,11 @@
 import {Component, NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
-import {APP_BASE_HREF, LocationStrategy, HashLocationStrategy} from '@angular/common';
-import {Route, RouterModule} from '@angular/router';
+import {LocationStrategy, HashLocationStrategy} from '@angular/common';
+import {RouterModule} from '@angular/router';
 import {FormsModule} from '@angular/forms';
 import {Home} from './home';
 import {DeveloperCollection} from './developer_collection';
-import {Developer} from './developer';
 import {AddDeveloper} from './add_developer';
 import {ControlErrors} from './control_errors';
 import {EmailValidator} from './email_validator';

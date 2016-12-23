@@ -1,14 +1,6 @@
-import {Host, Component, Directive} from '@angular/core';
+import {Component} from '@angular/core';
 import {Developer} from './developer';
 import {DeveloperCollection} from './developer_collection';
-
-function validateEmail(emailControl) {
-  if (!emailControl.value || /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(emailControl.value)) {
-    return null;
-  } else {
-    return { 'invalidEmail': true };
-  }
-}
 
 @Component({
   selector: 'dev-add',
@@ -33,6 +25,6 @@ export class AddDeveloper {
   ];
 
   constructor(private developers: DeveloperCollection) {}
-  
-  addDeveloper() { }
+
+  addDeveloper() {}
 }

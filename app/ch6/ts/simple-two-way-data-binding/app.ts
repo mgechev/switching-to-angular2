@@ -8,7 +8,7 @@ import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
   template: `
     <input type="text" [(ngModel)]="name">
     <div>{{name}}</div>
-  `,
+  `
 })
 class App {
   name: string;

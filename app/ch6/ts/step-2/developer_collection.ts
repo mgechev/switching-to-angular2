@@ -2,7 +2,7 @@ import {Developer} from './developer';
 
 export class DeveloperCollection {
   private developers: Developer[];
-  
+
   constructor() {
     this.developers = [];
   }

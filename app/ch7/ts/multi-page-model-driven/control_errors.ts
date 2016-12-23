@@ -1,5 +1,5 @@
 import {Component, Input, Host} from '@angular/core';
-import {NgForm, FormGroupDirective} from '@angular/forms';
+import {FormGroupDirective} from '@angular/forms';
 
 
 @Component({

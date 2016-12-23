@@ -1,5 +1,5 @@
-import {Host, Component, OnInit, OnDestroy, Directive} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators, NG_VALIDATORS} from '@angular/forms';
+import {Component, OnInit, OnDestroy} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Response} from '@angular/http';
 import {GitHubGateway} from './github_gateway';
 import {Developer} from './developer';
