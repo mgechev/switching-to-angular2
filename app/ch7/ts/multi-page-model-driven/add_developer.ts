@@ -55,12 +55,6 @@ export class AddDeveloper implements OnInit, OnDestroy {
     });
   }
 
-  ngOnInit() {
-    this.toggleControls(this.importDevForm.controls['fetchFromGitHub'].value);
-    this.subscription = this.importDevForm.controls['fetchFromGitHub']
-      .valueChanges.subscribe(this.toggleControls.bind(this));
-  }
-
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
@@ -106,6 +100,12 @@ export class AddDeveloper implements OnInit, OnDestroy {
       this.successMessage = `Developer ${model.realName} was successfully added`;
     }
     return false;
+  }
+
+  ngOnInit() {
+    this.toggleControls(this.importDevForm.controls['fetchFromGitHub'].value);
+    this.subscription = this.importDevForm.controls['fetchFromGitHub']
+      .valueChanges.subscribe(this.toggleControls.bind(this));
   }
 
   private toggleControls(importEnabled: boolean) {
