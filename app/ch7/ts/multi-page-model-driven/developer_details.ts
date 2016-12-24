@@ -28,7 +28,7 @@ export class DeveloperDetails {
     this.route.params.take(1)
       .subscribe((params: any) => {
         this.dev = this.developers.getUserById(parseInt(params['id']));
-      })
+      });
   }
 }
 
@@ -37,3 +37,4 @@ export const devDetailsRoutes = [
   { component: DeveloperBasicInfo, path: 'dev-basic-info' },
   { component: DeveloperAdvancedInfo, path: 'dev-details-advanced' }
 ];
+
