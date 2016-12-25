@@ -23,6 +23,7 @@ class InputBox {
   @Input() buttonLabel: string;
   @Output() inputText = new EventEmitter<string>();
   input: string;
+
   emitText() {
     this.inputText.emit(this.input);
     this.input = '';
