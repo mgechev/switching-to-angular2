@@ -6,13 +6,13 @@ This repository contains the code samples for my book "[Switching to Angular 2](
 
 ## Versions
 
-In the process of writing the content for this book, Angular went from Alpha, to Beta, RC and reached Final!
+**In the process of writing the content for this book, Angular went from Alpha, to Beta, RC and reached Final!**
 
-The book was released when Angular was still in Beta version. You can find the code for the initial version of the book [here](https://github.com/mgechev/switching-to-angular2/tree/beta).
+You can find each individual version of the code in the following branches:
 
-The the branch [rc.4](https://github.com/mgechev/switching-to-angular2/tree/rc.4) contains the changes from the latest RC.4.
-
-The branch [final](https://github.com/mgechev/switching-to-angular2/tree/final) contains the final version of the code and some extra examples, associated with the second edition of the book.
+- [Beta version](https://github.com/mgechev/switching-to-angular2/tree/beta).
+- [RC.4](https://github.com/mgechev/switching-to-angular2/tree/rc.4).
+- [Second edition, aligned with Angular final](https://github.com/mgechev/switching-to-angular2/tree/final).
 
 # How to start
 
