@@ -1,37 +1,65 @@
-import {Component} from '@angular/core';
-import {bootstrap} from '@angular/platform-browser-dynamic';
-import {APP_BASE_HREF, LocationStrategy, HashLocationStrategy} from '@angular/common';
-import {Route, Redirect, ROUTER_DIRECTIVES, ROUTER_PROVIDERS, RouteConfig} from '@angular/router-deprecated';
+import {Component, NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
+import {LocationStrategy, HashLocationStrategy} from '@angular/common';
+import {RouterModule} from '@angular/router';
+import {ReactiveFormsModule} from '@angular/forms';
 import {Home} from './home';
 import {DeveloperCollection} from './developer_collection';
-import {Developer} from './developer';
-import {GitHubGateway} from './github_gateway';
 import {AddDeveloper} from './add_developer';
-import {DeveloperDetails} from './developer_details';
+import {ControlErrors} from './control_errors';
+import {BooleanPipe} from './boolean_pipe';
+import {DeveloperDetails, devDetailsRoutes} from './developer_details';
+import {DeveloperBasicInfo} from './developer_basic_info';
+import {DeveloperAdvancedInfo} from './developer_advanced_info';
+import {HttpModule} from '@angular/http';
 
 @Component({
   selector: 'app',
   template: `
     <nav class="navbar navbar-default">
       <ul class="nav navbar-nav">
-        <li><a [routerLink]="['/Home']">Home</a></li>
-        <li><a [routerLink]="['/AddDeveloper']">Add developer</a></li>
+        <li><a [routerLink]="['home']">Home</a></li>
+        <li><a [routerLink]="['dev-add']">Add developer</a></li>
       </ul>
     </nav>
     <router-outlet></router-outlet>
   `,
-  providers: [DeveloperCollection],
-  directives: [ROUTER_DIRECTIVES]
+  providers: [DeveloperCollection]
 })
-@RouteConfig([
-  new Route({ component: Home, name: 'Home', path: '/' }),
-  new Route({ component: AddDeveloper, name: 'AddDeveloper', path: '/dev-add' }),
-  new Route({ component: DeveloperDetails, name: 'DeveloperDetails', path: '/dev-details/:id/...' }),
-  new Redirect({ path: '/add-dev', redirectTo: ['/dev-add'] })
-])
 class App {}
 
-bootstrap(App, [
-  ROUTER_PROVIDERS,
-  { provide: LocationStrategy, useClass: HashLocationStrategy }
+const routingModule = RouterModule.forRoot([
+  {
+    path: '',
+    pathMatch: 'full',
+    redirectTo: 'home'
+  },
+  {
+    component: Home,
+    path: 'home'
+  },
+  {
+    component: AddDeveloper, 
+    path: 'dev-add'
+  },
+  {
+    component: DeveloperDetails,
+    path: 'dev-details/:id',
+    children: devDetailsRoutes
+  },
+  {
+    path: 'add-dev',
+    redirectTo: 'dev-add',
+  }
 ]);
+
+@NgModule({
+  imports: [BrowserModule, ReactiveFormsModule, HttpModule, routingModule],
+  declarations: [App, Home, AddDeveloper, ControlErrors, BooleanPipe, DeveloperDetails, DeveloperBasicInfo, DeveloperAdvancedInfo],
+  providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }],
+  bootstrap: [App]
+})
+class AppModule {}
+
+platformBrowserDynamic().bootstrapModule(AppModule);

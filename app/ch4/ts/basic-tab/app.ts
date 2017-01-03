@@ -6,10 +6,13 @@ import {
   Input,
   Component,
   forwardRef,
-  Host
+  Host,
+  NgModule
 } from '@angular/core';
 
-import {bootstrap} from '@angular/platform-browser-dynamic';
+import {BrowserModule} from '@angular/platform-browser';
+
+import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
 
 @Component({
   selector: `tab`,
@@ -104,8 +107,7 @@ class Tabs {
         Content 2
       </tab>
     </tabs>
-  `,
-  directives: [Tab, Tabs]
+  `
 })
 class App {
   tabChanged(tab) {
@@ -113,4 +115,13 @@ class App {
   }
 }
 
-bootstrap(App);
+
+@NgModule({
+  declarations: [App, Tabs, Tab],
+  imports: [BrowserModule],
+  bootstrap: [App],
+})
+class AppModule {}
+
+platformBrowserDynamic().bootstrapModule(AppModule);
+

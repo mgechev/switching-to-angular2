@@ -1,5 +1,5 @@
-var App = ng.core.Component({
-  selector: 'app',
+var AppComponent = ng.core.Component({
+  selector: 'my-app',
   template: '<h1>Hello {{target}}!</h1>'
 })
 .Class({
@@ -8,5 +8,14 @@ var App = ng.core.Component({
   }
 });
 
-ng.platformBrowserDynamic.bootstrap(App);
+var AppModule = ng.core.NgModule({
+  imports: [ng.platformBrowser.BrowserModule],
+  declarations: [AppComponent],
+  bootstrap: [AppComponent]
+})
+.Class({
+  constructor: function () {}
+});
+
+ng.platformBrowserDynamic.platformBrowserDynamic().bootstrapModule(AppModule);
 

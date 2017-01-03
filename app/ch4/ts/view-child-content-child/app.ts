@@ -1,5 +1,6 @@
-import {Component, Directive, ViewChildren, ContentChildren, QueryList} from '@angular/core';
-import {bootstrap} from '@angular/platform-browser-dynamic';
+import {NgModule, Component, Directive, ViewChildren, ContentChildren, QueryList} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
 
 @Component({
   selector: 'user-badge',
@@ -15,8 +16,7 @@ class UserRating {}
 
 @Component({
   selector: 'user-panel',
-  template: '<user-badge></user-badge>',
-  directives: [UserBadge]
+  template: '<user-badge></user-badge>'
 })
 class UserPanel {
   @ViewChildren(UserBadge)
@@ -38,11 +38,17 @@ class UserPanel {
 @Component({
   selector: 'app',
   template: '<user-panel><user-rating></user-rating></user-panel>',
-  directives: [UserPanel, UserRating]
 })
 class App {
   constructor() {}
 }
 
-bootstrap(App);
+@NgModule({
+  declarations: [App, UserBadge, UserPanel, UserRating],
+  imports: [BrowserModule],
+  bootstrap: [App],
+})
+class AppModule {}
+
+platformBrowserDynamic().bootstrapModule(AppModule);
 

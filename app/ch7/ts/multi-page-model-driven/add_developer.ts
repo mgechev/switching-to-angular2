@@ -1,10 +1,11 @@
-import {Host, Component, Directive} from '@angular/core';
-import {NgFormModel, FormBuilder, Validators, ControlGroup, FORM_DIRECTIVES, FORM_PROVIDERS, NG_VALIDATORS} from '@angular/common';
-import {Response, HTTP_PROVIDERS} from '@angular/http';
+import {Component, OnInit, OnDestroy} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {Response} from '@angular/http';
 import {GitHubGateway} from './github_gateway';
 import {Developer} from './developer';
 import {DeveloperCollection} from './developer_collection';
 
+import {Subscription} from 'rxjs/Subscription';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
@@ -17,27 +18,6 @@ function validateEmail(emailControl) {
 }
 
 @Component({
-  template: `<div>{{currentError}}</div>`,
-  selector: 'control-errors',
-  inputs: ['control', 'errors'],
-})
-class ControlErrors {
-  errors: Object;
-  control: string;
-  constructor(@Host() private formDir: NgFormModel) {}
-  get currentError() {
-    let control = this.formDir.form.controls[this.control];
-    let errorMessages = [];
-    if (control && control.touched) {
-      errorMessages = Object.keys(this.errors)
-        .map(k => control.hasError(k) ? this.errors[k] : null)
-        .filter(error => !!error);
-    }
-    return errorMessages.pop();
-  }
-}
-
-@Component({
   selector: 'dev-add',
   templateUrl: './add_developer.html',
   styles: [
@@ -45,13 +25,12 @@ class ControlErrors {
       border: 1px solid red;
     }`
   ],
-  directives: [FORM_DIRECTIVES, ControlErrors],
-  providers: [GitHubGateway, FORM_PROVIDERS, HTTP_PROVIDERS]
+  providers: [GitHubGateway]
 })
-export class AddDeveloper {
+export class AddDeveloper implements OnInit, OnDestroy {
   submitted = false;
-  importDevForm: ControlGroup;
-  addDevForm: ControlGroup;
+  importDevForm: FormGroup;
+  addDevForm: FormGroup;
   errorMessage: string;
   successMessage: string;
   technologies: string[] = [
@@ -60,18 +39,31 @@ export class AddDeveloper {
     'C#',
     'Clojure'
   ];
+
+  private subscription: Subscription;
+
   constructor(private githubAPI: GitHubGateway, private developers: DeveloperCollection, fb: FormBuilder) {
     this.importDevForm = fb.group({
-      'githubHandle': ['', Validators.required],
-      'fetchFromGitHub': [false]
+      githubHandle: ['', Validators.required],
+      fetchFromGitHub: [false]
     });
     this.addDevForm = fb.group({
-      'realName': ['', Validators.required],
-      'email': ['', validateEmail],
-      'technology': ['', Validators.required],
-      'popular': [false]
+      realName: ['', Validators.required],
+      email: ['', validateEmail],
+      technology: ['', Validators.required],
+      popular: [false]
     });
   }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
+
+  get isFormValid() {
+    return (this.importDevForm.controls['fetchFromGitHub'].value && this.importDevForm.valid) ||
+      (!this.importDevForm.controls['fetchFromGitHub'].value && this.addDevForm.valid)
+  }
+
   addDeveloper() {
     let model;
     if (this.importDevForm.controls['fetchFromGitHub'].value) {
@@ -108,5 +100,22 @@ export class AddDeveloper {
       this.successMessage = `Developer ${model.realName} was successfully added`;
     }
     return false;
+  }
+
+  ngOnInit() {
+    this.toggleControls(this.importDevForm.controls['fetchFromGitHub'].value);
+    this.subscription = this.importDevForm.controls['fetchFromGitHub']
+      .valueChanges.subscribe(this.toggleControls.bind(this));
+  }
+
+  private toggleControls(importEnabled: boolean) {
+    const addDevControls = this.addDevForm.controls;
+    if (importEnabled) {
+      this.importDevForm.controls['githubHandle'].enable();
+      Object.keys(addDevControls).forEach((c: string) => addDevControls[c].disable());
+    } else {
+      this.importDevForm.controls['githubHandle'].disable();
+      Object.keys(addDevControls).forEach((c: string) => addDevControls[c].enable());
+    }
   }
 }

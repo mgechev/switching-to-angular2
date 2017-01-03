@@ -7,7 +7,6 @@ export = function buildJSDev(gulp, plugins) {
   return function () {
     let src = [
                 join(APP_SRC, '**/*.ts'),
-                join(PROJECT_ROOT, 'typings', 'browser', 'ambient', 'systemjs', 'systemjs.d.ts'),
                 '!' + join(APP_SRC, '**/*_spec.ts')
               ];
 

@@ -1,8 +1,10 @@
 /// <reference path="../../../../node_modules/immutable/dist/immutable.d.ts"/>
 
-import {Component, Input, Output, EventEmitter, ChangeDetectionStrategy} from '@angular/core';
-import {bootstrap} from '@angular/platform-browser-dynamic';
-import {List as ImmutableList} from 'immutable';
+import {NgModule, Component, Input, Output, EventEmitter, ChangeDetectionStrategy} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
+
+import * as Immutable from 'immutable';
 
 interface Todo {
   completed: boolean;
@@ -22,6 +24,7 @@ class InputBox {
   @Input() inputPlaceholder: string;
   @Input() buttonLabel: string;
   @Output() inputText = new EventEmitter<string>();
+
   emitText(text: string) {
     this.inputText.emit(text);
   }
@@ -32,10 +35,10 @@ class InputBox {
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <ul>
-      <li *ngFor="let todo of todos; let index = index" [class.completed]="todo.completed">
-        <input type="checkbox" [checked]="todo.completed"
+      <li *ngFor="let todo of todos; let index = index" [class.completed]="todo.get('completed')">
+        <input type="checkbox" [checked]="todo.get('completed')"
           (change)="toggleCompletion(index)">
-        {{todo.label}}
+        {{todo.get('label')}}
       </li>
     </ul>
   `,
@@ -49,8 +52,9 @@ class InputBox {
   ]
 })
 class TodoList {
-  @Input() todos: ImmutableList<Todo>;
+  @Input() todos;
   @Output() toggle = new EventEmitter<number>();
+
   toggleCompletion(index: number) {
     this.toggle.emit(index);
   }
@@ -58,7 +62,6 @@ class TodoList {
 
 @Component({
   selector: 'todo-app',
-  directives: [TodoList, InputBox],
   template: `
     <h1>Hello {{name}}!</h1>
 
@@ -77,29 +80,38 @@ class TodoList {
   `
 })
 class TodoApp {
-  todos: ImmutableList<Todo> = ImmutableList.of({
+  todos = Immutable.fromJS([{
     label: 'Buy milk',
     completed: false
   }, {
     label: 'Save the world',
     completed: false
-  });
+  }]);
+
   name: string = 'John';
+
   addTodo(label: string) {
-    this.todos = this.todos.push({
+    this.todos = this.todos.push(Immutable.fromJS({
       label,
       completed: false
-    });
+    }));
   }
   toggleCompletion(index: number) {
     this.todos = this.todos.update(index, todo => {
-      let newTodo = {
-        label: todo.label,
-        completed: !todo.completed
-      };
-      return newTodo;
+      return Immutable.fromJS({
+        label: todo.get('label'),
+        completed: !todo.get('completed')
+      });
     });
   }
 }
 
-bootstrap(TodoApp);
+@NgModule({
+  declarations: [TodoList, InputBox, TodoApp],
+  imports: [BrowserModule],
+  bootstrap: [TodoApp],
+})
+class TodoAppModule {}
+
+platformBrowserDynamic().bootstrapModule(TodoAppModule);
+

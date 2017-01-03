@@ -1,13 +1,14 @@
-import {Component} from '@angular/core';
-import {bootstrap} from '@angular/platform-browser-dynamic';
+import {Component, NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
 
 @Component({
   selector: 'app',
   templateUrl: './app.html'
 })
 class App {
-  todos:string[];
-  name:string;
+  todos: string[];
+  name: string;
   handle() {
     alert(42);
   }
@@ -17,4 +18,12 @@ class App {
   }
 }
 
-bootstrap(App);
+@NgModule({
+  declarations: [App],
+  imports: [BrowserModule],
+  bootstrap: [App],
+})
+class AppModule {}
+
+platformBrowserDynamic().bootstrapModule(AppModule);
+

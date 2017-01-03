@@ -8,10 +8,13 @@ import {
   Host,
   Attribute,
   ContentChildren,
-  QueryList
+  QueryList,
+  NgModule
 } from '@angular/core';
 
-import {bootstrap} from '@angular/platform-browser-dynamic';
+import {BrowserModule} from '@angular/platform-browser';
+
+import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
 
 @Component({
   selector: 'tab-title',
@@ -120,8 +123,7 @@ class Tabs {
       <tab-title>Tab 2</tab-title>
       <tab-content>Content 2</tab-content>
     </tabs>
-  `,
-  directives: [Tabs, TabContent, TabTitle]
+  `
 })
 class App {
   tabChanged(tab) {
@@ -129,5 +131,12 @@ class App {
   }
 }
 
-bootstrap(App);
+@NgModule({
+  declarations: [App, Tabs, TabContent, TabTitle],
+  imports: [BrowserModule],
+  bootstrap: [App],
+})
+class AppModule {}
+
+platformBrowserDynamic().bootstrapModule(AppModule);
 

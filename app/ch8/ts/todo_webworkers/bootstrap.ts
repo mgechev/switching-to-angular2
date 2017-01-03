@@ -1,5 +1,5 @@
 //main entry point
-import {bootstrapWorkerUi} from '@angular/platform-browser-dynamic';
+import {bootstrapWorkerUi} from '@angular/platform-webworker';
 
 bootstrapWorkerUi('loader.js');
 

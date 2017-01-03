@@ -1,5 +1,6 @@
-import {Component} from '@angular/core';
-import {bootstrap} from '@angular/platform-browser-dynamic';
+import {Component, NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
 
 interface Todo {
   completed: boolean;
@@ -26,20 +27,33 @@ class TodoCtrl {
     label: "Save the world",
     completed: false
   }];
+
   name: string = 'John';
+
   addTodo(label) {
     this.todos.push({
       label,
       completed: false
     })
   }
+
   removeTodo(idx) {
     this.todos.splice(idx, 1);
   }
+
   toggleCompletion(idx) {
     let todo = this.todos[idx];
     todo.completed = !todo.completed;
   }
 }
 
-bootstrap(TodoCtrl);
+
+@NgModule({
+  declarations: [TodoCtrl],
+  imports: [BrowserModule],
+  bootstrap: [TodoCtrl],
+})
+class AppModule {}
+
+platformBrowserDynamic().bootstrapModule(AppModule);
+

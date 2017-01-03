@@ -1,5 +1,6 @@
-import {Component, ChangeDetectionStrategy, Input, Output, EventEmitter} from '@angular/core';
-import {bootstrap} from '@angular/platform-browser-dynamic';
+import {NgModule, Component, Input, Output, EventEmitter, ChangeDetectionStrategy} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
 
 interface Todo {
   completed: boolean;
@@ -19,6 +20,7 @@ class InputBox {
   @Input() inputPlaceholder: string;
   @Input() buttonLabel: string;
   @Output() inputText = new EventEmitter<string>();
+
   emitText(text: string) {
     this.inputText.emit(text);
   }
@@ -48,6 +50,7 @@ class InputBox {
 class TodoList {
   @Input() todos: Todo[];
   @Output() toggle = new EventEmitter<Todo>();
+
   toggleCompletion(index: number) {
     let todo = this.todos[index];
     this.toggle.emit(todo);
@@ -56,7 +59,6 @@ class TodoList {
 
 @Component({
   selector: 'todo-app',
-  directives: [TodoList, InputBox],
   template: `
     <h1>Hello {{name}}!</h1>
 
@@ -83,15 +85,26 @@ class TodoApp {
     completed: false
   }];
   name: string = 'John';
+
   addTodo(label: string) {
     this.todos.push({
       label,
       completed: false
     });
   }
+
   toggleCompletion(todo: Todo) {
     todo.completed = !todo.completed;
   }
 }
 
-bootstrap(TodoApp);
+
+@NgModule({
+  declarations: [TodoList, InputBox, TodoApp],
+  imports: [BrowserModule],
+  bootstrap: [TodoApp],
+})
+class TodoAppModule {}
+
+platformBrowserDynamic().bootstrapModule(TodoAppModule);
+

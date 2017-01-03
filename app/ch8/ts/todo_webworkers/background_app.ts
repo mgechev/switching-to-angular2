@@ -1,5 +1,8 @@
-import {Component, Input, Output, EventEmitter} from '@angular/core';
-import {bootstrapWorkerApp} from '@angular/platform-browser-dynamic';
+import {Component, NgModule, Input, Output, EventEmitter} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {WorkerAppModule} from '@angular/platform-webworker';
+import {FormsModule} from '@angular/forms';
+import {platformWorkerAppDynamic} from '@angular/platform-webworker-dynamic';
 
 interface Todo {
   completed: boolean;
@@ -20,6 +23,7 @@ class InputBox {
   @Input() buttonLabel: string;
   @Output() inputText = new EventEmitter<string>();
   input: string;
+
   emitText() {
     this.inputText.emit(this.input);
     this.input = '';
@@ -57,7 +61,6 @@ class TodoList {
 
 @Component({
   selector: 'todo-app',
-  directives: [TodoList, InputBox],
   template: `
     <h1>Hello {{name}}!</h1>
 
@@ -95,6 +98,13 @@ export class TodoApp {
   }
 }
 
-bootstrapWorkerApp(TodoApp)
+@NgModule({
+  imports: [BrowserModule, WorkerAppModule, FormsModule],
+  declarations: [TodoList, InputBox, TodoApp],
+  bootstrap: [TodoApp]
+})
+class AppModule {}
+
+platformWorkerAppDynamic().bootstrapModule(AppModule)
   .catch(err => console.error(err));
 

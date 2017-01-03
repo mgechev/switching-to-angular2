@@ -1,5 +1,6 @@
-import {Component, Input, Output, EventEmitter} from '@angular/core';
-import {bootstrap} from '@angular/platform-browser-dynamic';
+import {NgModule, Component, Input, Output, EventEmitter} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
 
 interface Todo {
   completed: boolean;
@@ -55,7 +56,6 @@ class TodoList {
 
 @Component({
   selector: 'todo-app',
-  directives: [TodoList, InputBox],
   template: `
     <h1>Hello {{name}}!</h1>
 
@@ -93,4 +93,12 @@ class TodoApp {
   }
 }
 
-bootstrap(TodoApp);
+@NgModule({
+  declarations: [TodoList, InputBox, TodoApp],
+  imports: [BrowserModule],
+  bootstrap: [TodoApp],
+})
+class TodoAppModule {}
+
+platformBrowserDynamic().bootstrapModule(TodoAppModule);
+

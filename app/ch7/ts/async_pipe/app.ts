@@ -1,7 +1,8 @@
-import {Component, Pipe, PipeTransform} from '@angular/core';
+import {NgModule, Component, Pipe, PipeTransform} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
 import {Observable} from 'rxjs/Observable';
-import {bootstrap} from '@angular/platform-browser-dynamic';
-import {HTTP_PROVIDERS, Http} from '@angular/http';
+import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
+import {HttpModule, Http} from '@angular/http';
 
 @Component({
   selector: 'greeting',
@@ -37,9 +38,15 @@ class Timer {
 
 @Component({
   selector: 'app',
-  directives: [Greeting, Timer],
   template: '<greeting></greeting> <br> <timer></timer>'
 })
 class App {}
 
-bootstrap(App, []);
+@NgModule({
+  imports: [HttpModule, BrowserModule],
+  declarations: [App, Greeting, Timer],
+  bootstrap: [App]
+})
+class AppModule {}
+
+platformBrowserDynamic().bootstrapModule(AppModule);

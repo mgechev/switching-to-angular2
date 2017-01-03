@@ -1,5 +1,6 @@
-import {HostListener, Input, Injectable, ElementRef, Inject, Directive, Component} from '@angular/core';
-import {bootstrap} from '@angular/platform-browser-dynamic';
+import {NgModule, HostListener, Input, Injectable, ElementRef, Inject, Directive, Component} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
 
 class Overlay {
   private el: HTMLElement;
@@ -57,9 +58,17 @@ export class Tooltip {
 @Component({
   selector: 'app',
   templateUrl: './app.html',
-  providers: [Overlay],
-  directives: [Tooltip]
 })
 class App {}
 
-bootstrap(App);
+
+@NgModule({
+  declarations: [Tooltip, App],
+  providers: [Overlay],
+  imports: [BrowserModule],
+  bootstrap: [App],
+})
+class AppModule {}
+
+platformBrowserDynamic().bootstrapModule(AppModule);
+
