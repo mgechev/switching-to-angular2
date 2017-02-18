@@ -1,20 +1,26 @@
 {
-    "compilerOptions": {
-        "target": "es5",
-        "module": "commonjs",
-        "declaration": false,
-        "noImplicitAny": false,
-        "removeComments": true,
-        "noLib": false,
-        "emitDecoratorMetadata": true,
-        "experimentalDecorators": true,
-        "sourceMap": true
-    },
-    "exclude": [
-        "typings/browser.d.ts",
-        "typings/browser",
-        "app",
-        "node_modules"
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "declaration": false,
+    "noImplicitAny": false,
+    "removeComments": true,
+    "noLib": false,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "sourceMap": true,
+    "lib": ["es2015"],
+    "typeRoots": [
+      "./node_modules/@types",
+      "./node_modules"
     ],
-    "compileOnSave": false
+    "types": [
+      "node"
+    ]
+  },
+  "exclude": [
+    "app",
+    "node_modules"
+  ],
+  "compileOnSave": false
 }
