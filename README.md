@@ -13,6 +13,7 @@ You can find each individual version of the code in the following branches:
 - [Beta version](https://github.com/mgechev/switching-to-angular2/tree/beta).
 - [RC.4](https://github.com/mgechev/switching-to-angular2/tree/rc.4).
 - [Second edition, aligned with Angular final](https://github.com/mgechev/switching-to-angular2/tree/final).
+- [Third edition](https://github.com/mgechev/switching-to-angular).
 
 # How to start
 
